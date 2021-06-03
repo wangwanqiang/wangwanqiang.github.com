@@ -1,0 +1,1517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>DD-WRT 通过SSH使用WOL</title>
+    <url>/2020/01/06/DD-WRT%E9%80%9A%E8%BF%87SSH%E4%BD%BF%E7%94%A8WOL/</url>
+    <content><![CDATA[<p><a name="vQurC"></a></p>
+<h3 id="WOL-through-Telnet-SSH"><a href="#WOL-through-Telnet-SSH" class="headerlink" title="WOL through Telnet/SSH"></a>WOL through Telnet/SSH</h3><p><strong>Note:</strong> This is the preferred method to send WOL magic packets remotely.</p>
+<p>If you have local or remote Telnet/SSH access to your router, you can wake up a machine on the LAN by using the following command:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/usr/sbin/wol -i 192.168.1.255 -p PP AA:BB:CC:DD:EE:FF</span><br></pre></td></tr></table></figure>
+<p>Note that the full path to “/usr/sbin/wol” is important. Simply “wol” will not work.</p>
+<p>Substitute <em>AA:BB:CC:DD:EE:FF</em> with the actual MAC address of the computer which you wish to boot remotely. Likewise, replace <em>192.168.1.255</em> with the actual broadcast address of the network (192.168.1.255 is the broadcast address when the machine has an IP of 192.168.1.x and subnet mask of 255.255.255.0). Replace “PP” with the port number your machine listens on (usually 7 or 9).</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/usr/sbin/wol -i 192.168.1.255 -p 9 24:5E:BE:32:C8:EB</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>dd-wrt</category>
+        <category>路由器</category>
+      </categories>
+      <tags>
+        <tag>dd-wrt</tag>
+        <tag>路由器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git基本使用（1）</title>
+    <url>/2016/03/08/Git%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="Git-基础使用"><a href="#Git-基础使用" class="headerlink" title="Git 基础使用"></a>Git 基础使用</h1><p>结合这两天的基本使用情况，进行总结：</p>
+<h2 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h2><pre><code>$ git checkout -b dev # 创建并切换
+
+`&lt;/pre&gt;
+
+这样就创建了一个名字叫着 dev 的分支。
+
+注意到这里的 checkout 命令名，他和切换分支是一个命令，只不带了一个 b 参数。
+
+## 切换分支
+
+&lt;pre&gt;`$ git checkout dev  # 切换
+
+`&lt;/pre&gt;
+
+不带参数，这就是切换到了dev分支。
+
+## 合并分支
+
+&lt;pre&gt;`$ git merge dev # 从dev分支合并
+
+`&lt;/pre&gt;
+
+把dev分支的修改合并到当前的分支
+
+## 查看分支
+
+&lt;pre&gt;`$ git branch
+
+`&lt;/pre&gt;
+
+如果你安装了 oh-my-zsh的git支持的话，查看分支其实很少用，补全太强大了，在需要查看分支的地方，可以临时补全显示出来，选择需要操作。
+
+## 版本回退
+</code></pre><ul>
+<li><p>回退版本</p>
+<pre>`$ git reset --hard HEAD^     #回滚上一个版本
+
+$ git reset --hard HEAD^^    #回滚上上一个版本
+
+$ git reset --hard HEAD~100  #回滚上100个版本
+
+`</pre>
+
+<p>这里和SVN的更新到某个版本不一样，svn这时你去看log,自己确实处理中间的某一个版本，而在Git上，此时 Git log，最上面的版本就是回退后的版本。</p>
+<h2 id="撤消版本回退"><a href="#撤消版本回退" class="headerlink" title="撤消版本回退"></a>撤消版本回退</h2><p>回到未来的版本可以用下面的命令：</p>
+<p><pre>`$ git reset –hard 3628164</pre></p>
+</li>
+</ul>
+<p>后面的数字是Git的版本号，可以使用 git log, git reflog 去找这个版本号，也可以从 gitlab, github这样的服务器上去取，当然你要是从这些服务器上 clone 过来。</p>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 使用相关</title>
+    <url>/2017/11/04/Hexo-%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h1 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h1><p>据说每个从wordpress转过来blog都会有篇文章，这个就是。</p>
+<h2 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h2><h3 id="两个前提和条件"><a href="#两个前提和条件" class="headerlink" title="两个前提和条件"></a>两个前提和条件</h3><ol>
+<li>首先要安装 Node.js </li>
+<li>当然了还要安装 git</li>
+</ol>
+<h3 id="然后在Windows命令行输入"><a href="#然后在Windows命令行输入" class="headerlink" title="然后在Windows命令行输入"></a>然后在Windows命令行输入</h3><ol>
+<li><p>安装hexo  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化一个blog，这里名字就叫 hexo</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init hexo</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入hexo目录</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd hexo</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装依赖文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>部署形成文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="mac"><a href="#mac" class="headerlink" title="mac"></a>mac</h2><p>还没有测试过如何弄。</p>
+<h2 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h2><p>还没有测试过如何弄。</p>
+<h1 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h1><h2 id="本地预览"><a href="#本地预览" class="headerlink" title="本地预览"></a>本地预览</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>就能打开一个本地服务器，通过提示的地址可以看效果。</p>
+<h2 id="怎么发布到Github的空间中去"><a href="#怎么发布到Github的空间中去" class="headerlink" title="怎么发布到Github的空间中去"></a>怎么发布到Github的空间中去</h2><p>首先得有github帐号，肯定有了，不说了。还有就是要在本机配置好如何能push到github上去。github官方有说明，windows还有点复杂，这里暂时不说了。</p>
+<h1 id="如何写文章"><a href="#如何写文章" class="headerlink" title="如何写文章"></a>如何写文章</h1><h2 id="Draft"><a href="#Draft" class="headerlink" title="Draft"></a>Draft</h2><p>在文件夹的source目录下面有个_drafts目录，这里面都是没有Post。</p>
+<h2 id="publish"><a href="#publish" class="headerlink" title="publish"></a>publish</h2><p>在文件夹的source目录下面有个_post目录。这里面都是已经post了的。</p>
+<h1 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h1><p>要工作，有些插件必须要有。</p>
+<ol>
+<li>发布到github上需要一个插件。</li>
+<li>把wordpress内容导入到hexo也需要一个插件。</li>
+<li>有个hexo admin的插件可以成倍的减少用hexo的难度。（我正在用）</li>
+</ol>
+<h1 id="使用心得"><a href="#使用心得" class="headerlink" title="使用心得"></a>使用心得</h1><p>next主题很不错，要另外安装。默认的比较丑。</p>
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>读书笔记：IOS视图控制器与控件</title>
+    <url>/2015/05/19/IOS%E8%A7%86%E5%9B%BE%E6%8E%A7%E5%88%B6%E5%99%A8%E4%B8%8E%E6%8E%A7%E4%BB%B6/</url>
+    <content><![CDATA[<h1 id="IOS-视图控制器"><a href="#IOS-视图控制器" class="headerlink" title="IOS 视图控制器"></a>IOS 视图控制器</h1><h2 id="视图控制器之间的切换"><a href="#视图控制器之间的切换" class="headerlink" title="视图控制器之间的切换"></a>视图控制器之间的切换</h2><p>在响应的位置，创建需要的视图控制器，然后preset过去。</p>
+<h2 id="视图控制器之间传递数据"><a href="#视图控制器之间传递数据" class="headerlink" title="视图控制器之间传递数据"></a>视图控制器之间传递数据</h2><ol>
+<li>通知中心 最简单的方式，缺点就是两个类之前没有关系。</li>
+<li>代理模式 采用协议的方式，需要向外传数据的类定义代理，接受数据的类实现协议。协议赋值采用 assign。 # IOS 控件 <em> UILabel </em> UIControl 处理事件 <em> UIButton 处理状态 工厂方法：buttonWithType 贴图的方法，要使用custorm Type cancel 事件，来电话和锁屏触发 </em> 风火轮（UIActivityIndicatorView） 显示与停止，显示到状态栏。</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>IOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IOS设置固定大小的图片</title>
+    <url>/2018/02/17/IOS%E8%AE%BE%E7%BD%AE%E5%9B%BA%E5%AE%9A%E5%A4%A7%E5%B0%8F%E7%9A%84%E5%9B%BE%E7%89%87/</url>
+    <content><![CDATA[<p>下面是实现这部分功能的代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">UIImage * img = [UIImage imageNamed:@&quot;doorlogo&quot;];</span><br><span class="line"></span><br><span class="line">CGSize itemSize = CGSizeMake(60, 60);</span><br><span class="line">UIGraphicsBeginImageContext(itemSize);</span><br><span class="line">CGRect imageRect = CGRectMake(0, 0, itemSize.width, itemSize.height);</span><br><span class="line">[img drawInRect:imageRect];</span><br><span class="line">cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();</span><br><span class="line">UIGraphicsEndImageContext();</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
+    <title>Linux软raid恢复后md127问题</title>
+    <url>/2016/05/02/Linux%E8%BD%AFraid%E6%81%A2%E5%A4%8D%E5%90%8Emd127%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<ol>
+<li>检查/etc/mdadm/mdadm.conf，内容是对的，但重启后，还是md127.</li>
+<li>在网上看到这个：</li>
+</ol>
+<p>查看md0的UUID：<br>sudo mdadm –detail /dev/md0<br>拷贝下来UUID 7f59975e:9e637932:dce17021:f68cb000<br>然后：sudo vim /etc/mdadm/mdadm.conf<br>在文件的靠前位置，加入这一行：<br>ARRAY /dev/md0 UUID=7f59975e:9e637932:dce17021:f68cb000<br>:wq!强制保存后退出vim，下一步很重要！You need to update initramfs so it contains your mdadm.conf settings during boot.<br><strong>sudo update-initramfs -u</strong><br>否则，重启系统，mdadm会自动将raid1生成/dev/md127，而不是/dev/md0。</p>
+<p>update-initramfs 后，确实管用。</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>MicroGen8</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>MicroGen8</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>QMenu 自定义样式</title>
+    <url>/2020/11/21/QMenu%20%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%B7%E5%BC%8F/</url>
+    <content><![CDATA[<p>通过QSS 去掉菜单前面的对勾。用颜色表示 checked 状态。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"> QMenu::item &#123;</span><br><span class="line">     padding:8px 32px;/*设置菜单项文字上下和左右的内边距，效果就是菜单中的条目左右上下有了间隔*/</span><br><span class="line">     margin:0px 8px;/*设置菜单项的外边距*/</span><br><span class="line">     border-bottom:1px solid #DBDBDB;/*为菜单项之间添加横线间隔*/</span><br><span class="line">     padding-left:0px;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> QMenu::item:selected &#123; /* when user selects item using mouse or keyboard */</span><br><span class="line">     background-color: #00fff9;/*这一句是设置菜单项鼠标经过选中的样式*/</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">QMenu::item:checked &#123; /* checked */</span><br><span class="line">    background-color: #ff0000;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">QMenu::indicator &#123; /* delete the default icon v */</span><br><span class="line">    image: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果图：</p>
+<p><img src="QMenu 自定义样式/image-20201121110545903.png" alt="image-20201121110545903"></p>
+]]></content>
+      <categories>
+        <category>Qt</category>
+        <category>GUI</category>
+      </categories>
+      <tags>
+        <tag>Qt</tag>
+        <tag>GUI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Qt下载链接</title>
+    <url>/2020/05/30/Qt%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5/</url>
+    <content><![CDATA[<ol>
+<li>所有Qt版本下载地址：</li>
+</ol>
+<p><a href="http://download.qt.io/archive/qt/" target="_blank" rel="noopener">http://download.qt.io/archive/qt/</a></p>
+<ol start="2">
+<li>所有Qt Creator下载地址：</li>
+</ol>
+<p><a href="http://download.qt.io/archive/qtcreator/" target="_blank" rel="noopener">http://download.qt.io/archive/qtcreator/</a></p>
+<ol start="3">
+<li>所有Qt VS开发插件下载地址:</li>
+</ol>
+<p><a href="http://download.qt.io/archive/vsaddin/" target="_blank" rel="noopener">http://download.qt.io/archive/vsaddin/</a></p>
+<ol start="4">
+<li>Qt相关下载大全</li>
+</ol>
+<p><a href="http://download.qt.io/" target="_blank" rel="noopener">http://download.qt.io/</a></p>
+]]></content>
+      <categories>
+        <category>Qt</category>
+      </categories>
+      <tags>
+        <tag>Qt</tag>
+        <tag>Links</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Qt对话框窗口设置</title>
+    <url>/2020/01/21/Qt%E5%AF%B9%E8%AF%9D%E6%A1%86%E7%AA%97%E5%8F%A3%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="设置窗口标题"><a href="#设置窗口标题" class="headerlink" title="设置窗口标题"></a>设置窗口标题</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">setWindowTitle(&quot;Touch Screen&quot;);</span><br></pre></td></tr></table></figure>
+<h1 id="设置窗口固定大小"><a href="#设置窗口固定大小" class="headerlink" title="设置窗口固定大小"></a>设置窗口固定大小</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">setFixedSize(QT_WINDOW_WIDTH_FOR_TOUCH, QT_WINDOW_HEIGHT_FOR_TOUCH);</span><br></pre></td></tr></table></figure>
+<h1 id="设置窗口显示在另外一个显示器上"><a href="#设置窗口显示在另外一个显示器上" class="headerlink" title="设置窗口显示在另外一个显示器上"></a>设置窗口显示在另外一个显示器上</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">QDesktopWidget* desktop = QApplication::desktop();</span><br><span class="line">if (desktop-&gt;screenCount() &gt; 1)</span><br><span class="line">&#123;</span><br><span class="line">   setGeometry(desktop-&gt;screenGeometry(1));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="在非主线程更新显示"><a href="#在非主线程更新显示" class="headerlink" title="在非主线程更新显示"></a>在非主线程更新显示</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">QMetaObject::invokeMethod(this, &quot;asyncUpdateGui&quot;, Qt::QueuedConnection);</span><br></pre></td></tr></table></figure>
+<p>其中 asyncUpdateGui 的定义：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private slots:</span><br><span class="line">    Q_INVOKABLE void asyncUpdateGui();</span><br></pre></td></tr></table></figure>
+<p>实现：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void xApplicationWindow::asyncUpdateGui()</span><br><span class="line">&#123;</span><br><span class="line">    update();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>qt</category>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>qt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SPI 总线</title>
+    <url>/2020/05/03/SPI%20%E6%80%BB%E7%BA%BF/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>SPI是串行外设接口(Serial Peripheral Interface)的缩写。是 Motorola 公司推出的一种同步串行接口技术，是一种高速的，全双工，同步的通信总线。</p>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ol>
+<li>高速、同步、全双工、非差分、总线式</li>
+<li>主从机通信模式</li>
+</ol>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
+<li>支持全双工通信</li>
+<li>通信简单</li>
+<li>数据传输速率块</li>
+</ol>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ol>
+<li>没有指定的流控制，没有应答机制确认是否接收到数据，所以跟IIC总线协议比较在数据</li>
+<li>可靠性上有一定的缺陷。</li>
+</ol>
+<h1 id="协议详解"><a href="#协议详解" class="headerlink" title="协议详解"></a>协议详解</h1><p>它以主从方式工作，这种模式通常有一个主设备和一个或多个从设备，需要至少4根线，事实上3根也可以(单向传输时)。也是所有基于SPI的设备共有的，它们是SDI(数据输入)、SDO(数据输出)、SCLK(时钟)、CS(片选)。</p>
+<ol>
+<li>SDO/MOSI – 主设备数据输出，从设备数据输入;</li>
+<li>SDI/MISO – 主设备数据输入，从设备数据输出;</li>
+<li>SCLK – 时钟信号，由主设备产生;</li>
+<li>CS/SS – 从设备使能信号，由主设备控制。当有多个从设备的时候，因为每个从设备上都有一个片选引脚接入到主设备机中，当我们的主设备和某个从设备通信时将需要将从设备对应的片选引脚电平拉低或者是拉高。</li>
+</ol>
+<p><img src="http://depot.wanqiang.wang/blog/20200503/Q13S5At43CUc.png?imageslim" alt="mark"></p>
+<p>SPI通信有4种不同的模式，不同的从设备可能在出厂是就是配置为某种模式，这是不能改变的；但我们的通信双方必须是工作在同一模式下，所以我们可以对我们的主设备的SPI模式进行配置，通过CPOL（时钟极性）和CPHA（时钟相位）来控制我们主设备的通信模式，具体如下：</p>
+<ol>
+<li>Mode0：CPOL=0，CPHA=0</li>
+<li>Mode1：CPOL=0，CPHA=1</li>
+<li>Mode2：CPOL=1，CPHA=0</li>
+<li>Mode3：CPOL=1，CPHA=1</li>
+</ol>
+<p>时钟极性CPOL是用来配置SCLK的电平出于哪种状态时是空闲态或者有效态，时钟相位CPHA是用来配置数据采样是在第几个边沿：</p>
+<ol>
+<li>CPOL=0，表示当SCLK=0时处于空闲态，所以有效状态就是SCLK处于高电平时</li>
+<li>CPOL=1，表示当SCLK=1时处于空闲态，所以有效状态就是SCLK处于低电平时</li>
+<li>CPHA=0，表示数据采样是在第1个边沿，数据发送在第2个边沿</li>
+<li>CPHA=1，表示数据采样是在第2个边沿，数据发送在第1个边沿</li>
+</ol>
+<p>例如：</p>
+<p>CPOL=0，CPHA=0：此时空闲态时，SCLK处于低电平，数据采样是在第1个边沿，也就是<br>SCLK由低电平到高电平的跳变，所以数据采样是在上升沿，数据发送是在下降沿。</p>
+<p>CPOL=0，CPHA=1：此时空闲态时，SCLK处于低电平，数据发送是在第1个边沿，也就是<br>SCLK由低电平到高电平的跳变，所以数据采样是在下降沿，数据发送是在上升沿。</p>
+<p>CPOL=1，CPHA=0：此时空闲态时，SCLK处于高电平，数据采集是在第1个边沿，也就是<br>SCLK由高电平到低电平的跳变，所以数据采集是在下降沿，数据发送是在上升沿。</p>
+<p>CPOL=1，CPHA=1：此时空闲态时，SCLK处于高电平，数据发送是在第1个边沿，也就是<br>SCLK由高电平到低电平的跳变，所以数据采集是在上升沿，数据发送是在下降沿。</p>
+<p><img src="http://depot.wanqiang.wang/blog/20200503/DrlkwQgyKQ6W.png?imageslim" alt="mark"></p>
+<p><img src="http://depot.wanqiang.wang/blog/20200503/aJgCAIwhwlHC.png?imageslim" alt="mark"></p>
+<p>需要注意的是：我们的主设备能够控制时钟，因为我们的SPI通信并不像UART或者IIC通信<br>那样有专门的通信周期，有专门的通信起始信号，有专门的通信结束信号；所以我们的<br>SPI协议能够通过控制时钟信号线，当没有数据交流的时候我们的时钟线要么是<br>保持高电平要么是保持低电平。</p>
+<h1 id="协议对比"><a href="#协议对比" class="headerlink" title="协议对比"></a>协议对比</h1><h2 id="spi-与-iic"><a href="#spi-与-iic" class="headerlink" title="spi 与 iic"></a>spi 与 iic</h2><ol>
+<li><p>iic总线不是全双工，2根线SCL SDA。spi总线实现全双工，4根线SCK CS MOSI MISO</p>
+</li>
+<li><p>iic总线是多主机总线，通过SDA上的地址信息来锁定从设备。spi总线只有一个主设备，主设备通过CS片选来确定从设备</p>
+</li>
+<li><p>iic总线传输速度在100kbps-4Mbps。spi总线传输速度更快，可以达到30MHZ以上。</p>
+</li>
+<li><p>iic总线空闲状态下SDA SCL都是高电平。spi总线空闲状态MOSI MISO也都是 SCK是有CPOL决定的</p>
+</li>
+<li><p>iic总线scl高电平时sda下降沿标志传输开始，上升沿标志传输结束。spi总线cs拉低标志传输开始，cs拉高标志传输结束</p>
+</li>
+<li><p>iic总线是SCL高电平采样。spi总线因为是全双工，因此是沿采样，具体要根据CPHA决定。一般情况下master device是SCK的上升沿发送，下降沿采集</p>
+</li>
+<li><p>iic总线和spi总线数据传输都是MSB在前，LSB在后（串口是LSB在前）</p>
+</li>
+<li><p>iic总线和spi总线时钟都是由主设备产生，并且只在数据传输时发出时钟</p>
+</li>
+<li><p>iic总线读写时序比较固定统一，设备驱动编写方便。spi总线不同从设备读写时序差别比较大，因此必须根据具体的设备datasheet来实现读写，相对复杂一些。</p>
+</li>
+</ol>
+<h2 id="SPI、IIC、UART和CAN-使用场景对比"><a href="#SPI、IIC、UART和CAN-使用场景对比" class="headerlink" title="SPI、IIC、UART和CAN 使用场景对比"></a>SPI、IIC、UART和CAN 使用场景对比</h2><p><strong>SPI 和I2C这两种通信方式都是短距离的，芯片和芯片之间或者其他元器件如传感器和芯片之间的通信。</strong> SPI和IIC是板上通信,IIC有时也会做板间通信,不过距离甚短,不过超过一米,例如一些触摸屏,手机液晶屏那些薄膜排线很多用IIC,I2C能用于替代标准的并行总线，能连接的各种集成电路和功能模块。I2C是多主控总线，所以任何一个设备都能像主控器一样工作，并控制总线。总线上每一个设备都有一个独一无二的地址，根据设备它们自己的能力，它们可以作为发射器或接收器工作。多路微控制器能在同一个I2C总线上共存这两种线属于低速传输。</p>
+<p>而<strong>UART是应用于两个设备之间的通信，如用单片机做好的设备和计算机的通信</strong>。这样的通信可以做长距离的。UART速度比上面两者者快,最高达100K左右,用与计算机与设备或者计算机和计算之间通信,但有效范围不会很长,约10米左右,UART优点是支持面广,程序设计结构很简单,随着USB的发展,UART也逐渐走向下坡。</p>
+<p>CAN使用场景完全不一样：</p>
+<ol>
+<li>CAN 通讯距离最大是10 公里（设速率为5Kbps）,或最大通信速率为1Mbps(设通信距离为40 米)。</li>
+<li>CAN 总线上的节点数可达110 个。通信介质可在双绞线，同轴电缆，光纤中选择。</li>
+<li>CAN 采用非破坏性的总线仲裁技术，当多个节点同时发送数据时，优先级低的节点会主动退出发送，高优先级的节点可继续发送，节省总线仲裁时间。</li>
+<li>CAN 是多主方式工作，网上的任一节点均可在任意时刻主动地向网络上其他节点发送信息。</li>
+<li>CAN 采用报文识别符识别网络上的节点，从而把节点分成不同的优先级，高优先级的节点享有传送报文的优先权。报文是短帧结构，短的传送时间使其受干扰概率低，CAN 有很好的效验机制，这些都保证了CAN 通信的可靠性。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>外设</category>
+        <category>嵌入式</category>
+      </categories>
+      <tags>
+        <tag>外设</tag>
+        <tag>嵌入式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Thinkpad 小红点恢复Win10中键滚动功能</title>
+    <url>/2020/01/04/Thinkpad%E5%B0%8F%E7%BA%A2%E7%82%B9%E6%81%A2%E5%A4%8DWin10%E4%B8%AD%E9%94%AE%E6%BB%9A%E5%8A%A8%E5%8A%9F%E8%83%BD/</url>
+    <content><![CDATA[<p><a name="CQHzT"></a></p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在Windows 10下面，按住中键，拔动小红点，页面滚动的同时，光标也会一起跑。控制面板中也找不到设置的地方。</p>
+<p><a name="F5UoG"></a></p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>需要修改注册表：<br>在HKEY_CURRENT_USER\Software\Synaptics\SynTPEnh\UltraNavPS2中，把TrackPointModeFunction的值修改一下即可。<br>原为：”TrackPointModeFunction”=dword:00000011<br>改为：”TrackPointModeFunction”=dword:00000010<br>这样就跟以前使用完全相同了，中键点击是小手或指针，滚动是鼠标中键滚动的图标，一切完美。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>UIAlertController 项添加图标</title>
+    <url>/2018/01/20/UIAlertController%20%E9%A1%B9%E6%B7%BB%E5%8A%A0%E5%9B%BE%E6%A0%87/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">(void)savePreset &#123;</span><br><span class="line"></span><br><span class="line">    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@&quot;Preset to Remoter buttons&quot; message:nil preferredStyle:UIAlertControllerStyleActionSheet];</span><br><span class="line">    </span><br><span class="line">    UIAlertAction * preset1 = [UIAlertAction actionWithTitle:@&quot;Preset1&quot; style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">        NSLog(@&quot;send preset 1&quot;);</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    UIAlertAction * preset2 = [UIAlertAction actionWithTitle:@&quot;Preset2&quot; style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">        NSLog(@&quot;send preset 2&quot;);</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    UIAlertAction * preset3 = [UIAlertAction actionWithTitle:@&quot;Preset3&quot; style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">        NSLog(@&quot;send preset 3&quot;);</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    UIAlertAction * preset4 = [UIAlertAction actionWithTitle:@&quot;Preset4&quot; style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">        NSLog(@&quot;send preset 4&quot;);</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@&quot;Cancel&quot; style:UIAlertActionStyleCancel</span><br><span class="line">                    handler:^(UIAlertAction * action) &#123;&#125;];</span><br><span class="line">    </span><br><span class="line">    [alertController addAction:defaultAction];</span><br><span class="line">    </span><br><span class="line">    [preset1 setValue:[[UIImage imageNamed:@&quot;fire&quot;] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forKey:@&quot;image&quot;];</span><br><span class="line">    [preset2 setValue:[[UIImage imageNamed:@&quot;left&quot;] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forKey:@&quot;image&quot;];</span><br><span class="line">    [preset3 setValue:[[UIImage imageNamed:@&quot;right&quot;] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forKey:@&quot;image&quot;];</span><br><span class="line">    [preset4 setValue:[[UIImage imageNamed:@&quot;down&quot;] imageWithRenderingMode:UIImageRenderingModeAutomatic] forKey:@&quot;image&quot;];</span><br><span class="line">    [alertController addAction:preset1];</span><br><span class="line">    [alertController addAction:preset2];</span><br><span class="line">    [alertController addAction:preset3];</span><br><span class="line">    [alertController addAction:preset4];</span><br><span class="line">    [self presentViewController:alertController animated:YES completion:nil];</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
+    <title>UIAlertController 项添加图标</title>
+    <url>/2018/02/17/UIAlertController-%E9%A1%B9%E6%B7%BB%E5%8A%A0%E5%9B%BE%E6%A0%87/</url>
+    <content><![CDATA[<p>下面是示例代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">(void)savePreset</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@&quot;Preset to Remoter buttons&quot; message:nil preferredStyle:UIAlertControllerStyleActionSheet];</span><br><span class="line">    </span><br><span class="line">    UIAlertAction * preset1 = [UIAlertAction actionWithTitle:@&quot;Preset1&quot; style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">        NSLog(@&quot;send preset 1&quot;);</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    UIAlertAction * preset2 = [UIAlertAction actionWithTitle:@&quot;Preset2&quot; style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">        NSLog(@&quot;send preset 2&quot;);</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    UIAlertAction * preset3 = [UIAlertAction actionWithTitle:@&quot;Preset3&quot; style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">        NSLog(@&quot;send preset 3&quot;);</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    UIAlertAction * preset4 = [UIAlertAction actionWithTitle:@&quot;Preset4&quot; style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">        NSLog(@&quot;send preset 4&quot;);</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@&quot;Cancel&quot; style:UIAlertActionStyleCancel</span><br><span class="line">                    handler:^(UIAlertAction * action) &#123;&#125;];</span><br><span class="line">    </span><br><span class="line">    [alertController addAction:defaultAction];</span><br><span class="line">    </span><br><span class="line">    [preset1 setValue:[[UIImage imageNamed:@&quot;fire&quot;] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forKey:@&quot;image&quot;];</span><br><span class="line">    [preset2 setValue:[[UIImage imageNamed:@&quot;left&quot;] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forKey:@&quot;image&quot;];</span><br><span class="line">    [preset3 setValue:[[UIImage imageNamed:@&quot;right&quot;] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forKey:@&quot;image&quot;];</span><br><span class="line">    [preset4 setValue:[[UIImage imageNamed:@&quot;down&quot;] imageWithRenderingMode:UIImageRenderingModeAutomatic] forKey:@&quot;image&quot;];</span><br><span class="line">    [alertController addAction:preset1];</span><br><span class="line">    [alertController addAction:preset2];</span><br><span class="line">    [alertController addAction:preset3];</span><br><span class="line">    [alertController addAction:preset4];</span><br><span class="line">    [self presentViewController:alertController animated:YES completion:nil];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>ios</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UML学习之听课</title>
+    <url>/2015/05/19/UML%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%90%AC%E8%AF%BE/</url>
+    <content><![CDATA[<div class="pcs-article-box_ptkaiapt4bxy_baiduscarticle"><br><br>#<br><br><div class="pcs-article-c_ptkaiapt4bxy_baiduscarticle"><br><div id="detailArticleContent_ptkaiapt4bxy_baiduscarticle" class="pcs-article-content_ptkaiapt4bxy_baiduscarticle">      听了《尚学堂》关于UML学习的两天的课，自己感觉这课还不错吧，关键是讲的人结合了软件开发中的具体的经验，UML是一门工具，只有结合具体的应用场景，才能看见其价值。   这让课程主要讲了这几个方面：类图，顺序图，状态图，用例编写，其它的也基本上只是提到了一下。虽然结合的是Java的开发讲的，结合了一些Java的具体的框架，自己在这方面有些不懂。   不同的图相当于一种分析的解度，类图是静态的建模，顺序图对动态的建模。状态图用来描述一个特定的对象的所有可能的状态，以及由各种事件发生而引起的状态之间的转化。活动图用来描述事物或对象的活动变化流程。<br><br>对于类图：关键是理解和分析各种类之间的关联关系。学习中应注重与思想，而不仅仅停留在图的表面上，图只不过是思想的一种反映罢了，对于程序设计，还要结合具体的代码，例如，每一种关系，代码上是如何表现的，相反，图能够直观的反映代码的结构，比如学习设计模式，如果把设计模式都用类图表示出来。非常的直观，也很好记忆，也能更好的理解，用到这一设计模式，首先想到的是这一设计模式的类组，然后跟据自己的特定的情况，写代码就是了。<br><br>对于顺序图：顺序图反映了一种动态的过程，比如在哪课程中举的”登陆“过程例子，用顺序图非常直观的分析了这一过程，分析了各个模块（类）之间要进行的哪些交互，通过对这一过程的分析，设计者了解了程序完成某一件事情都需要做些什么，通过对交互图的认真分析，对于设计者，也可以得出类的功能划分——这一点原来自己一直感到很困惑，看老师演示这一过程，感觉自己有一点认识吧。通过功能来设计类，通过类图来理解系统，从静态和动态两个不同的方面认识系统，不同的角度，但却是一个整体。对于交互图的另一种：协作图，课程中只是提到了一下，演示了一下顺序图和协作图通过Rose的转换，说是一般用在公司的白板描述中，为了节约白板空间，自己不知这个描术是不是准确。<br><br>对于状态图：状态图应该是很重要的，这是一种程序员和客户都能看懂的图，在程序的设计阶段分析系统的各种可能的状态非常重要，否则的话，可能在开发的后期会导制系统结构的大的修改。课程中用一个开发校园一卡通作为例子，分析卡在不同时刻的状态，和不同的时刻的状态转化关系，非常直观。同时也用DVD机在工作过程中的状态用了演示。状态图对于系统的分析应该很有帮助吧。<br><br>这门课程最后还重点讲了如何作需求分析，如何写用例文档。提了一下GRASP(基于职责设计对象)模式。</div><br><div class="pcs-article-content_ptkaiapt4bxy_baiduscarticle"></div><br></div><br></div><br><div id="detailArticleFooter_ptkaiapt4bxy_baiduscarticle" class="footer"><br><div class="time-cang">收藏于 2010-01-12</div><br><div class="link-src">来自于百度空间</div><br></div>
+]]></content>
+      <categories>
+        <category>百度空间的旧文章</category>
+      </categories>
+      <tags>
+        <tag>uml</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Win10 微软拼音双拼设置</title>
+    <url>/2020/06/02/Win10%E5%BE%AE%E8%BD%AF%E6%8B%BC%E9%9F%B3%E5%8F%8C%E6%8B%BC%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="Win10-微软拼音双拼设置"><a href="#Win10-微软拼音双拼设置" class="headerlink" title="Win10 微软拼音双拼设置"></a>Win10 微软拼音双拼设置</h1><h2 id="Win10-微软拼音添加小鹤双拼"><a href="#Win10-微软拼音添加小鹤双拼" class="headerlink" title="Win10 微软拼音添加小鹤双拼"></a>Win10 微软拼音添加小鹤双拼</h2><p>首先打开注册表，找到这个路径:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">计算机\HKEY_CURRENT_USER\Software\Microsoft\InputMethod\Settings\CHS</span><br></pre></td></tr></table></figure></p>
+<p>然后新建一个名为 UserDefinedDoublePinyinScheme0的字符串值，数值数据为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">小鹤双拼*2*^*iuvdjhcwfg^xmlnpbksqszxkrltvyovt</span><br></pre></td></tr></table></figure>
+<p>然后在设置中将默认的输入法设置为小鹤双拼。</p>
+<h2 id="微软拼音支持自定义时间格式"><a href="#微软拼音支持自定义时间格式" class="headerlink" title="微软拼音支持自定义时间格式"></a>微软拼音支持自定义时间格式</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 关键字需要用 %% 来包裹</span><br><span class="line">yyyy    4 位年</span><br><span class="line">MM	    2 位月</span><br><span class="line">dd	    2 位日</span><br><span class="line">HH  	2 位小时（24 小时制）</span><br><span class="line">mm  	2 位分钟数</span><br><span class="line">ss  	2 位秒数</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 结果是这样的格式: 2020-02-07 12:36:52</span><br><span class="line"># 具体的格式参看, 详见 ref</span><br><span class="line">%yyyy%-%MM%-%dd% %HH%:%mm%:%ss%</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>win</category>
+        <category>输入法</category>
+      </categories>
+      <tags>
+        <tag>win</tag>
+        <tag>输入法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows远程桌面连接Linux</title>
+    <url>/2018/07/11/Windows%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5Linux/</url>
+    <content><![CDATA[<p>Windows连接Linux 在Linux装下xrdp软件 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1、安装xrdp sudo apt-get install xrdp </span><br><span class="line">2、配置xrdp /etc/xrdp/xrdp.ini 复制一个配置将其中的port 配置成5900及名称改下， service xrdp restart </span><br><span class="line">3、安装vino sudo apt-get install vino </span><br><span class="line">4、vino-preference 将第1 个开启 </span><br><span class="line">5、gsettings set org.gnome.Vino require-encryption false 6、/usr/lib/vino/vino-server/</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
+    <title>Android 编译问题：Could not find com.android.tools.lint:lint-gradle:26.1.2.</title>
+    <url>/2018/04/30/android%E7%BC%96%E8%AF%91%E9%97%AE%E9%A2%98lint-gradle/</url>
+    <content><![CDATA[<p>编译时报如下的错误：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">FAILURE: Build failed with an exception. * What went wrong: Execution failed for task &apos;:app:lintVitalRelease&apos;. &gt; Could not resolve all files for configuration &apos;:app:lintClassPath&apos;. &gt; Could not find com.android.tools.lint:lint-gradle:26.1.2. Searched in the following locations: file:/C:/Users/wwq/AppData/Local/Android/sdk/extras/m2repository/com/android/tools/lint/lint-gradle/26.1.2/lint-gradle-26.1.2.pom file:/C:/Users/wwq/AppData/Local/Android/sdk/extras/m2repository/com/android/tools/lint/lint-gradle/26.1.2/lint-gradle-26.1.2.jar file:/C:/Users/wwq/AppData/Local/Android/sdk/extras/google/m2repository/com/android/tools/lint/lint-gradle/26.1.2/lint-gradle-26.1.2.pom file:/C:/Users/wwq/AppData/Local/Android/sdk/extras/google/m2repository/com/android/tools/lint/lint-gradle/26.1.2/lint-gradle-26.1.2.jar file:/C:/Users/wwq/AppData/Local/Android/sdk/extras/android/m2repository/com/android/tools/lint/lint-gradle/26.1.2/lint-gradle-26.1.2.pom file:/C:/Users/wwq/AppData/Local/Android/sdk/extras/android/m2repository/com/android/tools/lint/lint-gradle/26.1.2/lint-gradle-26.1.2.jar https://jcenter.bintray.com/com/android/tools/lint/lint-gradle/26.1.2/lint-gradle-26.1.2.pom https://jcenter.bintray.com/com/android/tools/lint/lint-gradle/26.1.2/lint-gradle-26.1.2.jar Required by: project :app</span><br></pre></td></tr></table></figure>
+<p>解决方法： 检查根 build.gradle 文件。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">allprojects &#123; repositories &#123; jcenter() // mavenCentral() google() //**要加这行** // maven &#123; url &apos;https://jitpack.io&apos; &#125; &#125; &#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bitnami安装的程序如何去掉欢迎页面。</title>
+    <url>/2016/10/19/bitnami%E5%AE%89%E8%A3%85%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%A6%82%E4%BD%95%E5%8E%BB%E6%8E%89%E6%AC%A2%E8%BF%8E%E9%A1%B5%E9%9D%A2/</url>
+    <content><![CDATA[<p>就是网址打开的那个页面。去掉它直接进入安装的程序。</p>
+<p>方法如下：</p>
+<ol>
+<li>在开始菜单找到安装程序的命令行的窗口。执行。</li>
+<li>cd 命令进入到 apps 目录下面的程序的目录下：比如我这个：D:\Bitnami\redmine-3.3.1-0\apps\redmine&gt;</li>
+<li>执行这个目录下面的 bnconfig.exe 程序，参数像这样： bnconfig.exe –appurl /</li>
+</ol>
+<p>然后再到开始菜单中去重启整个服务。</p>
+<p>我用的是Windows版，别的应该也是一样的。</p>
+]]></content>
+      <categories>
+        <category>IT</category>
+        <category>win 10</category>
+      </categories>
+      <tags>
+        <tag>bitnami</tag>
+        <tag>redmine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++代码之编译器的坑</title>
+    <url>/2017/04/22/cpp%E4%BB%A3%E7%A0%81%E4%B9%8B%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E5%9D%91/</url>
+    <content><![CDATA[<p>C++代码需要在不同的环境里运行，使用的编译器一般来说是不一样的。不一样就会导致对语法的解释不同，一个编译器通过了，但却不能保证在另一个编译器上通过。</p>
+<p>今天再次遇到这事，win过了，Linux 却挂了。由于昨天的网络问题没法在Linux 平台上验证。这种时候总是会发生点什么，脸也是够黑的。</p>
+<p>一个函数参数需要一个标准库的容器引用，由于一个地方我不需要所以没定义临时变量，直接把容器的构造函数放在参数位置传下去。win 一切正常。Linux却不过。</p>
+<p>偶然因素导致不能检查，自动编译Jinkens也没过。影响大家工作。</p>
+<p>还是小心的好！</p>
+]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>C++ 多重继承与转型的坑</title>
+    <url>/2015/07/10/cpp%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF%E4%B8%8E%E8%BD%AC%E5%9E%8B%E7%9A%84%E5%9D%91/</url>
+    <content><![CDATA[<p>多重继承的基类有两个基类，对于一个这样的对象，如何从一个类型切换到另外的一个类型呢？</p>
+<p>对这个不熟悉的人，像我，拿过来就做了一个类型转换，对，就是把一个指针类型转换到另外的一个指针类型。想当然的理解为，这里可以多余但至少不会出错吧！</p>
+<p>然后，后面用这个指针的调用，无论如何也不对了。当还和一堆别的问题纠缠在一起的时候，完全想不到是这里有问题。debug 。。。。</p>
+<p>在别人的提示下：多重继承指针的切换，两个指针指向的地址是不一样的，但这个转型，地址确没有变？！去掉这个转型动作，一切OK。</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker 下载加速</title>
+    <url>/2017/04/12/docker-%E4%B8%8B%E8%BD%BD%E5%8A%A0%E9%80%9F/</url>
+    <content><![CDATA[<p>直接下载官方的docker镜像，慢得很。</p>
+<p>下面这个地址可以加速：</p>
+<p><a href="https://www.daocloud.io/mirror#accelerator-doc" target="_blank" rel="noopener">https://www.daocloud.io/mirror#accelerator-doc</a></p>
+]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>docker安装Gitlab</title>
+    <url>/2016/03/03/docker%E5%AE%89%E8%A3%85Gitlab/</url>
+    <content><![CDATA[<p>这里用到了一个第三方的镜像：</p>
+<p>Step 1. Launch a postgresql container</p>
+<pre><code>docker run --name gitlab-postgresql -d \
+    --env &apos;DB_NAME=gitlabhq_production&apos; \
+    --env &apos;DB_USER=gitlab&apos; --env &apos;DB_PASS=password&apos; \
+    --volume /srv/docker/gitlab/postgresql:/var/lib/postgresql \
+    sameersbn/postgresql:9.4-13
+`&lt;/pre&gt;
+
+Step 2\. Launch a redis container
+
+&lt;pre&gt;`docker run --name gitlab-redis -d \
+    --volume /srv/docker/gitlab/redis:/var/lib/redis \
+    sameersbn/redis:latest
+`&lt;/pre&gt;
+
+Step 3\. Launch the gitlab container
+
+&lt;pre&gt;`docker run --name gitlab -d \
+    --link gitlab-postgresql:postgresql --link gitlab-redis:redisio \
+    --publish 10022:22 --publish 10080:80 \
+    --env &apos;GITLAB_PORT=10080&apos; --env &apos;GITLAB_SSH_PORT=10022&apos; \
+    --env &apos;GITLAB_SECRETS_DB_KEY_BASE=long-and-random-alpha-numeric-string&apos; \
+    --volume /srv/docker/gitlab/gitlab:/home/git/data \
+    sameersbn/gitlab:8.5.1
+</code></pre><p>Please refer to Available Configuration Parameters to understand GITLAB_PORT and other configuration options</p>
+<p>NOTE: Please allow a couple of minutes for the GitLab application to start.</p>
+<p>Point your browser to <a href="http://localhost:10080" target="_blank" rel="noopener">http://localhost:10080</a> and login using the default username and password:</p>
+<blockquote>
+<p>username: root<br>  password: 5iveL!fe</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker设置代理</title>
+    <url>/2016/03/02/docker%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<p>使用下面的命令就可以设置，替换你的IP和端口。<br>sudo HTTP_PROXY=10.160.8.99:808  docker -d&amp;</p>
+]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>代理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>读书笔记：IOS视图控制器与控件</title>
+    <url>/2015/05/19/e8-af-bb-e4-b9-a6-e7-ac-94-e8-ae-b0-ef-bc-9aios-e8-a7-86-e5-9b-be-e6-8e-a7-e5-88-b6-e5-99-a8-e4-b8-8e-e6-8e-a7-e4-bb-b6/</url>
+    <content><![CDATA[<h1 id="IOS-视图控制器"><a href="#IOS-视图控制器" class="headerlink" title="IOS 视图控制器"></a>IOS 视图控制器</h1><h2 id="视图控制器之间的切换"><a href="#视图控制器之间的切换" class="headerlink" title="视图控制器之间的切换"></a>视图控制器之间的切换</h2><p>在响应的位置，创建需要的视图控制器，然后preset过去。</p>
+<h2 id="视图控制器之间传递数据"><a href="#视图控制器之间传递数据" class="headerlink" title="视图控制器之间传递数据"></a>视图控制器之间传递数据</h2><p>1. 通知中心</p>
+<p>最简单的方式，缺点就是两个类之前没有关系。</p>
+<p>1. 代理模式</p>
+<p>采用协议的方式，需要向外传数据的类定义代理，接受数据的类实现协议。协议赋值采用 assign。</p>
+<h1 id="IOS-控件"><a href="#IOS-控件" class="headerlink" title="IOS 控件"></a>IOS 控件</h1><ul>
+<li>UILabel</li>
+<li>UIControl</li>
+</ul>
+<p>处理事件</p>
+<ul>
+<li>UIButton</li>
+</ul>
+<p>处理状态<br>工厂方法：buttonWithType<br>贴图的方法，要使用custorm Type</p>
+<p>cancel 事件，来电话和锁屏触发</p>
+<ul>
+<li>风火轮（UIActivityIndicatorView）</li>
+</ul>
+<p>显示与停止，显示到状态栏。</p>
+]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Excel 取消隐藏的列</title>
+    <url>/2015/05/19/excel-e5-8f-96-e6-b6-88-e9-9a-90-e8-97-8f-e7-9a-84-e5-88-97/</url>
+    <content><![CDATA[<div class="pcs-article-box_ptkaiapt4bxy_baiduscarticle"><br><div class="pcs-article-c_ptkaiapt4bxy_baiduscarticle"><br><div id="detailArticleContent_ptkaiapt4bxy_baiduscarticle" class="pcs-article-content_ptkaiapt4bxy_baiduscarticle"><br><br>在隐藏的列的表头上，光标放到隐藏的列的那个位置向两边拉，就把隐藏的列拉出来了。<br><br>Excel 2010 测试通过。<br><br></div><br></div><br></div><br><div id="detailArticleFooter_ptkaiapt4bxy_baiduscarticle" class="footer"></div>]]></content>
+      <categories>
+        <category>百度空间的旧文章</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>gem 安装 json 报错</title>
+    <url>/2016/03/08/gem-e5-ae-89-e8-a3-85-json-e6-8a-a5-e9-94-99/</url>
+    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>编译一个开源书辑时，运行 bundle install 命令报错，让安装 json -v ‘1.8.1’，但报错。</p>
+<pre><code>sudo gem install json -v &apos;1.8.1&apos;
+
+Building native extensions.  This could take a while...
+ERROR:  Error installing json:
+    ERROR: Failed to build gem native extension.
+
+        /usr/bin/ruby1.9.1 extconf.rb
+/usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in `require&apos;: cannot load such file -- mkmf (LoadError)
+    from /usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in `require&apos;
+    from extconf.rb:1:in `&amp;lt;main&amp;gt;&apos;
+
+Gem files will remain installed in /var/lib/gems/1.9.1/gems/json-1.8.1 for inspection.
+Results logged to /var/lib/gems/1.9.1/gems/json-1.8.1/ext/json/ext/generator/gem_make.out
+
+`&lt;/pre&gt;
+
+## 解决
+
+添加 ruby1.9.1-dev包就可以解决这个问题了。
+
+&lt;pre&gt;`sudo apt-get install ruby1.9.1-
+</code></pre>]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>gem 设置代理</title>
+    <url>/2016/03/04/gem-e8-ae-be-e7-bd-ae-e4-bb-a3-e7-90-86/</url>
+    <content><![CDATA[<p>按下面的方法可行</p>
+<p>sudo gem install gollum -p <a href="http://10.160.8.97:808" target="_blank" rel="noopener">http://10.160.8.97:808</a></p>
+]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Git: 利用Git的subtree功能在不同工程共享代码</title>
+    <url>/2016/03/05/git-e5-88-a9-e7-94-a8git-e7-9a-84subtree-e5-8a-9f-e8-83-bd-e5-9c-a8-e4-b8-8d-e5-90-8c-e5-b7-a5-e7-a8-8b-e5-85-b1-e4-ba-ab-e4-bb-a3-e7-a0-81/</url>
+    <content><![CDATA[<h2 id="1-第一次添加子目录，建立与git项目的关联"><a href="#1-第一次添加子目录，建立与git项目的关联" class="headerlink" title="1. 第一次添加子目录，建立与git项目的关联"></a>1. 第一次添加子目录，建立与git项目的关联</h2><p>建立关联总共有2条命令。</p>
+<p>语法： git remote add -f &lt;子仓库名&gt; &lt;子仓库地址&gt;</p>
+<p>解释：其中-f意思是在添加远程仓库之后，立即执行fetch。</p>
+<p>语法： git subtree add –prefix=&lt;子目录名&gt; &lt;子仓库名&gt; &lt;分支&gt; –squash</p>
+<p>解释：–squash意思是把subtree的改动合并成一次commit，这样就不用拉取子项目完整的历史记录。–prefix之后的=等号也可以用空格。</p>
+<p>示例</p>
+<pre><code>$git remote add -f ai https://github.com/aoxu/ai.git  
+$git subtree add --prefix=ai ai master --squash
+`&lt;/pre&gt;
+
+## 2\. 从远程仓库更新子目录
+
+更新子目录有2条命令。
+
+语法： git fetch &amp;lt;远程仓库名&gt; &amp;lt;分支&gt;
+
+语法： git subtree pull --prefix=&amp;lt;子目录名&gt; &amp;lt;远程分支&gt; &amp;lt;分支&gt; --squash
+
+示例
+
+&lt;pre&gt;`$git fetch ai master  
+$git subtree pull --prefix=ai ai --squash
+`&lt;/pre&gt;
+
+## 3\. 从子目录push到远程仓库（确认你有写权限）
+
+推送子目录的变更有1条命令。
+
+语法： git subtree push --prefix=&amp;lt;子目录名&gt; &amp;lt;远程分支名&gt; 分支
+
+示例
+
+&lt;pre&gt;`$git subtree push --prefix=ai ai master
+</code></pre>]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IOS开发：生成时间字符串</title>
+    <url>/2016/03/01/iOS%E7%94%9F%E6%88%90%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    <content><![CDATA[<p><span class="s1">//</span><span class="s2">时间标记字符串生成</span></p>
+<p><span class="s2">-(</span><span class="s3">NSString</span><span class="s2">*)TimeStamp</span></p>
+<p><span class="s2">{</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s3">NSDate</span><span class="s2"> *today = [</span><span class="s3">NSDate</span> <span class="s3">date</span><span class="s2">];</span></p>
+<p><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s2">NSDateFormatter</span><span class="s4"> *dateFormatter = [[</span><span class="s2">NSDateFormatter</span> <span class="s2">alloc</span><span class="s4">]</span><span class="s2">init</span><span class="s4">];</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span>[dateFormatter </span><span class="s3">setDateFormat</span><span class="s2">:</span><span class="s5">@”yyyy-MM-dd hh:mm:ss”</span><span class="s2">];</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s3">NSString</span><span class="s2"> *strDate = [dateFormatter </span><span class="s3">stringFromDate</span><span class="s2">:today];</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s3">NSLog</span><span class="s2">(</span><span class="s5">@”Time: %@”</span><span class="s2">,strDate);</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s6">return</span><span class="s2"> strDate;</span></p>
+<p><span class="s2">}</span></p>
+]]></content>
+      <categories>
+        <category>IOS 开发</category>
+      </categories>
+      <tags>
+        <tag>ios</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iText学习</title>
+    <url>/2020/01/05/iText%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p><a name="X2pDY"></a></p>
+<h1 id="页眉与页脚"><a href="#页眉与页脚" class="headerlink" title="页眉与页脚"></a>页眉与页脚</h1><p>iText5中并没有之前版本HeaderFooter对象设置页眉和页脚，可以利用PdfPageEventHelper来完成页眉页脚的设置工作。PdfPageEventHelper中包含以下事件处理器。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">onOpenDocument() — 当打开一个文档时触发，可以用于初始化文档的全局变量。</span><br><span class="line">onStartPage() — 当一个页面初始化时触发，可用于初始化页面的设置参数，但是注意这个函数触发时，该页面并没有创建好，不用利用这个函数添加内容，最好利用onEndPage()处理页面的初始化。</span><br><span class="line">onEndPage() — 在创建一个新页面完成但写入内容之前触发，是添加页眉、页脚、水印等最佳时机。</span><br><span class="line">onCloseDocument() — 在文档关闭之前触发，可以用于释放一些资源。</span><br><span class="line">onCloseDocument() — 在文档关闭之前触发，可以用于释放一些资源。</span><br></pre></td></tr></table></figure>
+<p>要想出发事件需要在程序中添加事件</p>
+<p>如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PdfReportM1HeaderFooter footer=new PdfReportM1HeaderFooter();</span><br><span class="line">writer.setPageEvent(footer);</span><br></pre></td></tr></table></figure>
+<p>该类PdfReportM1HeaderFooter继承自PdfPageEventHelper所以可以直接添加、</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> demo;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Project Name:report</span></span><br><span class="line"><span class="comment"> * File Name:PdfReportM1HeaderFooter.java</span></span><br><span class="line"><span class="comment"> * Package Name:com.riambsoft.report.pdf</span></span><br><span class="line"><span class="comment"> * Date:2013-9-16上午08:59:00</span></span><br><span class="line"><span class="comment"> * Copyright (c) 2013, riambsoft All Rights Reserved.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.itextpdf.text.Document;</span><br><span class="line"><span class="keyword">import</span> com.itextpdf.text.DocumentException;</span><br><span class="line"><span class="keyword">import</span> com.itextpdf.text.Element;</span><br><span class="line"><span class="keyword">import</span> com.itextpdf.text.Font;</span><br><span class="line"><span class="keyword">import</span> com.itextpdf.text.PageSize;</span><br><span class="line"><span class="keyword">import</span> com.itextpdf.text.Phrase;</span><br><span class="line"><span class="keyword">import</span> com.itextpdf.text.Rectangle;</span><br><span class="line"><span class="keyword">import</span> com.itextpdf.text.pdf.BaseFont;</span><br><span class="line"><span class="keyword">import</span> com.itextpdf.text.pdf.ColumnText;</span><br><span class="line"><span class="keyword">import</span> com.itextpdf.text.pdf.PdfContentByte;</span><br><span class="line"><span class="keyword">import</span> com.itextpdf.text.pdf.PdfPageEventHelper;</span><br><span class="line"><span class="keyword">import</span> com.itextpdf.text.pdf.PdfTemplate;</span><br><span class="line"><span class="keyword">import</span> com.itextpdf.text.pdf.PdfWriter;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ClassName:PdfReportM1HeaderFooter &lt;br/&gt;</span></span><br><span class="line"><span class="comment"> * Function: TODO ADD FUNCTION. &lt;br/&gt;</span></span><br><span class="line"><span class="comment"> * Reason: TODO ADD REASON. &lt;br/&gt;</span></span><br><span class="line"><span class="comment"> * Date: 2013-9-13 上午08:59:00 &lt;br/&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 落雨</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span> 394263788(QQ)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> JDK 1.5</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> http://hi.baidu.com/ae6623</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PdfReportM1HeaderFooter</span> <span class="keyword">extends</span> <span class="title">PdfPageEventHelper</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 页眉</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> String header = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 文档字体大小，页脚页眉最好和文本大小一致</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> presentFontSize = <span class="number">12</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 文档页面大小，最好前面传入，否则默认为A4纸张</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> Rectangle pageSize = PageSize.A4;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 模板</span></span><br><span class="line">    <span class="keyword">public</span> PdfTemplate total;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 基础字体对象</span></span><br><span class="line">    <span class="keyword">public</span> BaseFont bf = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 利用基础字体生成的字体对象，一般用于生成中文文字</span></span><br><span class="line">    <span class="keyword">public</span> Font fontDetail = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * Creates a new instance of PdfReportM1HeaderFooter 无参构造方法.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PdfReportM1HeaderFooter</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * Creates a new instance of PdfReportM1HeaderFooter 构造方法.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> yeMei           页眉字符串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> presentFontSize 数据体字体大小</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> pageSize        页面文档大小，A4，A5，A6横转翻转等Rectangle对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PdfReportM1HeaderFooter</span><span class="params">(String yeMei, <span class="keyword">int</span> presentFontSize, Rectangle pageSize)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.header = yeMei;</span><br><span class="line">        <span class="keyword">this</span>.presentFontSize = presentFontSize;</span><br><span class="line">        <span class="keyword">this</span>.pageSize = pageSize;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHeader</span><span class="params">(String header)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.header = header;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPresentFontSize</span><span class="params">(<span class="keyword">int</span> presentFontSize)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.presentFontSize = presentFontSize;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * TODO 文档打开时创建模板</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> com.itextpdf.text.pdf.PdfPageEventHelper#onOpenDocument(com.itextpdf.text.pdf.PdfWriter,</span></span><br><span class="line"><span class="comment">     *      com.itextpdf.text.Document)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onOpenDocument</span><span class="params">(PdfWriter writer, Document document)</span> </span>&#123;</span><br><span class="line">        total = writer.getDirectContent().createTemplate(<span class="number">50</span>, <span class="number">50</span>);<span class="comment">// 共 页 的矩形的长宽高</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * TODO 关闭每页的时候，写入页眉，写入'第几页共'这几个字。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> com.itextpdf.text.pdf.PdfPageEventHelper#onEndPage(com.itextpdf.text.pdf.PdfWriter,</span></span><br><span class="line"><span class="comment">     *      com.itextpdf.text.Document)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onEndPage</span><span class="params">(PdfWriter writer, Document document)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (bf == <span class="keyword">null</span>) &#123;</span><br><span class="line">                bf = BaseFont.createFont(<span class="string">"STSong-Light"</span>, <span class="string">"UniGB-UCS2-H"</span>, <span class="keyword">false</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (fontDetail == <span class="keyword">null</span>) &#123;</span><br><span class="line">                fontDetail = <span class="keyword">new</span> Font(bf, presentFontSize, Font.NORMAL);<span class="comment">// 数据体字体</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (DocumentException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1.写入页眉</span></span><br><span class="line">        ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, <span class="keyword">new</span> Phrase(header, fontDetail),</span><br><span class="line">                document.left(), document.top() + <span class="number">20</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2.写入前半部分的 第 X页/共</span></span><br><span class="line">        <span class="keyword">int</span> pageS = writer.getPageNumber();</span><br><span class="line">        String foot1 = <span class="string">"第 "</span> + pageS + <span class="string">" 页 /共"</span>;</span><br><span class="line">        Phrase footer = <span class="keyword">new</span> Phrase(foot1, fontDetail);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3.计算前半部分的foot1的长度，后面好定位最后一部分的'Y页'这俩字的x轴坐标，字体长度也要计算进去 = len</span></span><br><span class="line">        <span class="keyword">float</span> len = bf.getWidthPoint(foot1, presentFontSize);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4.拿到当前的PdfContentByte</span></span><br><span class="line">        PdfContentByte cb = writer.getDirectContent();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 自己增加的</span></span><br><span class="line">        <span class="keyword">if</span> (pageS == <span class="number">1</span>) &#123;</span><br><span class="line">            Phrase footerLeft = <span class="keyword">new</span> Phrase(<span class="string">"978-1-4799-0530-031.00 ©2013 IEEE"</span>, fontDetail);</span><br><span class="line">            ColumnText.showTextAligned(cb, Element.ALIGN_LEFT, footerLeft, document.left(), document.bottom() - <span class="number">20</span>, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5.写入页脚1，x轴就是(右margin+左margin + right() -left()- len)/2.0F</span></span><br><span class="line">        <span class="comment">// 再给偏移20F适合人类视觉感受，否则肉眼看上去就太偏左了</span></span><br><span class="line">        <span class="comment">// ,y轴就是底边界-20,否则就贴边重叠到数据体里了就不是页脚了；注意Y轴是从下往上累加的，最上方的Top值是大于Bottom好几百开外的。</span></span><br><span class="line">        ColumnText.showTextAligned(cb, Element.ALIGN_CENTER, footer,</span><br><span class="line">                (document.rightMargin() + document.right() + document.leftMargin() - document.left() - len) / <span class="number">2.0F</span></span><br><span class="line">                        + <span class="number">20F</span>,</span><br><span class="line">                document.bottom() - <span class="number">20</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6.写入页脚2的模板（就是页脚的Y页这俩字）添加到文档中，计算模板的和Y轴,X=(右边界-左边界 - 前半部分的len值)/2.0F + len ， y</span></span><br><span class="line">        <span class="comment">// 轴和之前的保持一致，底边界-20</span></span><br><span class="line">        cb.addTemplate(total,</span><br><span class="line">                (document.rightMargin() + document.right() + document.leftMargin() - document.left()) / <span class="number">2.0F</span> + <span class="number">20F</span>,</span><br><span class="line">                document.bottom() - <span class="number">20</span>); <span class="comment">// 调节模版显示的位置</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * TODO 关闭文档时，替换模板，完成整个页眉页脚组件</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> com.itextpdf.text.pdf.PdfPageEventHelper#onCloseDocument(com.itextpdf.text.pdf.PdfWriter,</span></span><br><span class="line"><span class="comment">     *      com.itextpdf.text.Document)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCloseDocument</span><span class="params">(PdfWriter writer, Document document)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 7.最后一步了，就是关闭文档的时候，将模板替换成实际的 Y 值,至此，page x of y 制作完毕，完美兼容各种文档size。</span></span><br><span class="line">        total.beginText();</span><br><span class="line">        total.setFontAndSize(bf, presentFontSize);<span class="comment">// 生成的模版的字体、颜色</span></span><br><span class="line">        String foot2 = <span class="string">" "</span> + (writer.getPageNumber() - <span class="number">1</span>) + <span class="string">" 页"</span>;</span><br><span class="line">        total.showText(foot2);<span class="comment">// 模版显示的内容</span></span><br><span class="line">        total.endText();</span><br><span class="line">        total.closePath();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a name="A3JNH"></a></p>
+<h1 id="页边距"><a href="#页边距" class="headerlink" title="页边距"></a>页边距</h1><p>Isn’t it possible for you to use HtmlConverter#convertToElements method. It returns List as a result and then you can add its elements to a document with set margins:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Document document = <span class="keyword">new</span> Document(pdfDocument);</span><br><span class="line">List list = HtmlConverter.convertToElements(<span class="keyword">new</span> FileInputStream(htmlSource));</span><br><span class="line"><span class="keyword">for</span> (IElement element : list) &#123;</span><br><span class="line"><span class="keyword">if</span> (element <span class="keyword">instanceof</span> IBlockElement) &#123;</span><br><span class="line">document.add((IBlockElement) element);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Another approach: in your html just introduce the <a href>@page </a> rule which sets the margins you need, for example:</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@page</span> &#123;<span class="attribute">margin</span>: <span class="number">0</span>;&#125;</span><br></pre></td></tr></table></figure>
+<p>Yet another solution: implement your own custom tag worker for  tag and set margins on its level. For example, to set zero margins one could create tag the next worker:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomTagWorkerFactory</span> <span class="keyword">extends</span> <span class="title">DefaultTagWorkerFactory</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> ITagWorker <span class="title">getCustomTagWorker</span><span class="params">(IElementNode tag, ProcessorContext context)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (TagConstants.HTML.equals(tag.name())) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> ZeroMarginHtmlTagWorker(tag, context);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ZeroMarginHtmlTagWorker</span> <span class="keyword">extends</span> <span class="title">HtmlTagWorker</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ZeroMarginHtmlTagWorker</span><span class="params">(IElementNode element, ProcessorContext context)</span> </span>&#123;</span><br><span class="line"><span class="keyword">super</span>(element, context);</span><br><span class="line">Document doc = (Document) getElementResult();</span><br><span class="line">doc.setMargins(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>and pass it as a ConverterProperties parameter to Htmlconverter:</p>
+<p>converterProperties.setTagWorkerFactory(new CustomTagWorkerFactory());<br>HtmlConverter.convertToPdf(new File(htmlPath), new File(pdfPath), converterProperties);</p>
+<p><a name="JVj2m"></a></p>
+<h1 id="表格跨页问题"><a href="#表格跨页问题" class="headerlink" title="表格跨页问题"></a>表格跨页问题</h1><p><a name="F5KRY"></a></p>
+<h2 id="代码的处理方式"><a href="#代码的处理方式" class="headerlink" title="代码的处理方式"></a>代码的处理方式</h2><p><img src="http://depot.wanqiang.wang/blog/20200113/uV2yCxzGTvUH.png?imageslim" alt></p>
+<p><a name="TTEFI"></a></p>
+<h2 id="pdfHtml的一种处理方式"><a href="#pdfHtml的一种处理方式" class="headerlink" title="pdfHtml的一种处理方式"></a>pdfHtml的一种处理方式</h2><p>I had a similar issue of trying to keep together content within a div. I applied the following css property and this kept everything together. This worked with itext7 pdfhtml.</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">page-break-inside</span>: <span class="selector-tag">avoid</span>;</span><br></pre></td></tr></table></figure>
+<p><a name="nDdia"></a></p>
+<h1 id="PdfPage转换成图片"><a href="#PdfPage转换成图片" class="headerlink" title="PdfPage转换成图片"></a>PdfPage转换成图片</h1><p><a name="EeYSn"></a></p>
+<h2 id="生成image对象"><a href="#生成image对象" class="headerlink" title="生成image对象"></a>生成image对象</h2><p><a href="https://stackoverflow.com/questions/37809019/itext7-pdf-to-image" target="_blank" rel="noopener">https://stackoverflow.com/questions/37809019/itext7-pdf-to-image</a></p>
+<p>Please read the official documentation for iText 7, more specifically <a href="http://developers.itextpdf.com/content/itext-7-jump-start-tutorial/chapter-6-reusing-existing-pdf-documents" target="_blank" rel="noopener">Chapter 6: Reusing existing PDF documents</a><br>In PDF, there’s the concept of _Form XObject_s. A <em>Form XObject</em> is a piece of PDF content that is stored outside the content stream of a page, hence XObject which stands for eXternal Object. The use of the word <em>Form</em> in <em>Form XObject</em> could be confusing, because people might be thinking of a form as in a fillable form with fields. To avoid that confusing, we introduced the term <code>PdfTemplate</code> in iText 5.<br>The class <code>PdfImportedPage</code> you refer to was a subclass of <code>PdfTemplate</code>: it was a piece of PDF syntax that could be reused in another page. Over the years, we noticed that people also got confused by the word <code>PdfTemplate</code>.<br>In iText 7, we returned to the basics. When talking about a Form XObject, we use the class <code>PdfFormXObject</code>. When talking about a page in a PDF file, we use the class <code>PdfPage</code>.<br>This is how we get a <code>PdfPage</code> from an existing document:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">PdfDocument origPdf = <span class="keyword">new</span> PdfDocument(<span class="keyword">new</span> PdfReader(src));</span><br><span class="line">PdfPage origPage = origPdf.getPage(<span class="number">1</span>);</span><br></pre></td></tr></table></figure></p>
+<p>This is how we use that page in a new document:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">PdfDocument pdf = <span class="keyword">new</span> PdfDocument(<span class="keyword">new</span> PdfWriter(dest));</span><br><span class="line">PdfFormXObject pageCopy = origPage.copyAsFormXObject(pdf);</span><br></pre></td></tr></table></figure></p>
+<p>If you want to use that <code>pageCopy</code> as an <code>Image</code>, just create it like this:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Image image = <span class="keyword">new</span> Image(pageCopy);</span><br></pre></td></tr></table></figure></p>
+<p><a name="AE5AO"></a></p>
+<h2 id="存成图片-验证了这种方法不可行"><a href="#存成图片-验证了这种方法不可行" class="headerlink" title="存成图片(验证了这种方法不可行)"></a>存成图片(验证了这种方法不可行)</h2><p><a href="https://stackoverflow.com/questions/24940813/saving-com-itextpdf-text-image-as-a-image-file" target="_blank" rel="noopener">https://stackoverflow.com/questions/24940813/saving-com-itextpdf-text-image-as-a-image-file</a><br>Just convert the Barcode39 itext image into an AWT image using <a href="http://api.itextpdf.com/itext/com/itextpdf/text/pdf/Barcode39.html#createAwtImage(java.awt.Color,%20java.awt.Color" target="_blank" rel="noopener">createAwtImage</a>):<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">java.awt.Image awtImage = code39.createAwtImage(Color.BLACK, Color.WHITE);</span><br></pre></td></tr></table></figure></p>
+<p>Then convert it to a <code>BufferedImage</code> and store it:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">BufferedImage bImage= <span class="keyword">new</span> BufferedImage(awtImage.getWidth(), awtImage.getHeight(), BufferedImage.TYPE_INT_RGB);</span><br><span class="line">Graphics2D g = bImage.createGraphics();</span><br><span class="line">g.drawImage(awtImage, <span class="number">0</span>, <span class="number">0</span>, <span class="keyword">null</span>);</span><br><span class="line">g.dispose();</span><br><span class="line">File outputfile = <span class="keyword">new</span> File(<span class="string">"saved.png"</span>);</span><br><span class="line">ImageIO.write(bImage, <span class="string">"jpg"</span>, <span class="keyword">new</span> File(<span class="string">"code39.jpg"</span>));</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>iText</category>
+      </categories>
+      <tags>
+        <tag>iText</tag>
+        <tag>排版</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IOS 8 的通知调试</title>
+    <url>/2015/06/25/ios-8-%E7%9A%84%E9%80%9A%E7%9F%A5%E8%B0%83%E8%AF%95/</url>
+    <content><![CDATA[<p>自己的一个App以前开发的，使用IOS的本地通知，一直没有人反馈过这点有什么问题。但最近几天，有人找我说，本地通知在iphone 6\6 plus 上不能用。</p>
+<p>自己用iphone 6试了试，发现确实这样，但在4s上却没有问题，操作系统都是 IOS 8.3 。上网查了一下，发现ios 8 通知机制改了，使用之前必须要先注册设置。看来原因是这个了。看来同样是 ios 8, 4s的和6的还是不一样的。</p>
+<p>那就开始吧，doing , done，按网上的教程在App代理中添加注册，一切预料之中，几分钟之后，本地通知在iphone 6 上终于可以跑起来了。好了，测一下吧，app 打开，没有问题，app 后台，没有问题，锁屏，哦，怎么回事，能收到通知，但没有声音，哪里出了问题？</p>
+<p>由于对这个新的通知不熟悉，只能开始疯狂的查文档，google，baidu，bing,bang，一头雾水，4s没事，iphone6 锁屏就是没声，时间一分一秒过去，看不出一丝端疑。</p>
+<p>当时间到了11：30的时候，我的4s界面上的一丝变化影起了我的注意，右上出现了一个月亮图标。晕，是不是打开了 防打扰模式 啊。敢快去 iphone 6上看，果然开着。晕到，关掉，再试，声音出来了。</p>
+<p>一个多小时白白浪费。</p>
+]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>IOS客户端代码复用方案</title>
+    <url>/2017/04/19/ios-e5-ae-a2-e6-88-b7-e7-ab-af-e4-bb-a3-e7-a0-81-e5-a4-8d-e7-94-a8-e6-96-b9-e6-a1-88/</url>
+    <content><![CDATA[<p>不错一遍文章，收藏。</p>
+<p><a href="http://shellhue.github.io/2017/04/08/sharecode/?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="noopener">http://shellhue.github.io/2017/04/08/sharecode/?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io</a></p>
+]]></content>
+      <categories>
+        <category>好文收藏</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ios 开发之：UIButton 不好点</title>
+    <url>/2015/07/12/ios-e5-bc-80-e5-8f-91-e4-b9-8b-ef-bc-9auibutton-e4-b8-8d-e5-a5-bd-e7-82-b9/</url>
+    <content><![CDATA[<p>不好点啊，点不中。能看能摸没反应。</p>
+<p>调试办法：把UIButton加背景，父对象加背景色，看是不是超出范围。</p>
+<p>别的控件不响应点击也可能是这个问题。</p>
+]]></content>
+      <categories>
+        <category>IOS 开发</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>IOS开发：生成时间字符串</title>
+    <url>/2016/03/01/ios-e5-bc-80-e5-8f-91-ef-bc-9a-e7-94-9f-e6-88-90-e6-97-b6-e9-97-b4-e5-ad-97-e7-ac-a6-e4-b8-b2/</url>
+    <content><![CDATA[<p><span class="s1">//</span><span class="s2">时间标记字符串生成</span></p>
+<p><span class="s2">-(</span><span class="s3">NSString</span><span class="s2">*)TimeStamp</span></p>
+<p><span class="s2">{</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s3">NSDate</span><span class="s2"> *today = [</span><span class="s3">NSDate</span> <span class="s3">date</span><span class="s2">];</span></p>
+<p><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s2">NSDateFormatter</span><span class="s4"> *dateFormatter = [[</span><span class="s2">NSDateFormatter</span> <span class="s2">alloc</span><span class="s4">]</span><span class="s2">init</span><span class="s4">];</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span>[dateFormatter </span><span class="s3">setDateFormat</span><span class="s2">:</span><span class="s5">@”yyyy-MM-dd hh:mm:ss”</span><span class="s2">];</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s3">NSString</span><span class="s2"> *strDate = [dateFormatter </span><span class="s3">stringFromDate</span><span class="s2">:today];</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s3">NSLog</span><span class="s2">(</span><span class="s5">@”Time: %@”</span><span class="s2">,strDate);</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s6">return</span><span class="s2"> strDate;</span></p>
+<p><span class="s2">}</span></p>
+]]></content>
+      <categories>
+        <category>IOS 开发</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>IOS开发：获取屏幕大小的宏</title>
+    <url>/2016/03/01/ios-e5-bc-80-e5-8f-91-ef-bc-9a-e8-8e-b7-e5-8f-96-e5-b1-8f-e5-b9-95-e5-a4-a7-e5-b0-8f-e7-9a-84-e5-ae-8f/</url>
+    <content><![CDATA[<p><span class="s1">//</span><span class="s2">获取设备屏幕尺寸</span></p>
+<p><span class="s2">#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)</span></p>
+<p><span class="s2">#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)</span><span class="s3">//</span><span class="s4">应用尺寸</span></p>
+<p><span class="s2">#define APP_WIDTH [[UIScreen mainScreen]applicationFrame].size.width</span></p>
+<p><span class="s2">#define APP_HEIGHT [[UIScreen mainScreen]applicationFrame].size.height</span></p>
+]]></content>
+      <categories>
+        <category>IOS 开发</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>IOS获取当前时间并转换成可显示字符串的方法</title>
+    <url>/2017/04/26/ios-e8-8e-b7-e5-8f-96-e5-bd-93-e5-89-8d-e6-97-b6-e9-97-b4-e5-b9-b6-e8-bd-ac-e6-8d-a2-e6-88-90-e5-8f-af-e6-98-be-e7-a4-ba-e5-ad-97-e7-ac-a6-e4-b8-b2-e7-9a-84-e6-96-b9-e6-b3-95/</url>
+    <content><![CDATA[<p>本来很简单的时，在IOS上涉及到的东西还挺多。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">*   (NSString *)getCurrentTimeString &#123;</span><br><span class="line">NSDate *today = [NSDate date];</span><br><span class="line">//   NSInteger interval = [[NSTimeZone systemTimeZone] secondsFromGMTForDate: today];</span><br><span class="line">//   NSDate *localeDate = [today  dateByAddingTimeInterval: interval];</span><br><span class="line"></span><br><span class="line">    NSDateFormatter _formatter = [[NSDateFormatter alloc] init] ;</span><br><span class="line">[formatter setDateStyle:NSDateFormatterMediumStyle];</span><br><span class="line">[formatter setTimeStyle:NSDateFormatterShortStyle];</span><br><span class="line">[formatter setDateFormat:@&quot;YYYY-MM-dd HH:mm:ss&quot;]; //hh与HH的区别:分别表示12小时制,24小时制</span><br><span class="line">//设置时区,这个对于时间的处理有时很重要</span><br><span class="line">//NSTimeZone_ timeZone = [NSTimeZone timeZoneWithName:@&quot;Asia/Shanghai&quot;];</span><br><span class="line">NSTimeZone* timeZone = [NSTimeZone systemTimeZone];</span><br><span class="line"></span><br><span class="line">    [formatter setTimeZone:timeZone];</span><br><span class="line"></span><br><span class="line">    //NSString * date_str = [localeDate description];</span><br><span class="line">NSString * date_str = [formatter stringFromDate:today];</span><br><span class="line">return date_str;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>IOS  解析点阵字库</title>
+    <url>/2015/05/24/ios-e8-a7-a3-e6-9e-90-e7-82-b9-e9-98-b5-e5-ad-97-e5-ba-93/</url>
+    <content><![CDATA[<h1 id="IOS-解析点阵字库"><a href="#IOS-解析点阵字库" class="headerlink" title="IOS  解析点阵字库"></a>IOS  解析点阵字库</h1><p>IOS控制点阵屏显示，加载点阵字库，目前已经实现，有感兴趣的留言，我把它整理出来。</p>
+<p>我实现的是 16<em>16的中文和16</em>8的英文显法。</p>
+<h3 id="字库制作"><a href="#字库制作" class="headerlink" title="字库制作"></a>字库制作</h3><p>制字方案的生成和成嵌入式系统上生成字模文件的方案是一样的。</p>
+<h3 id="IOS从字库中取到字模"><a href="#IOS从字库中取到字模" class="headerlink" title="IOS从字库中取到字模"></a>IOS从字库中取到字模</h3><h3 id="字模显示"><a href="#字模显示" class="headerlink" title="字模显示"></a>字模显示</h3>]]></content>
+      <categories>
+        <category>IOS 开发</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>IOS设置固定大小的图片</title>
+    <url>/2018/01/20/ios-e8-ae-be-e7-bd-ae-e5-9b-ba-e5-ae-9a-e5-a4-a7-e5-b0-8f-e7-9a-84-e5-9b-be-e7-89-87/</url>
+    <content><![CDATA[<p>`固定图片大小</p>
+<pre><code>UIImage * img = [UIImage imageNamed:@&quot;doorlogo&quot;];
+
+CGSize itemSize = CGSizeMake(60, 60);
+UIGraphicsBeginImageContext(itemSize);
+CGRect imageRect = CGRectMake(0, 0, itemSize.width, itemSize.height);
+[img drawInRect:imageRect];
+cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+UIGraphicsEndImageContext();`
+</code></pre>]]></content>
+  </entry>
+  <entry>
+    <title>IOS widget学习入门</title>
+    <url>/2017/05/02/ios-widget-e5-ad-a6-e4-b9-a0-e5-85-a5-e9-97-a8/</url>
+    <content><![CDATA[<p>一篇不错的文章，收藏：</p>
+<blockquote>
+<p><a href="http://www.jianshu.com/p/1a3bd243f77c" target="_blank" rel="noopener">这里</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Java中的移位操作符</title>
+    <url>/2018/04/29/java-e4-b8-ad-e7-9a-84-e7-a7-bb-e4-bd-8d-e6-93-8d-e4-bd-9c-e7-ac-a6/</url>
+    <content><![CDATA[<p>java中有三种移位运算符</p>
+<blockquote>
+<ul>
+<li>&lt;&lt; : 左移运算符，num &lt;&lt; 1,相当于num乘以2</li>
+<li><blockquote>
+<p>> : 右移运算符，num &gt;&gt; 1,相当于num除以2</p>
+</blockquote>
+</li>
+<li><blockquote>
+<blockquote>
+<p>> : 无符号右移，忽略符号位，空位都以0补齐</p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p>下面是测试代码`public static void main(String[] args) {<br>        int number = 10;<br>        //原始数二进制<br>        printInfo(number);<br>        number = number &lt;&lt; 1;<br>        //左移一位<br>        printInfo(number);<br>        number = number &gt;&gt; 1;<br>        //右移一位<br>        printInfo(number);<br>    }</p>
+<pre><code>/**
+ * 输出一个int的二进制数
+ * @param num
+ */
+private static void printInfo(int num){
+    System.out.println(Integer.toBinaryString(num));
+}` 输出结果： 1010 10100 1010
+</code></pre>]]></content>
+  </entry>
+  <entry>
+    <title>Linux 下挂Windows的共享目录</title>
+    <url>/2016/03/02/linux-e4-b8-8b-e6-8c-82windows-e7-9a-84-e5-85-b1-e4-ba-ab-e7-9b-ae-e5-bd-95/</url>
+    <content><![CDATA[<p>mount -t cifs -o username=windowsusername //windows machine/sharefiles /mnt/localfolder</p>
+<p>如：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo mount -t cifs -o username=wwq,password=xxxxxx  //10.2.37.56/Users/wwq/Desktop/work  /mnt/share</span><br></pre></td></tr></table></figure></p>
+<p>其中：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">windowsusername : Windows用户名</span><br><span class="line">windows machine ：Windows机器名</span><br><span class="line">sharefiles ：Windows共享文件夹名</span><br></pre></td></tr></table></figure></p>
+<p>然后就可以在 /mnt/localfolder 下访问Windows内容。</p>
+<p>注意要先创建目录，这里是 /mnt/share</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux 命令之：halt 不掉电</title>
+    <url>/2015/07/28/linux-e5-91-bd-e4-bb-a4-e4-b9-8b-ef-bc-9ahalt-e4-b8-8d-e6-8e-89-e7-94-b5/</url>
+    <content><![CDATA[<p>用halt 关机，每次都不断电，后面只能强关。</p>
+<p>查了一下 man 手册，发现加个参数就可以了。</p>
+<p>sudo halt -p </p>
+<p>电源终于一起关了。</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>linux 安装 docker</title>
+    <url>/2015/08/01/linux-e5-ae-89-e8-a3-85-docker/</url>
+    <content><![CDATA[<p>sudo apt-get install docker 不行啊，怎么回事？</p>
+<p>网上查了下，正常应该是这样的：</p>
+<p>sudo apt-get install docker.io</p>
+<p>了个去！！</p>
+]]></content>
+      <categories>
+        <category>docker</category>
+        <category>linux</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Linux打印机管理</title>
+    <url>/2019/04/08/linux-e6-89-93-e5-8d-b0-e6-9c-ba-e7-ae-a1-e7-90-86/</url>
+    <content><![CDATA[<p>lpq -a //显示出目前所有打印机的工作队列情况 lprm 11 //取消11号打印机作业 lpq -l -P Hp2015 //用详细方式显示打印机Hp2015作业 lpstat -t ：列出目前的“打印系统”状态，不只包括打印机而已 暂停或者开始打印机： 重新开始打印机 sudo cupsenable HP_LaserJet_1020 禁用打印机 sudo cupsdisable HP_LaserJet_1020</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>linux 服务器远程下载</title>
+    <url>/2015/08/01/linux-e6-9c-8d-e5-8a-a1-e5-99-a8-e8-bf-9c-e7-a8-8b-e4-b8-8b-e8-bd-bd/</url>
+    <content><![CDATA[<p><strong>安装 aria2</strong></p>
+<p>sudo apt-get install aria2</p>
+<p>这样装好了以后，就可以用 ssh 使用 aria2c 了。</p>
+<p>但这样有个问题，下载比较花时间，ssh退出，服务就断开了，怎么解决呢？</p>
+<p><strong>安装 screen</strong></p>
+<p>sudo apt-get install screen</p>
+<p>运行时，ssh 后，先 screen ，再在 screen 中 下载，这样就不用怕关 ssh 了。</p>
+<p>用 ssh 总是有点不好吧？我不喜欢怎么办？</p>
+<p>有个web gui 可以选择。先在服务器上把 aria2 服务跑起来。</p>
+<p><span class="s1">aria2c –enable-rpc –rpc-listen-all=true –rpc-allow-origin-all -c</span></p>
+<p>执行上面的这个就可以了。</p>
+<p>下面打开网站：<a href="http://aria2c.com/" target="_blank" rel="noopener">http://aria2c.com/</a></p>
+<p>这个界面的右上有个搬手，点入那个界面，配置好里面的ip，改成服务器ip, 保存。</p>
+<p>现在就可以以后在这个网址上，添加下载任务了，当然文件是下载到你的服务器上的。</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>linux 软件 raid 1 同步慢的问题</title>
+    <url>/2015/08/30/linux-e8-bd-af-e4-bb-b6-raid-1-e5-90-8c-e6-ad-a5-e6-85-a2-e7-9a-84-e9-97-ae-e9-a2-98/</url>
+    <content><![CDATA[<p>原因其实很简单，不要先急着将盘挂载上去，同步的过程先卸载掉。速度会成百倍的提升，同步完了再monut回来吧。</p>
+]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Linux Lab</title>
+    <url>/2019/06/14/linux-lab/</url>
+    <content><![CDATA[<h2 id="linux-内核学习资源，暂时收集。"><a href="#linux-内核学习资源，暂时收集。" class="headerlink" title="linux 内核学习资源，暂时收集。"></a>linux 内核学习资源，暂时收集。</h2><p>还没有详细研究。 <a href="http://tinylab.org/linux-lab/" target="_blank" rel="noopener">http://tinylab.org/linux-lab/</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>linux  ssh执行命令断开ssh，命令不退出的方法</title>
+    <url>/2015/07/19/linux_ssh%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E6%96%AD%E5%BC%80ssh_%E5%91%BD%E4%BB%A4%E4%B8%8D%E9%80%80%E5%87%BA%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>在树莓派上用ssh的 sox 命令行播放音乐，但是，退出ssh后，随着会话的关闭，播放也就停止了。在网上查找了下解决方法：</p>
+<p>经测试，都是可以用的。</p>
+<p>1. nohup </p>
+<p>用法：nohup play *.mp3</p>
+<p>这样就可以了。</p>
+<p>2. screen</p>
+<p>这个在我的树莓派上要按装： apt-get install screen</p>
+<p>用法：</p>
+<p>先screen,  然后回车。执行自己的命令，我的是 play *.mp3</p>
+<p>就可以关掉会话。</p>
+<p>使用screen还要以重新打开这个会话：screen -r </p>
+<p>很强大，详情可以 man .</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>树莓派</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>log4cplus 使用问题总结</title>
+    <url>/2016/08/16/log4cplus-e4-bd-bf-e7-94-a8-e9-97-ae-e9-a2-98-e6-80-bb-e7-bb-93/</url>
+    <content><![CDATA[<p>一个问题浪费两次时间，真是一个悲伤的故事。</p>
+<p>问题出在对于按时间归档的 Appender 的理解失误上，在网上找啊找啊，都是千篇一律的抄来抄去，完全不符合要求。明明记得在不久以前处理过这个问题，但却就忘了提交了呢。宝宝心里苦啊。</p>
+<p>我这里要求是按时间生成文件名，也就是文件名是按当时的时间去确定的。当是库上的版本却用了 DailyRollingFileAppender 这个。这个的在确的意思是，多长时是一归档，当然归档会有一个文件名的规则。<br>而这里的问题正确应该用：TimeBasedRollingFileAppender</p>
+<p>下面是一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">log4cplus.appender.OTS_H=log4cplus::TimeBasedRollingFileAppender</span><br><span class="line">log4cplus.appender.OTS_H.MaxHistory=10</span><br><span class="line">log4cplus.appender.OTS_H.FilenamePattern=%d&#123;yyyy-MM-dd-HH-mm&#125;_OTS.csv</span><br><span class="line">log4cplus.appender.OTS_H.layout=log4cplus::PatternLayout</span><br><span class="line"></span><br><span class="line">log4cplus.appender.OTS_H.layout.ConversionPattern=%m%n</span><br><span class="line">log4cplus.appender.OTS_H.RollOnClose=false</span><br><span class="line">log4cplus.appender.OTS_H.Schedule=DAILY</span><br><span class="line">log4cplus.appender.OTS_H.CreateDirs=true</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Mac 下交换caps lock 与 Ctrl</title>
+    <url>/2015/05/23/mac-e4-b8-8b-e4-ba-a4-e6-8d-a2caps-lock-e4-b8-8e-ctrl/</url>
+    <content><![CDATA[<p>习惯了HHKB之后表示经常把 caps lock 与 ctrl 键按错，就想在Mac上能不能把caps lock改成ctrl呢，研究了下，发现其实很简单：在键盘设置里面的修饰键就可以改过来，直接的选项，交换就行了。</p>
+<p>不过嘛，看起来有点怪，因为caps lock上有个灯，大小状态还是这个灯显示的，但按下的意义又完全变了。</p>
+]]></content>
+      <categories>
+        <category>Mac 使用</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>mac下登陆ssh报错解决</title>
+    <url>/2016/03/06/mac-e4-b8-8b-e7-99-bb-e9-99-86ssh-e6-8a-a5-e9-94-99-e8-a7-a3-e5-86-b3/</url>
+    <content><![CDATA[<p>mac登陆服务器，不能成功，报下面的错误：</p>
+<p>Could not resolve hostname xxxxx.com:9527: nodename nor servname provided, or not known</p>
+<p>但是如果在局域网内有没有问题，检查了下自己的输入的命令：</p>
+<pre><code>ssh xxx@xxxxx.com:9527
+
+
+会出现问题，如果是这样，就可以：
+
+ssh xxx@192.168.1.5
+
+就可以
+
+### 怎么处理呢？
+
+能过查找发现，要解决这个问题，命令换个写法就可以了：
+
+ssh -p 22221 xxx@xxxxx.com
+</code></pre><p>就可以了。</p>
+<h3 id="但又是什么原因呢？"><a href="#但又是什么原因呢？" class="headerlink" title="但又是什么原因呢？"></a>但又是什么原因呢？</h3><p>个人猜测，应该是，mac的ssh程序解析域名的时候，识别不出后面的端口，有bug，同样的做法，用别的ssh客户端就可以了。</p>
+]]></content>
+      <categories>
+        <category>Mac 使用</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Mac 外接显示器颜色问题</title>
+    <url>/2016/03/31/mac-e5-a4-96-e6-8e-a5-e6-98-be-e7-a4-ba-e5-99-a8-e9-a2-9c-e8-89-b2-e9-97-ae-e9-a2-98/</url>
+    <content><![CDATA[<p>自己的mac屏幕太小，外接了一个显示器，发现颜色偏白，有点晃眼，调来调去搞不好。网上的方法也是各种方法。</p>
+<p>其实Apple自己的显示器设置里面就能搞好。</p>
+<p>系统偏好设置-》显示器-》颜色-》校准</p>
+<p>然后看着效果一步一步来，就能调整到自己满意的效果。</p>
+]]></content>
+      <categories>
+        <category>Mac 使用</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Micro Gen8 sata5 启动 Linux</title>
+    <url>/2016/05/02/micro-gen8-sata5-e5-90-af-e5-8a-a8-linux/</url>
+    <content><![CDATA[<p>经过5+小时的尝试，终于找到了方法。参考了这个文章：<a href="http://www.newsmth.net/nForum/#!article/DigiHome/419729" target="_blank" rel="noopener">http://www.newsmth.net/nForum/#!article/DigiHome/419729</a><br>1. 找一张TF卡，我的是2G的。<br>2. 启动盘准备的时候，我能进到Linux中，但是用grub-install死活也装不好，浪费了好多时间，各种参数。最后没有办法，使用了这个文章准备的grub镜像，直接用win32diskImager写的启动盘。<br>3. 但这个启动盘能进grub，但不能启动我的系统，我和文章的不一样的，我的sata5位置是我安装好的xunbuntu。<br>4. 去掉所有的盘，只留一个sata5的系统盘，进入系统。在安装好的系统盘中，找到/boot/grub/grub.cfg，复制这个文件替换掉Tf卡里的这个文件。<br>5. 重新开机吧，setup里面选择U盘启动。再插其它的硬盘，总会是从sata5启动的。</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>MicroGen8</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>nextcloud 移动数据位置</title>
+    <url>/2019/06/01/nextcloud-e7-a7-bb-e5-8a-a8-e6-95-b0-e6-8d-ae-e4-bd-8d-e7-bd-ae/</url>
+    <content><![CDATA[<p>下面是官方说明： <a href="https://github.com/nextcloud/nextcloud-snap/wiki/Change-data-directory-to-use-another-disk-partition" target="_blank" rel="noopener">https://github.com/nextcloud/nextcloud-snap/wiki/Change-data-directory-to-use-another-disk-partition</a> Removable media Also note that the interface providing the ability to access removable media is not automatically connected upon install, so if you’d like to use external storage (or otherwise use a device in /media for data), you need to give the snap permission to access removable media by connecting that interface: $ sudo snap connect nextcloud:removable-media 可以使用 mount –bind 命令挂载已有目录。要实现自动挂载，可以写在 /etc/fstab 里面。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>NSLog 开关</title>
+    <url>/2015/05/24/nslog-e5-bc-80-e5-85-b3/</url>
+    <content><![CDATA[<p>开发IOS应用在发布的时候需要将全部的NSLog中去掉，怎么弄呢？可以使用一个宏来控制：</p>
+<p>在系统包含的公共头文件中加入下面的语句：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#ifndef __OPTIMIZE__</span><br><span class="line"># define NSLog(...) NSLog(__VA_ARGS__)</span><br><span class="line">#else</span><br><span class="line"># define NSLog(...) &#123;&#125;</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+<p>一般情况下，Release版本系统会定义 <strong>OPTIMIZE</strong> 宏，而Debug版本不会，根据这个差别使用不同的NSLog，从而达到上面的目的。</p>
+]]></content>
+      <categories>
+        <category>IOS 开发</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>PHP利用PHPExcel操作Excel文件</title>
+    <url>/2017/04/20/php-e5-88-a9-e7-94-a8phpexcel-e6-93-8d-e4-bd-9cexcel-e6-96-87-e4-bb-b6/</url>
+    <content><![CDATA[<p>工具：<strong>PHPExcel</strong></p>
+<p>下面是示例代码，备用。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/** Error reporting */</span><br><span class="line">error_reporting(E_ALL);</span><br><span class="line"></span><br><span class="line">/** Include path **/</span><br><span class="line">ini_set(&apos;include_path&apos;, ini_get(&apos;include_path&apos;).&apos;;../Classes/&apos;);</span><br><span class="line"></span><br><span class="line">/** PHPExcel */</span><br><span class="line">include &apos;PHPExcel.php&apos;;</span><br><span class="line"></span><br><span class="line">/** PHPExcel_Writer_Excel2007 */</span><br><span class="line">include &apos;PHPExcel/Writer/Excel2007.php&apos;;</span><br><span class="line"></span><br><span class="line">// Create new PHPExcel object</span><br><span class="line">echo date(&apos;H:i:s&apos;) . &quot; Create new PHPExcel object\n&quot;;</span><br><span class="line">$objPHPExcel = new PHPExcel();</span><br><span class="line"></span><br><span class="line">// Set properties</span><br><span class="line">echo date(&apos;H:i:s&apos;) . &quot; Set properties\n&quot;;</span><br><span class="line">$objPHPExcel-&gt;getProperties()-&gt;setCreator(&quot;Maarten Balliauw&quot;);</span><br><span class="line">$objPHPExcel-&gt;getProperties()-&gt;setLastModifiedBy(&quot;Maarten Balliauw&quot;);</span><br><span class="line">$objPHPExcel-&gt;getProperties()-&gt;setTitle(&quot;Office 2007 XLSX Test Document&quot;);</span><br><span class="line">$objPHPExcel-&gt;getProperties()-&gt;setSubject(&quot;Office 2007 XLSX Test Document&quot;);</span><br><span class="line">$objPHPExcel-&gt;getProperties()-&gt;setDescription(&quot;Test document for Office 2007 XLSX, generated using PHP classes.&quot;);</span><br><span class="line"></span><br><span class="line">// Add some data</span><br><span class="line">echo date(&apos;H:i:s&apos;) . &quot; Add some data\n&quot;;</span><br><span class="line">$objPHPExcel-&gt;setActiveSheetIndex(0);</span><br><span class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;SetCellValue(&apos;A1&apos;, &apos;Hello&apos;);</span><br><span class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;SetCellValue(&apos;B2&apos;, &apos;world!&apos;);</span><br><span class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;SetCellValue(&apos;C1&apos;, &apos;Hello&apos;);</span><br><span class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;SetCellValue(&apos;D2&apos;, &apos;world!&apos;);</span><br><span class="line"></span><br><span class="line">// Rename sheet</span><br><span class="line">echo date(&apos;H:i:s&apos;) . &quot; Rename sheet\n&quot;;</span><br><span class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;setTitle(&apos;Simple&apos;);</span><br><span class="line"></span><br><span class="line">// Save Excel 2007 file</span><br><span class="line">echo date(&apos;H:i:s&apos;) . &quot; Write to Excel2007 format\n&quot;;</span><br><span class="line">$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);</span><br><span class="line">$objWriter-&gt;save(str_replace(&apos;.php&apos;, &apos;.xlsx&apos;, **FILE**));</span><br><span class="line"></span><br><span class="line">// Echo done</span><br><span class="line">echo date(&apos;H:i:s&apos;) . &quot; Done writing file.\r\n&quot;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>PHP</category>
+        <category>好文收藏</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>python进制转换</title>
+    <url>/2015/05/19/python-e8-bf-9b-e5-88-b6-e8-bd-ac-e6-8d-a2-2/</url>
+    <content><![CDATA[<ul>
+<li>空间<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"># 2/10/16 base trans. wrote by srcdog on 20th, April, 2009</span><br><span class="line"># ld elements in base 2, 10, 16.</span><br><span class="line"></span><br><span class="line">import os,sys</span><br><span class="line"></span><br><span class="line"># global definition</span><br><span class="line"># base = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F]</span><br><span class="line">base = [str(x) for x in range(10)] + [ chr(x) for x in range(ord(&apos;A&apos;),ord(&apos;A&apos;)+6)]</span><br><span class="line"></span><br><span class="line"># bin2dec</span><br><span class="line"># 二进制 to 十进制: int(str,n=10)</span><br><span class="line">def bin2dec(string_num):</span><br><span class="line">return str(int(string_num, 2))</span><br><span class="line"></span><br><span class="line"># hex2dec</span><br><span class="line"># 十六进制 to 十进制</span><br><span class="line">def hex2dec(string_num):</span><br><span class="line">return str(int(string_num.upper(), 16))</span><br><span class="line"></span><br><span class="line"># dec2bin</span><br><span class="line"># 十进制 to 二进制: bin()</span><br><span class="line">def dec2bin(string_num):</span><br><span class="line">num = int(string_num)</span><br><span class="line">mid = []</span><br><span class="line">while True:</span><br><span class="line">if num == 0: break</span><br><span class="line">num,rem = divmod(num, 2)</span><br><span class="line">mid.append(base[rem])</span><br><span class="line"></span><br><span class="line">return &apos;&apos;.join([str(x) for x in mid[::-1]])</span><br><span class="line"></span><br><span class="line"># dec2hex</span><br><span class="line"># 十进制 to 八进制: oct()</span><br><span class="line"># 十进制 to 十六进制: hex()</span><br><span class="line">def dec2hex(string_num):</span><br><span class="line">num = int(string_num)</span><br><span class="line">mid = []</span><br><span class="line">while True:</span><br><span class="line">if num == 0: break</span><br><span class="line">num,rem = divmod(num, 16)</span><br><span class="line">mid.append(base[rem])</span><br><span class="line"></span><br><span class="line">return &apos;&apos;.join([str(x) for x in mid[::-1]])</span><br><span class="line"></span><br><span class="line"># hex2tobin</span><br><span class="line"># 十六进制 to 二进制: bin(int(str,16))</span><br><span class="line">def hex2bin(string_num):</span><br><span class="line">return dec2bin(hex2dec(string_num.upper()))</span><br><span class="line"></span><br><span class="line"># bin2hex</span><br><span class="line"># 二进制 to 十六进制: hex(int(str,2))</span><br><span class="line">def bin2hex(string_num):</span><br><span class="line">return dec2hex(bin2dec(string_num))</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">print bin2hex(&apos;111110&apos;)</span><br><span class="line">print hex2bin(&apos;f1&apos;)</span><br><span class="line">print dec2hex(&apos;255&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>收藏于 2011-03-09<br>来自于百度空间</p>
+]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>python2 python3共存</title>
+    <url>/2019/05/22/python2-python3-e5-85-b1-e5-ad-98/</url>
+    <content><![CDATA[<p>官方的解决方案： <a href="https://docs.python.org/3/installing/" target="_blank" rel="noopener">https://docs.python.org/3/installing/</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>qnap国外商店</title>
+    <url>/2019/06/21/qnap-e5-9b-bd-e5-a4-96-e5-95-86-e5-ba-97/</url>
+    <content><![CDATA[<p><a href="https://qnapclub.eu/index.php/en" target="_blank" rel="noopener">https://qnapclub.eu/index.php/en</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>QNAP安装transmission</title>
+    <url>/2019/07/16/qnap-e5-ae-89-e8-a3-85transmission/</url>
+    <content><![CDATA[<p>docker create \ –name=transmission \ -e PUID=1000 \ -e PGID=1000 \ -e TZ=Europe/London \ -e TRANSMISSION_WEB_HOME=/combustion-release/ <code>#optional</code> \ -p 9091:9091 \ -p 51413:51413 \ -p 51413:51413/udp \ -v /share/homes/docker/trans/data:/config \ -v /share/homes/docker/trans/downloads:/downloads \ -v /share/homes/docker/trans/watch:/watch \ –restart unless-stopped \ linuxserver/transmission</p>
+]]></content>
+      <tags>
+        <tag>qnap</tag>
+        <tag>下载</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Qt Creator选择 run in terminal后不能启动程序的问题</title>
+    <url>/2016/06/16/qt-creator-e9-80-89-e6-8b-a9-run-in-terminal-e5-90-8e-e4-b8-8d-e8-83-bd-e5-90-af-e5-8a-a8-e7-a8-8b-e5-ba-8f-e7-9a-84-e9-97-ae-e9-a2-98/</url>
+    <content><![CDATA[<p>升级4.X以后，出现这个问题，一直卡在加载程序的地方，取消掉这个选项就没有问题。<br>解决的方法是：不要使用默认的终端程序，使用 xterm</p>
+<p>Under Tools-Options-Environment-General, change the terminal value from x-terminal-emulator -e to  /usr/bin/xterm -e.</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>QWizard不能显示完成与取消按钮的问题</title>
+    <url>/2018/08/10/qwizard-e4-b8-8d-e8-83-bd-e6-98-be-e7-a4-ba-e5-ae-8c-e6-88-90-e4-b8-8e-e5-8f-96-e6-b6-88-e6-8c-89-e9-92-ae-e7-9a-84-e9-97-ae-e9-a2-98/</url>
+    <content><![CDATA[<p>我使用的是Qt5.4.2, 遇到这个问题。对话框显示出来后，用鼠标改变一下大小就能显示出来。看起来像Qt的bug。 经反复尝试，发现修改QWizard的属性styleSheet为ClassicStyle就可以解决这个问题。 具体原因不清楚。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Redmine 联接 https 地址的svn服务器</title>
+    <url>/2018/06/23/redmine-e8-81-94-e6-8e-a5-https-e5-9c-b0-e5-9d-80-e7-9a-84svn-e6-9c-8d-e5-8a-a1-e5-99-a8/</url>
+    <content><![CDATA[<p><a href="https://blog.csdn.net/taonull/article/details/39249729" target="_blank" rel="noopener">https://blog.csdn.net/taonull/article/details/39249729</a> 1.打开redmine控制台； 2.运行svn list –xml <a href="https://svn地址；" target="_blank" rel="noopener">https://svn地址；</a> 3.提示证书时选择p（永久保存ssl凭证）； 4.运行成功后，找到subversion_adapter.rb(redmine文件夹\apps\redmine\htdocs\lib\redmine\scm\adapters)，找到 def credentials_string <code>str &lt;&lt; &quot; --username #{shell_quote(@login)}&quot; unless @login.blank? str &lt;&lt; &quot; --password #{shell_quote(@password)}&quot; unless @login.blank? || @password.blank? str &lt;&lt; &quot; --no-auth-cache --non-interactive&quot;</code> 修改为： <code>str &lt;&lt; &quot; --username #{shell_quote(@login)}&quot; unless @login.blank? str &lt;&lt; &quot; --password #{shell_quote(@password)}&quot; unless @login.blank? || @password.blank? str &lt;&lt; &quot; --trust-server-cert --no-auth-cache --non-interactive --config-dir \&quot;c:/Users/Administrator/AppData/Roaming/Subversion\&quot;&quot;</code></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>snap 方式安装的 nextcloud 设置默认端口</title>
+    <url>/2019/02/21/snap-e6-96-b9-e5-bc-8f-e5-ae-89-e8-a3-85-e7-9a-84-nextcloud-e8-ae-be-e7-bd-ae-e9-bb-98-e8-ae-a4-e7-ab-af-e5-8f-a3/</url>
+    <content><![CDATA[<p>比如改成81端口，使用命令sudo snap set nextcloud ports.http=81</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>ssh 通过证书建立信任关系（转）（备用）</title>
+    <url>/2017/10/17/ssh-e9-80-9a-e8-bf-87-e8-af-81-e4-b9-a6-e5-bb-ba-e7-ab-8b-e4-bf-a1-e4-bb-bb-e5-85-b3-e7-b3-bb-ef-bc-88-e8-bd-ac-ef-bc-89-ef-bc-88-e5-a4-87-e7-94-a8-ef-bc-89/</url>
+    <content><![CDATA[<h1 id="建立SSH信任"><a href="#建立SSH信任" class="headerlink" title="建立SSH信任"></a>建立SSH信任</h1><p>将A主机做为客户端（发起SSH请求 ip:192.168.200.170）<br>将B主机作为服务器端（接收ssh请求   ip:192.168.200.149）<br>以上以主动发起SSH登录请求的主机和接收请求的主机进行分类</p>
+<h2 id="A主机生成公，私钥证书"><a href="#A主机生成公，私钥证书" class="headerlink" title="A主机生成公，私钥证书"></a>A主机生成公，私钥证书</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@buddytj-10 .ssh]# ssh-keygen -t rsa     #rsa算法的证书</span><br><span class="line">Generating public/private rsa key pair. （以下一路回车）</span><br><span class="line">Enter file in which to save the key (/root/.ssh/id_rsa):</span><br><span class="line"></span><br><span class="line">/root/.ssh/id_rsa already exists.</span><br><span class="line">Overwrite (y/n)? y                      （因为我的证书已存在，覆盖即可）</span><br><span class="line">Enter passphrase (empty for no passphrase): </span><br><span class="line">Enter same passphrase again: </span><br><span class="line">Your identification has been saved in /root/.ssh/id_rsa. （私钥）</span><br><span class="line">Your public key has been saved in /root/.ssh/id_rsa.pub. （公钥）</span><br><span class="line">The key fingerprint is:</span><br><span class="line">c1:26:cc:88:2b:05:dd:c3:6b:1e:78:5d:da:9c:da:8a </span><br><span class="line">证书就生成了   id_rsa （私钥）|&amp;amp; id_rsa.pub （公钥）</span><br></pre></td></tr></table></figure>
+<h2 id="将A主机生成的公钥传递给B主机"><a href="#将A主机生成的公钥传递给B主机" class="headerlink" title="将A主机生成的公钥传递给B主机"></a>将A主机生成的公钥传递给B主机</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@xyh .ssh]#scp id_rsa.pub  192.168.200.149：/root/.ssh/</span><br><span class="line">在B主机上将A的公钥更名为</span><br><span class="line">[root@xyh .ssh]#mv id_rsa.pub authorized_keys</span><br></pre></td></tr></table></figure>
+<p>至此从A主机远程SSH B主机的工作即告完成</p>
+]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Thinkpad P50 更新后不能唤醒的问题</title>
+    <url>/2018/05/12/thinkpad-p50-e6-9b-b4-e6-96-b0-e5-90-8e-e4-b8-8d-e8-83-bd-e5-94-a4-e9-86-92-e7-9a-84-e9-97-ae-e9-a2-98/</url>
+    <content><![CDATA[<p>显卡驱动问题：在Bios里面把集显禁用，就不会有这个问题。 但是按下面的这个链接处理，也能解决问题。 <a href="https://jingyan.baidu.com/article/c275f6ba308652e33d7567f8.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/c275f6ba308652e33d7567f8.html</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>tmux使用：复制与粘贴</title>
+    <url>/2017/04/30/tmux-e4-bd-bf-e7-94-a8-ef-bc-9a-e5-a4-8d-e5-88-b6-e4-b8-8e-e7-b2-98-e8-b4-b4/</url>
+    <content><![CDATA[<p>拷贝与粘贴</p>
+<p>tmux不同的配置，快捷键会存在较大的差异。也就是说，可以定义不同的快捷键来实现复制与粘贴。详细的说明可以在 tmux 的手册中找到。<br>但对于其默认的设置中这样的：<br><strong>使用 “ctrl-b [“ 进入拷贝模式，使用空格键（space）开始内容选取，回车键（Enter）进行拷贝，然后使用 “ctrl-b ]” 进行粘贴。</strong></p>
+<p>Good luck.</p>
+]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>tmux配置：用鼠标切换窗口、调节大小</title>
+    <url>/2017/04/28/tmux-e9-85-8d-e7-bd-ae-ef-bc-9a-e7-94-a8-e9-bc-a0-e6-a0-87-e5-88-87-e6-8d-a2-e7-aa-97-e5-8f-a3-e3-80-81-e8-b0-83-e8-8a-82-e5-a4-a7-e5-b0-8f/</url>
+    <content><![CDATA[<p>以下内容来自这里：<a href="http://www.cnblogs.com/bamanzi/p/tmux-mouse-tips.html" target="_blank" rel="noopener">HERE</a></p>
+<p>其实就这么几行配置:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">setw -g mouse-resize-pane on</span><br><span class="line">setw -g mouse-select-pane on</span><br><span class="line">setw -g mouse-select-window on</span><br><span class="line">setw -g mode-mouse on</span><br></pre></td></tr></table></figure></p>
+<p>这几行的作用分别是:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">开启用鼠标拖动调节pane的大小（拖动位置是pane之间的分隔线）</span><br><span class="line">开启用鼠标点击pane来激活该pane</span><br><span class="line">开启用鼠标点击来切换活动window（点击位置是状态栏的窗口名称）</span><br><span class="line">开启window/pane里面的鼠标支持（也即可以用鼠标滚轮回滚显示窗口内容，此时还可以用鼠标选取文本）</span><br></pre></td></tr></table></figure></p>
+<p>这几行配置加到 ~/.tmux.conf 中，然后在tmux里面按 C-b : 执行 source ~/.tmux.conf 即可生效 （也可以直接将这几行放在 C-b : 的输入行去执行，每次执行一行，不过 tmux重启后还得再来一遍）。</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ubuntu 启动默认进入命令行的修改方法</title>
+    <url>/2015/09/02/ubuntu%20%E5%90%AF%E5%8A%A8%E9%BB%98%E8%AE%A4%E8%BF%9B%E5%85%A5%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>首先，编辑sudo vi /etc/default/grub 文件，找到如下行:</p>
+<p>GRUB_CMDLINE_LINUX_DEFAULT=”quiet splash”</p>
+<p>将其注释掉（待恢复时可用）</p>
+<p>#GRUB_CMDLINE_LINUX_DEFAULT=”quiet splash”</p>
+<p>然后，添加以下内容</p>
+<p>GRUB_CMDLINE_LINUX_DEFAULT=”text”</p>
+<p>保存文件并退出</p>
+<p>最后，使用 sudo update-grub 命令，使配置生效</p>
+<p>reboot 启动系统即可。</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>win10 打不开samba文件夹的解决方法</title>
+    <url>/2016/10/02/win10%20%E6%89%93%E4%B8%8D%E5%BC%80samba%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>Win10 打不开局域网电脑共享的文件夹。</p>
+<p>在网上搜了一下，说关掉Pin的，也有说不要用微软帐户的。我试了一下，只关掉PIN是不行的，但不能用指纹登陆了。关掉微软帐户，启用本地帐户，重启就可以。</p>
+<p>也有说关掉自动同步，可以用微软帐户的，试了下，应该是不行的。</p>
+<p>难道要访问局域网中的资源，只能用本地帐户？ 我想微软应该不会这么傻X吧。肯定是哪里没有设置好。</p>
+<p>把设置找了一遍，果然找到了：</p>
+<p>Control Panel\Network and Internet\Network and Sharing Centre\Advanced sharing settings</p>
+<p>下面的 File and Printer share 默认是关闭的。打开以后就可以了。</p>
+<p>这个应该才是正确的解锁姿势，默认是关闭的，默认是关闭的，默认是关闭的。晕倒。</p>
+]]></content>
+      <categories>
+        <category>win 10</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Win10 启用组策略</title>
+    <url>/2020/11/01/win10%E5%90%AF%E7%94%A8%E7%BB%84%E7%AD%96%E7%95%A5/</url>
+    <content><![CDATA[<h1 id="Win10-启用组策略"><a href="#Win10-启用组策略" class="headerlink" title="Win10 启用组策略"></a>Win10 启用组策略</h1><p>WIN+R 运行输入 gpedit.msc 发现找不到这个命令。在网上查了一下，说可能是因为自已用的Win10是家庭版，不支持这个功能。</p>
+<p>发现用下面的方法可以手动安装。亲测好用。</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">@echo off</span><br><span class="line"></span><br><span class="line">pushd <span class="string">"%~dp0"</span></span><br><span class="line"></span><br><span class="line">dir /b %systemroot%\Windows\servicing\Packages\Microsoft<span class="literal">-Windows</span><span class="literal">-GroupPolicy</span><span class="literal">-ClientExtensions</span><span class="literal">-Package</span>~<span class="number">3</span>*.mum &gt;gp.txt</span><br><span class="line"></span><br><span class="line">dir /b  %systemroot%\servicing\Packages\Microsoft<span class="literal">-Windows</span><span class="literal">-GroupPolicy</span><span class="literal">-ClientTools</span><span class="literal">-Package</span>~<span class="number">3</span>*.mum &gt;&gt;gp.txt</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> /f %%i <span class="keyword">in</span> (<span class="string">'findstr /i . gp.txt 2^&gt;nul'</span>) <span class="keyword">do</span> dism /online /norestart /<span class="built_in">add-package</span>:<span class="string">"%systemroot%\servicing\Packages\%%i"</span></span><br><span class="line"></span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+<p>把上面的内容存到一个bat文件中。用管理员权限执行，就能自动安装。</p>
+<p>然后就可以运行 gpedit.msc 了。</p>
+]]></content>
+      <categories>
+        <category>win10</category>
+      </categories>
+      <tags>
+        <tag>win10</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>xcode 根据不同的编译目标加载不同的库</title>
+    <url>/2016/03/10/xcode%20%E6%A0%B9%E6%8D%AE%E4%B8%8D%E5%90%8C%E7%9A%84%E7%BC%96%E8%AF%91%E7%9B%AE%E6%A0%87%E5%8A%A0%E8%BD%BD%E4%B8%8D%E5%90%8C%E7%9A%84%E5%BA%93/</url>
+    <content><![CDATA[<p>在xcode上开发IOS程序，可以将一个项目编译模拟器和真机，对应着又分别有debug和Release, 相应的别人提供的库也可能按这样给的，代码中要怎么加载呢？</p>
+<p>xcode中可以直接配置：</p>
+<p>打开工程配置文件，选择 “TARGETS”,找到“Build Settings”选项卡，然后找到“Search Paths”，设置“Library Search Paths”。根据不同的平台选择相应的库的路径就可以了。</p>
+]]></content>
+      <categories>
+        <category>IOS 开发</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>xelatex 纸张大小设置</title>
+    <url>/2015/05/19/xelatex%20%E7%BA%B8%E5%BC%A0%E5%A4%A7%E5%B0%8F%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\documentclass[]&#123;article&#125;</span><br><span class="line"></span><br><span class="line">\usepackage[T1]&#123;fontenc&#125;</span><br><span class="line"></span><br><span class="line">\usepackage&#123;lmodern&#125;</span><br><span class="line"></span><br><span class="line">\usepackage&#123;amssymb,amsmath&#125;</span><br><span class="line"></span><br><span class="line">\usepackage&#123;ifxetex,ifluatex&#125;</span><br><span class="line"></span><br><span class="line">**\usepackage[body=&#123;18cm,24cm&#125;]&#123;geometry&#125;**</span><br><span class="line"></span><br><span class="line">**\geometry&#123;papersize=&#123;21cm,29.7cm&#125;&#125;**</span><br><span class="line"></span><br><span class="line">\usepackage&#123;fixltx2e&#125; % provides \textsubscript</span><br><span class="line"></span><br><span class="line">% use microtype if available</span><br><span class="line"></span><br><span class="line">\IfFileExists&#123;microtype.sty&#125;&#123;\usepackage&#123;microtype&#125;&#125;&#123;&#125;</span><br><span class="line"></span><br><span class="line">% use upquote if available, for straight quotes in verbatim environments</span><br></pre></td></tr></table></figure>
+<p>注意加粗的两行。</p>
+<p>&nbsp;</p>
+]]></content>
+      <categories>
+        <category>百度空间的旧文章</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>xeletax 中文不换行的解决方案</title>
+    <url>/2015/05/19/xeletax-e4-b8-ad-e6-96-87-e4-b8-8d-e6-8d-a2-e8-a1-8c-e7-9a-84-e8-a7-a3-e5-86-b3-e6-96-b9-e6-a1-88/</url>
+    <content><![CDATA[<p>下面的方案是可行的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\XeTeXlinebreaklocale &quot;zh&quot;</span><br><span class="line">\XeTeXlinebreakskip = 0pt plus 1pt`&lt;/pre&gt;</span><br><span class="line">整个文件：&lt;!--more--&gt;</span><br><span class="line"></span><br><span class="line">&lt;pre&gt;`\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$$if(papersize)$$papersize$,$endif$]&#123;$documentclass$&#125;</span><br><span class="line">\usepackage[T1]&#123;fontenc&#125;</span><br><span class="line">\usepackage&#123;lmodern&#125;</span><br><span class="line">\usepackage&#123;amssymb,amsmath&#125;</span><br><span class="line">\usepackage&#123;ifxetex,ifluatex&#125;</span><br><span class="line">\usepackage&#123;fixltx2e&#125; % provides \textsubscript</span><br><span class="line">% use microtype if available</span><br><span class="line">\IfFileExists&#123;microtype.sty&#125;&#123;\usepackage&#123;microtype&#125;&#125;&#123;&#125;</span><br><span class="line">% use upquote if available, for straight quotes in verbatim environments</span><br><span class="line">\IfFileExists&#123;upquote.sty&#125;&#123;\usepackage&#123;upquote&#125;&#125;&#123;&#125;</span><br><span class="line">\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex</span><br><span class="line">  \usepackage[utf8]&#123;inputenc&#125;</span><br><span class="line">$if(euro)$</span><br><span class="line">  \usepackage&#123;eurosym&#125;</span><br><span class="line">$endif$</span><br><span class="line">\else % if luatex or xelatex</span><br><span class="line">  \usepackage&#123;fontspec&#125;</span><br><span class="line">  \ifxetex</span><br><span class="line">    \usepackage&#123;xltxtra,xunicode&#125;</span><br><span class="line">  \fi</span><br><span class="line">  \defaultfontfeatures&#123;Mapping=tex-text,Scale=MatchLowercase&#125;</span><br><span class="line">  \newcommand&#123;\euro&#125;&#123;€&#125;</span><br><span class="line">$if(mainfont)$</span><br><span class="line">    \setmainfont&#123;$mainfont$&#125;</span><br><span class="line">$endif$</span><br><span class="line">$if(sansfont)$</span><br><span class="line">    \setsansfont&#123;$sansfont$&#125;</span><br><span class="line">$endif$</span><br><span class="line">$if(monofont)$</span><br><span class="line">    \setmonofont&#123;$monofont$&#125;</span><br><span class="line">$endif$</span><br><span class="line">$if(mathfont)$</span><br><span class="line">    \setmathfont&#123;$mathfont$&#125;</span><br><span class="line">$endif$</span><br><span class="line">\fi</span><br><span class="line">$if(geometry)$</span><br><span class="line">\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]&#123;geometry&#125;</span><br><span class="line">$endif$</span><br><span class="line">$if(natbib)$</span><br><span class="line">\usepackage&#123;natbib&#125;</span><br><span class="line">\bibliographystyle&#123;plainnat&#125;</span><br><span class="line">$endif$</span><br><span class="line">$if(biblatex)$</span><br><span class="line">\usepackage&#123;biblatex&#125;</span><br><span class="line">$if(biblio-files)$</span><br><span class="line">\bibliography&#123;$biblio-files$&#125;</span><br><span class="line">$endif$</span><br><span class="line">$endif$</span><br><span class="line">$if(listings)$</span><br><span class="line">\usepackage&#123;listings&#125;</span><br><span class="line">$endif$</span><br><span class="line">$if(lhs)$</span><br><span class="line">\lstnewenvironment&#123;code&#125;&#123;\lstset&#123;language=Haskell,basicstyle=\small\ttfamily&#125;&#125;&#123;&#125;</span><br><span class="line">$endif$</span><br><span class="line">$if(highlighting-macros)$</span><br><span class="line">$highlighting-macros$</span><br><span class="line">$endif$</span><br><span class="line">$if(verbatim-in-note)$</span><br><span class="line">\usepackage&#123;fancyvrb&#125;</span><br><span class="line">$endif$</span><br><span class="line">$if(tables)$</span><br><span class="line">\usepackage&#123;longtable&#125;</span><br><span class="line">$endif$</span><br><span class="line">$if(graphics)$</span><br><span class="line">\usepackage&#123;graphicx&#125;</span><br><span class="line">% We will generate all images so they have a width \maxwidth. This means</span><br><span class="line">% that they will get their normal width if they fit onto the page, but</span><br><span class="line">% are scaled down if they would overflow the margins.</span><br><span class="line">\makeatletter</span><br><span class="line">\def\maxwidth&#123;\ifdim\Gin@nat@width&amp;gt;\linewidth\linewidth</span><br><span class="line">\else\Gin@nat@width\fi&#125;</span><br><span class="line">\makeatother</span><br><span class="line">\let\Oldincludegraphics\includegraphics</span><br><span class="line">\renewcommand&#123;\includegraphics&#125;[1]&#123;\Oldincludegraphics[width=\maxwidth]&#123;#1&#125;&#125;</span><br><span class="line">$endif$</span><br><span class="line">\ifxetex</span><br><span class="line">  \usepackage[setpagesize=false, % page size defined by xetex</span><br><span class="line">              unicode=false, % unicode breaks when used with xetex</span><br><span class="line">              xetex]&#123;hyperref&#125;</span><br><span class="line">\else</span><br><span class="line">  \usepackage[unicode=true]&#123;hyperref&#125;</span><br><span class="line">\fi</span><br><span class="line">\hypersetup&#123;breaklinks=true,</span><br><span class="line">            bookmarks=true,</span><br><span class="line">            pdfauthor=&#123;$author-meta$&#125;,</span><br><span class="line">            pdftitle=&#123;$title-meta$&#125;,</span><br><span class="line">            colorlinks=true,</span><br><span class="line">            urlcolor=$if(urlcolor)$$urlcolor$$else$blue$endif$,</span><br><span class="line">            linkcolor=$if(linkcolor)$$linkcolor$$else$magenta$endif$,</span><br><span class="line">            pdfborder=&#123;0 0 0&#125;&#125;</span><br><span class="line">\urlstyle&#123;same&#125;  % don&apos;t use monospace font for urls</span><br><span class="line">$if(links-as-notes)$</span><br><span class="line">% Make links footnotes instead of hotlinks:</span><br><span class="line">\renewcommand&#123;\href&#125;[2]&#123;#2\footnote&#123;\url&#123;#1&#125;&#125;&#125;</span><br><span class="line">$endif$</span><br><span class="line">$if(strikeout)$</span><br><span class="line">\usepackage[normalem]&#123;ulem&#125;</span><br><span class="line">% avoid problems with \sout in headers with hyperref:</span><br><span class="line">\pdfstringdefDisableCommands&#123;\renewcommand&#123;\sout&#125;&#123;&#125;&#125;</span><br><span class="line">$endif$</span><br><span class="line">\setlength&#123;\parindent&#125;&#123;0pt&#125;</span><br><span class="line">\setlength&#123;\parskip&#125;&#123;6pt plus 2pt minus 1pt&#125;</span><br><span class="line">\setlength&#123;\emergencystretch&#125;&#123;3em&#125;  % prevent overfull lines</span><br><span class="line">$if(numbersections)$</span><br><span class="line">$else$</span><br><span class="line">\setcounter&#123;secnumdepth&#125;&#123;0&#125;</span><br><span class="line">\XeTeXlinebreaklocale &quot;zh&quot;</span><br><span class="line">\XeTeXlinebreakskip = 0pt plus 1pt$endif$</span><br><span class="line">$if(verbatim-in-note)$</span><br><span class="line">\VerbatimFootnotes % allows verbatim text in footnotes</span><br><span class="line">$endif$</span><br><span class="line">$if(lang)$</span><br><span class="line">\ifxetex</span><br><span class="line">  \usepackage&#123;polyglossia&#125;</span><br><span class="line">  \setmainlanguage&#123;$mainlang$&#125;</span><br><span class="line">\else</span><br><span class="line">  \usepackage[$lang$]&#123;babel&#125;</span><br><span class="line">\fi</span><br><span class="line">$endif$</span><br><span class="line">$for(header-includes)$</span><br><span class="line">$header-includes$</span><br><span class="line">$endfor$</span><br><span class="line">$if(title)$</span><br><span class="line">\title&#123;$title$&#125;</span><br><span class="line">$endif$</span><br><span class="line">\author&#123;$for(author)$$author$$sep$ \and $endfor$&#125;</span><br><span class="line">\date&#123;$date$&#125;</span><br><span class="line">\begin&#123;document&#125;</span><br><span class="line">$if(title)$</span><br><span class="line">\maketitle</span><br><span class="line">$endif$</span><br><span class="line">$for(include-before)$</span><br><span class="line">$include-before$</span><br><span class="line">$endfor$</span><br><span class="line">$if(toc)$</span><br><span class="line">&#123;</span><br><span class="line">\hypersetup&#123;linkcolor=black&#125;</span><br><span class="line">\setcounter&#123;tocdepth&#125;&#123;$toc-depth$&#125;</span><br><span class="line">\tableofcontents</span><br><span class="line">&#125;</span><br><span class="line">$endif$</span><br><span class="line">$body$</span><br><span class="line">$if(natbib)$</span><br><span class="line">$if(biblio-files)$</span><br><span class="line">$if(biblio-title)$</span><br><span class="line">$if(book-class)$</span><br><span class="line">\renewcommand\bibname&#123;$biblio-title$&#125;</span><br><span class="line">$else$</span><br><span class="line">\renewcommand\refname&#123;$biblio-title$&#125;</span><br><span class="line">$endif$</span><br><span class="line">$endif$</span><br><span class="line">\bibliography&#123;$biblio-files$&#125;</span><br><span class="line">$endif$</span><br><span class="line">$endif$</span><br><span class="line">$if(biblatex)$</span><br><span class="line">\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$</span><br><span class="line">$endif$</span><br><span class="line">$for(include-after)$</span><br><span class="line">$include-after$</span><br><span class="line">$endfor$</span><br><span class="line">\end&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>~~~~~~~~~~~~~~~
+</code></pre>]]></content>
+      <categories>
+        <category>百度空间的旧文章</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>xslt keep-together.within-page 在Fop中的形为</title>
+    <url>/2019/07/16/xslt-keep-together-within-page-xslt%20keep-together.within-page%E5%9C%A8Fop%E4%B8%AD%E7%9A%84%E5%BD%A2%E4%B8%BA/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">keep-together.within-page</span><br></pre></td></tr></table></figure>
+<ol>
+<li>auto是默认形为, 写不写都是一样的。</li>
+</ol>
+<ol start="2">
+<li>always是强制在一页中。如果当前限制的内容超过一页时，会从页面下方溢出。</li>
+</ol>
+<ol start="3">
+<li>指定一个数字。测试 1 的形为是这样的：会换页将当前内容保持在一页中。但如果当前内容超过一页时，也会将多余的内容显示到下一页中，保证不会将内容溢出到纸的外面。</li>
+</ol>
+<p><a href="https://www.w3.org/TR/xsl11/#keep-together" target="_blank" rel="noopener">https://www.w3.org/TR/xsl11/#keep-together</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>xslt调试技巧</title>
+    <url>/2019/07/09/xslt%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<p><a href="https://www.ibm.com/developerworks/cn/xml/x-tipxslmsg.html" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/xml/x-tipxslmsg.html</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>加快QWebview中执行Javascript的速度</title>
+    <url>/2018/08/13/%E5%8A%A0%E5%BF%ABQWebview%E4%B8%AD%E6%89%A7%E8%A1%8CJavascript%E7%9A%84%E9%80%9F%E5%BA%A6/</url>
+    <content><![CDATA[<p>The issue is that Qt is evaluating the return value of the last statement in Javascript and converting it to a QVariant. It became time consuming because jQuery was returning the jQuery object, which was being evaluated in its entirety by Qt - and recursively at that. This also consumed RAM too. It wasn’t console.log that was fixing the issue, it was the “null” value it returned. I tested, and stapling “null” at the end of the script also worked. </p>
+<p>Below is the updated code. </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">myWebElement-&gt;evaluateJavaScript( myScript + &quot;; null&quot; );</span><br></pre></td></tr></table></figure>
+<p>如果发现执行速度超级慢，按上面的方法处理。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>blog复活</title>
+    <url>/2020/01/04/%E5%A4%8D%E6%B4%BBblog/</url>
+    <content><![CDATA[<h1 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h1><p>之前在阿里云上花钱买了一个网页空间，用了好几年，刚开始还挺好的，但最近半年，完全不能用。频繁刷新都能被关黑屋。还遇到有人恶意访问。</p>
+<p>今天终于花时间弄清楚了 github + hexo + next + travis-ci 的blog组合。</p>
+<p>搞清楚了hexo 的 tags 和 categories 的启用方法。</p>
+<p>从目前的情况来说，与之前的 wordpress 对比，显示完美，当然写作没有之前的方便。</p>
+<p>还支持 https，并且 github 技术加持，不担心被人恶意黑掉。自己的域名也能完美支持。</p>
+<p>总之，blog 重新复活。</p>
+<h1 id="如何快速创建一个github个人网站？"><a href="#如何快速创建一个github个人网站？" class="headerlink" title="如何快速创建一个github个人网站？"></a>如何快速创建一个github个人网站？</h1><p>克隆一个已经存在的网站:)，比如我这个<a href="https://github.com/wangwanqiang/myHexoSite.git" target="_blank" rel="noopener">网站</a>。然后把source目录中的内容删除掉。在调整一下自己的配置就可以了。</p>
+<h1 id="hexo-blog-如何创建404页面"><a href="#hexo-blog-如何创建404页面" class="headerlink" title="hexo blog 如何创建404页面"></a>hexo blog 如何创建404页面</h1><p>有两种方法：</p>
+<ol>
+<li><p>可以自己创建一个 404.html 页面直接放到 source 目录下面。</p>
+</li>
+<li><p>也可以在 source 目录下面创建一个 404 的文件夹， 然后面在里面创建一个 index.md 的文件。 可以使用这个命令创建 <code>hexo new page &quot;404&quot;</code></p>
+</li>
+</ol>
+<h1 id="图床如何用？"><a href="#图床如何用？" class="headerlink" title="图床如何用？"></a>图床如何用？</h1><ol>
+<li><p>七牛的不错，可以绑定自己的域名。做好备份，如果那天免费不能用了，换地方应该也不需要在文章里面改链接。</p>
+</li>
+<li><p>还有一个自动上传的工作可用。 MPic官方网址：<a href="http://mpic.lzhaofu.cn" target="_blank" rel="noopener">http://mpic.lzhaofu.cn</a></p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>blog</tag>
+        <tag>hexo</tag>
+        <tag>next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>头文件及keil C的一点经验(转)</title>
+    <url>/2015/05/19/%E5%A4%B4%E6%96%87%E4%BB%B6%E5%8F%8AkeilC%E7%9A%84%E4%B8%80%E7%82%B9%E7%BB%8F%E9%AA%8C/</url>
+    <content><![CDATA[<div class="pcs-article-box_ptkaiapt4bxy_baiduscarticle"><br><br># <a href="http://hi.baidu.com/fc/editor/fckeditor.html?InstanceName=spBlogText&amp;v=3.1&amp;Toolbar=Default&amp;v=3.1.html#" target="_blank" rel="noopener">头文件及keil C的一点经验</a>·<br><br><div class="pcs-article-c_ptkaiapt4bxy_baiduscarticle"><br><div class="pcs-article-content_ptkaiapt4bxy_baiduscarticle"></div><br><div class="pcs-article-content_ptkaiapt4bxy_baiduscarticle">许多初学者使用网上下载的程序时都会遇到这样一个问题，就是头文件找不到。我想就这个问题说明一下。/<br><br>·首先，我们用到的KEIL有几种版本的，头文件也不同。有reg51.h和at89x51.h两种比较常见。at89x51和reg51这两个文件有点不同，reg51没有对IO口的位地址进行定义。所以我们在使用reg51的时候，可能会有一些相关语句通不过，比方说P0_1=1;这样的位操作。<br><br>文件都放在Keil的KEILC\C51\INC目录下，大家可以看看自己的KEIL版本使用了哪个头文件，也有些KEIL封装了reg51和at89x51两个头文件，都可以用。/<br><br>·头文件定义在程序的第一行，方法是#include ，如果提示这个文件找不到可以改为#include 试试。<br><br>·下面是一些使用心得，网上的.使用Keil C调试某系统时积累的一些经验<br><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1、在Windows2000下面，我们可以把字体设置为Courier，这样就可以显示正常。</span><br><span class="line">2、当使用有片外内存的MCU（如W77E58，它有1K片外内存）的时候，肯定要设置标志位，并且编译方式要选择大模式，否则会出错。</span><br><span class="line">3、当使用Keil C跟踪程序运行状态的时候，要把引起Warning的语句屏蔽，否则有可能跟踪语句的时候会出错。</span><br><span class="line">4、在调用数组的时候，Keil C是首先把数组Load进内存。如果要在C中使用长数组的时候，我们可以使用code关键字，这样就实现了汇编的DB的功能，Keil C是不会把标志code的数组Load入内存的，它会直接读取Rom。</span><br><span class="line">5、拉高管脚的执行速度远远比检查管脚电平的要快。当编程涉及到有关通信，时序是很重要的。</span><br><span class="line">6、在等待管脚电平变化的时候，我们需要设置好超时处理，否则程序就会因为一个没有预计的错误而死锁。</span><br><span class="line">7、能用C语言实现的地方，尽量不要用汇编，尤其在算法的实现，用汇编是晦涩难懂。</span><br><span class="line">8、程序的几个参数数组所占篇幅很大，其中液晶背景数组最长，有四千个Byte，因而把那些初始化数组都放在另外一个C文件，在主文件使用使用关键字extern定义，这样就不会对主文件的编写造成干扰。</span><br><span class="line">9、所有函数之间的相关性越低越有利于以后功能的扩展。</span><br><span class="line">10、6.20版在编译带code关键字的数组时，编译通过但是单片机运行结果是错误的，改用6.14版后正常。</span><br></pre></td></tr></table></figure><br><br></div><br></div><br></div><br><div id="detailArticleFooter_ptkaiapt4bxy_baiduscarticle" class="footer"><br><div class="time-cang">收藏于 2009-09-27</div><br><div class="link-src">来自于百度空间</div><br></div>
+]]></content>
+      <categories>
+        <category>百度空间的旧文章</category>
+      </categories>
+      <tags>
+        <tag>keil</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何看mdstat文件</title>
+    <url>/2019/06/02/%E5%A6%82%E4%BD%95%E7%9C%8Bmdstat%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[<p>指导文件： <a href="https://raid.wiki.kernel.org/index.php/Mdstat" target="_blank" rel="noopener">https://raid.wiki.kernel.org/index.php/Mdstat</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>如何自己编译Logsaw</title>
+    <url>/2017/04/22/%E5%A6%82%E4%BD%95%E8%87%AA%E5%B7%B1%E7%BC%96%E8%AF%91Logsaw/</url>
+    <content><![CDATA[<p>Logsaw是一个非常不错的日志分析工具，自已编译一定要严格按照它的编译教程来做。自己花了一些时间，对eclipse不熟悉。</p>
+<p>教程的链接：<a href="http://logsaw.sourceforge.net/?page_id=260" target="_blank" rel="noopener">http://logsaw.sourceforge.net/?page_id=260</a></p>
+<p>重点要关注的：eclipse版本选择：the latest version of Eclipse for RCP and RAP Developers.</p>
+<p>下载代码，导入工程一般不会有问题。这里就不说了。下面的要注意：</p>
+<p>1. navigate into the releng project, and open the workspace.target file in there. In the Target Definition editor, hit the <strong>Set as Target</strong> Platform button in the upper right corner. 打开releng工程的workspace.target文件，然后点击这一页上面的链接Set as Target,然后要等一会儿，应该是去网上下载东西去了。</p>
+<p>2. right-click on the releng project and choose Run As &gt; Maven build…. In the following dialog, enter the goals <strong>clean package</strong> and then hit run. Run As会出来几个，一定要找那个可以输入goals的，然后输入clean package然Run就可以了。为毛是clean package啊，好迷惑。</p>
+<p>3. 生成的安装在这里：/net.sf.logsaw.site.feature/target/products</p>
+]]></content>
+      <categories>
+        <category>日志系统</category>
+      </categories>
+      <tags>
+        <tag>log</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何进入正在运行的Docker容器</title>
+    <url>/2017/04/14/%E5%A6%82%E4%BD%95%E8%BF%9B%E5%85%A5%E6%AD%A3%E5%9C%A8%E8%BF%90%E8%A1%8C%E7%9A%84Docker%E5%AE%B9%E5%99%A8/</url>
+    <content><![CDATA[<p>网上有很多种方式，比如ssh什么的。但下面这种方法我认为应该是最好，最方便的。</p>
+<p>`<br>$ sudo docker ps<br>$ sudo docker exec -it 775c7c9ee1e1 /bin/bash</p>
+<p>`</p>
+<p>其中775c7c9ee1e1是容器的运行时id。</p>
+]]></content>
+      <categories>
+        <category>docker</category>
+        <category>未分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>常见图表与用途</title>
+    <url>/2020/02/05/%E5%B8%B8%E8%A7%81%E5%9B%BE%E8%A1%A8%E4%B8%8E%E7%94%A8%E9%80%94/</url>
+    <content><![CDATA[<table width="100%" border="1"> <tbody> <tr> <td>主类 </td> <td>次类 </td> <td>用途 </td> </tr> <tr> <td rowspan="2">折线图</td> <td>折线图</td> <td>用于反应和时间相关的数据变化（趋势）。</td> </tr> <tr> <td>面积图</td> <td>用于反应主次之间基于时间的对比。</td> </tr> <tr> <td rowspan="4">柱状图</td> <td>柱状图</td> <td>分类项目的数量比较。也能反应趋势。</td> </tr> <tr> <td>条形图</td> <td>分类项目的数量比较。</td> </tr> <tr> <td>环状条形图</td> <td>分类项目的数量比较。更能反应项目之间的数量关系。</td> </tr> <tr> <td>南丁格尔玫瑰图</td> <td>以夸张的形式来表示分类项目的数量对比</td> </tr> <tr> <td rowspan="3">饼状图</td> <td>饼状图</td> <td>反映分类数据反占比例</td> </tr> <tr> <td>旭日图</td> <td>表示比例对比的同时，也表示层次关系</td> </tr> <tr> <td>对状图</td> <td>表示比例，可以多层线。</td> </tr> <tr> <td rowspan="3">散点图</td> <td>散点图</td> <td>反应相关性和分布关系，两个变量</td> </tr> <tr> <td>气泡图</td> <td>反应相关性和分布关系，三个变量</td> </tr> <tr> <td>带线散点</td> <td>趋势线</td> </tr> <tr> <td>地图</td> <td>地图</td> <td>反应空间信息</td> </tr> <tr> <td rowspan="3">其它图</td> <td>股价图/箱线图</td> <td>反映数据分散情况</td> </tr> <tr> <td>直方图</td> <td>反映数据分布</td> </tr> <tr> <td>瀑布图</td> <td>数量变化的过程</td> </tr> </tbody> </table>
+]]></content>
+      <categories>
+        <category>数据分析</category>
+      </categories>
+      <tags>
+        <tag>数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据库学习之关键字DISTINCT</title>
+    <url>/2017/04/21/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%85%B3%E9%94%AE%E5%AD%97DISTINCT/</url>
+    <content><![CDATA[<p>如果一列的值有多个，查询的时间，这些值是会多次返回的。如果不在乎次数，只在有没有。也就是出现过了就不要再出现了，要实现这样的查询就要用到DISTINCT关键字。</p>
+<p>其用法如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SELECT **DISTINCT** vend_ id FROM Products;</span><br></pre></td></tr></table></figure>
+<p>[美]Ben Forta. SQL必知必会（第4版） (图灵程序设计丛书 80) (Kindle Location 325). 人民邮电出版社. Kindle Edition.</p>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>database</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>日志设计</title>
+    <url>/2021/01/02/%E6%97%A5%E5%BF%97%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<h1 id="C语言版本"><a href="#C语言版本" class="headerlink" title="C语言版本"></a>C语言版本</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">/**********************************************</span><br><span class="line">*                LOG DEFINE                   *</span><br><span class="line">**********************************************/</span><br><span class="line">// OFF FATAL ERROR WARN INFO DEBUG TRACE</span><br><span class="line">//  0    1     2     3    4    5     6</span><br><span class="line">#define OFF   (0)</span><br><span class="line">#define FATAL (1)</span><br><span class="line">#define ERROR (2)</span><br><span class="line">#define WARN  (3)</span><br><span class="line">#define INFO  (4)</span><br><span class="line">#define DEBUG (5)</span><br><span class="line">#define TRACE (6)</span><br><span class="line"></span><br><span class="line">#define LOG_LEVEL DEBUG</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#define LOG(level, format, ...) \</span><br><span class="line">    if(LOG_LEVEL &gt;= level) &#123; \</span><br><span class="line">        fprintf(stderr, &quot;[%s|%s@%s,%d] &quot; format &quot;\n&quot;, \</span><br><span class="line">            #level, __func__, __FILE__, __LINE__, ##__VA_ARGS__ ); \</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>代码</category>
+      </categories>
+      <tags>
+        <tag>程序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派docker运行报错</title>
+    <url>/2019/06/07/%E6%A0%91%E8%8E%93%E6%B4%BEdocker%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>This is because the docker service is not automatically started after an install. You can start the docker service in Ubuntu and its derivatives (looking at you Linux Mint) by typing: sudo service docker start To check that docker started, this file should exist: ls -la /var/run/docker.sock</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>树莓派上安装docker</title>
+    <url>/2015/05/27/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E5%AE%89%E8%A3%85docker/</url>
+    <content><![CDATA[<p>这应该是现在在树莓派上安装docker的最简单的方法了，因为是使用别人做好的镜像文件，通过SD卡烧写的方式，直接就可以用了。</p>
+<p>参照下面的这个网址，在这个网站下载镜像，树莓派2B亲测是可用的。</p>
+<p><a href="http://blog.hypriot.com/getting-started-with-docker-on-your-arm-device/" target="_blank" rel="noopener">http://blog.hypriot.com/getting-started-with-docker-on-your-arm-device/</a></p>
+<p>如果下载慢，可以从我的百度网盘上下载：</p>
+<p>链接：<a href="http://pan.baidu.com/s/1dD94bU5" target="_blank" rel="noopener">http://pan.baidu.com/s/1dD94bU5</a> 密码：2coe</p>
+<p>&nbsp;</p>
+]]></content>
+      <categories>
+        <category>docker</category>
+        <category>树莓派</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>树莓派的Web ssh</title>
+    <url>/2019/06/03/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84Web%20ssh/</url>
+    <content><![CDATA[<p><a href="https://www.instructables.com/id/Raspberry-Pi-online-SSH-easy-way/" target="_blank" rel="noopener">https://www.instructables.com/id/Raspberry-Pi-online-SSH-easy-way/</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>用阿里云解决Jcenter下载太慢的问题。</title>
+    <url>/2017/04/17/%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E8%A7%A3%E5%86%B3Jcenter%E4%B8%8B%E8%BD%BD%E5%A4%AA%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p><strong>亲测速度，极好。</strong></p>
+<p>使用阿里云的国内镜像仓库地址，修改项目根目录下的文件 build.gradle ：</p>
+<p>`<br>buildscript {<br>   repositories {<br>        maven{ url ‘<a href="http://maven.aliyun.com/nexus/content/groups/public/&#39;}" target="_blank" rel="noopener">http://maven.aliyun.com/nexus/content/groups/public/&#39;}</a><br>    }<br>}</p>
+<p>allprojects {<br>    repositories {<br>        maven{ url ‘<a href="http://maven.aliyun.com/nexus/content/groups/public/&#39;}" target="_blank" rel="noopener">http://maven.aliyun.com/nexus/content/groups/public/&#39;}</a><br>    }<br>}<br>`</p>
+<p>然后选择重新构建项目就可以了</p>
+]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>编写Dockerfile的原则</title>
+    <url>/2017/04/29/%E7%BC%96%E5%86%99Dockerfile%E7%9A%84%E5%8E%9F%E5%88%99/</url>
+    <content><![CDATA[<p>一篇文章的总结：原文在<a href="http://cizixs.com/2017/03/28/dockerfile-best-practice" target="_blank" rel="noopener">这里</a></p>
+<blockquote>
+<p>1. 使用统一的 base 镜像</p>
+<p>有些文章讲优化镜像会提倡使用尽量小的基础镜像，比如 busybox 或者 alpine 等。我更推荐使用统一的大家比较熟悉的基础镜像，比如 ubuntu，centos 等，因为基础镜像只需要下载一次可以共享，并不会造成太多的存储空间浪费。它的好处是这些镜像的生态比较完整，方便我们安装软件，除了问题进行调试。</p>
+<p>2. 动静分离</p>
+<p>经常变化的内容和基本不会变化的内容要分开，把不怎么变化的内容放在下层，创建出来不同基础镜像供上层使用。比如可以创建各种语言的基础镜像，python2.7、python3.4、go1.7、java7等等，这些镜像包含了最基本的语言库，每个组可以在上面继续构建应用级别的镜像。</p>
+<p>3. 最小原则：只安装必需的东西</p>
+<p>很多人构建镜像的时候，都有一种冲动——把可能用到的东西都打包到镜像中。要遏制这种想法，镜像中应该只包含必需的东西，任何可以有也可以没有的东西都不要放到里面。因为镜像的扩展很容易，而且运行容器的时候也很方便地对其进行修改。这样可以保证镜像尽可能小，构建的时候尽可能快，也保证未来的更快传输、更省网络资源。</p>
+<p>4. 一个原则：每个镜像只有一个功能</p>
+<p>不要在容器里运行多个不同功能的进程，每个镜像中只安装一个应用的软件包和文件，需要交互的程序通过 pod（kubernetes 提供的特性） 或者容器之间的网络进行交流。这样可以保证模块化，不同的应用可以分开维护和升级，也能减小单个镜像的大小。</p>
+<p>5. 使用更少的层</p>
+<p>虽然看起来把不同的命令尽量分开来，写在多个命令中容易阅读和理解。但是这样会导致出现太多的镜像层，而不好管理和分析镜像，而且镜像的层是有限的。尽量把相关的内容放到同一个层，使用换行符进行分割，这样可以进一步减小镜像大小，并且方便查看镜像历史。</p>
+<p>6. 减少每层的内容</p>
+<p>尽管只安装必须的内容，在这个过程中也可能会产生额外的内容或者临时文件，我们要尽量让每层安装的东西保持最小。</p>
+<p>比如使用 –no-install-recommends 参数告诉 apt-get 不要安装推荐的软件包<br>安装完软件包，清楚 /var/lib/apt/list/ 缓存<br>删除中间文件：比如下载的压缩包<br>删除临时文件：如果命令产生了临时文件，也要及时删除<br>7. 不要在 Dockerfile 中修改文件的权限</p>
+<p>因为 docker 镜像是分层的，任何修改都会新增一个层，修改文件或者目录权限也是如此。如果修改大文件或者目录的权限，会把这些文件复制一份，这样很容易导致镜像很大。</p>
+<p>解决方案也很简单，要么在添加到 Dockerfile 之前就把文件的权限和用户设置好，要么在容器启动脚本（entrypoint）做这些修改。</p>
+<p>8. 利用 cache 来加快构建速度</p>
+<p>如果 Docker 发现某个层已经存在了，它会直接使用已经存在的层，而不会重新运行一次。如果你连续运行 docker build 多次，会发现第二次运行很快就结束了。</p>
+<p>不过从 1.10 版本开始，Content Addressable Storage 的引入导致缓存功能的实效，目前引入了 –cache-from 参数可以手动指定一个镜像来使用它的缓存。</p>
+<p>9. 版本控制和自动构建</p>
+<p>最好把 Dockerfile 和对应的应用代码一起放到版本控制中，然后能够自动构建镜像。这样的好处是可以追踪各个版本镜像的内容，方便了解不同镜像有什么区别，对于调试和回滚都有好处。</p>
+<p>另外，如果运行镜像的参数或者环境变量很多，也要有对应的文档给予说明，并且文档要随着 Dockerfile 变化而更新，这样任何人都能参考着文档很容易地使用镜像，而不是下载了镜像不知道怎么用。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>苹果软件发布问题汇总</title>
+    <url>/2017/11/05/%E8%8B%B9%E6%9E%9C%E8%BD%AF%E4%BB%B6%E5%8F%91%E5%B8%83%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<h1 id="苹果软件发布问题汇总"><a href="#苹果软件发布问题汇总" class="headerlink" title="苹果软件发布问题汇总"></a>苹果软件发布问题汇总</h1><h3 id="上传程序不能在可选列表中显示出来怎么办？"><a href="#上传程序不能在可选列表中显示出来怎么办？" class="headerlink" title="上传程序不能在可选列表中显示出来怎么办？"></a>上传程序不能在可选列表中显示出来怎么办？</h3><p>检查开发者帐号的邮箱，会把是什么原因导制的通过邮件发过来。比较奇怪是上传过程不会有任何提示，ituneconnect帐号中也不会提示。比较挫。</p>
+<p>出现上面的情况，一般都是程序里面的权限设置问题。</p>
+<h3 id="发布硬件配合的程序"><a href="#发布硬件配合的程序" class="headerlink" title="发布硬件配合的程序"></a>发布硬件配合的程序</h3><p>发布程序的时候最好配一个联机演示的视频。不然的话，他后面会让你补上，浪费时间。</p>
+<h3 id="xcode打包的地方上传不了"><a href="#xcode打包的地方上传不了" class="headerlink" title="xcode打包的地方上传不了"></a>xcode打包的地方上传不了</h3><p>遇到过这种情况，这里怎么也传不了，一直正在进行，不完成。可以从xcode的那个菜单里面调出一个独立的工具出来。这个工具一般比较好用。</p>
+<p>遇到过 遇小化那个上传界面，然后恢复。就会提示已上传完成。其实根本就没有成功上传，完全是骗人的。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>解决 package &#39;fontconfig&#39; not found</title>
+    <url>/2020/01/20/%E8%A7%A3%E5%86%B3%20package%20&#39;fontconfig&#39;%20not%20found/</url>
+    <content><![CDATA[<h1 id="解决-package-‘fontconfig’-not-found"><a href="#解决-package-‘fontconfig’-not-found" class="headerlink" title="解决 package ‘fontconfig’ not found"></a>解决 package ‘fontconfig’ not found</h1><p>Whenever you get messages about missing packages (or suggestions to modify your PKG_CONFIG_PATH) during a build, it usually indicates that you are missing the corresponding development package - which is typically separate from the runtime package that is normally installed on the system.</p>
+<p>In this case you have the most recent version of fontconfig but are probably missing the corresponding libfontconfig1-dev package.</p>
+<p>正确的解决方法是安装：<strong>libfontconfig1-dev</strong></p>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>compile</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>compile</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决Docker的两个问题</title>
+    <url>/2016/02/28/%E8%A7%A3%E5%86%B3Docker%E7%9A%84%E4%B8%A4%E4%B8%AA%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>解决运行docker 命令一直要用sudo的问题</p>
+<h1 id="添加docker用户组"><a href="#添加docker用户组" class="headerlink" title="添加docker用户组"></a>添加docker用户组</h1><p>$ sudo groupadd docker</p>
+<h1 id="把自己加到docker用户组中"><a href="#把自己加到docker用户组中" class="headerlink" title="把自己加到docker用户组中"></a>把自己加到docker用户组中</h1><p>$ sudo gpasswd -a myusername docker</p>
+<h1 id="重启docker后台服务"><a href="#重启docker后台服务" class="headerlink" title="重启docker后台服务"></a>重启docker后台服务</h1><p>$ sudo service docker restart</p>
+<h1 id="注销，然后再登陆"><a href="#注销，然后再登陆" class="headerlink" title="注销，然后再登陆"></a>注销，然后再登陆</h1><p>$ exit</p>
+<p>删除所有运行的docker容器</p>
+<p>$ docker rm $(docker ps -a -q)</p>
+]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决家里面打印机暂停的问题</title>
+    <url>/2018/08/31/%E8%A7%A3%E5%86%B3%E5%AE%B6%E9%87%8C%E9%9D%A2%E6%89%93%E5%8D%B0%E6%9C%BA%E6%9A%82%E5%81%9C%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>按下面图片所示的界面，去重新开始打印机就可以。 <a href="http://wanqiang.wang/wp-content/uploads/2018/08/printer_paused.png"><img src="http://wanqiang.wang/wp-content/uploads/2018/08/printer_paused-300x172.png" alt></a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>重启minidlna</title>
+    <url>/2016/03/21/%E9%87%8D%E5%90%AFminidlna/</url>
+    <content><![CDATA[<p>服务器文件大调整，盒子上看文件发现需多不对了，重启一下就好了：<br>用下面的命令：</p>
+<pre><code>sudo /etc/init.d/minidlna force-reload 
+</code></pre>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+  </entry>
+</search>
