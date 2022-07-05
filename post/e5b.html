@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="0GUyfSKVO6ZMFM5NT-oLy1BeO_LQPEcnGhTn3xTvklI">
+  <meta name="msvalidate.01" content="8B1FC7D48A819D3880D7BC3A360C0AD9">
+  <meta name="baidu-site-verification" content="code-1vGnzWysnV">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wanqiang.wang","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="概述SPI是串行外设接口(Serial Peripheral Interface)的缩写。是 Motorola 公司推出的一种同步串行接口技术，是一种高速的，全双工，同步的通信总线。 优缺点特点 高速、同步、全双工、非差分、总线式 主从机通信模式  优点 支持全双工通信 通信简单 数据传输速率块  缺点 没有指定的流控制，没有应答机制确认是否接收到数据，所以跟IIC总线协议比较在数据 可靠性上有一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SPI 总线">
+<meta property="og:url" content="https://wanqiang.wang/post/e5b.html">
+<meta property="og:site_name" content="WANQIANG WANG">
+<meta property="og:description" content="概述SPI是串行外设接口(Serial Peripheral Interface)的缩写。是 Motorola 公司推出的一种同步串行接口技术，是一种高速的，全双工，同步的通信总线。 优缺点特点 高速、同步、全双工、非差分、总线式 主从机通信模式  优点 支持全双工通信 通信简单 数据传输速率块  缺点 没有指定的流控制，没有应答机制确认是否接收到数据，所以跟IIC总线协议比较在数据 可靠性上有一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://depot.wanqiang.wang/blog/20200503/Q13S5At43CUc.png?imageslim">
+<meta property="og:image" content="http://depot.wanqiang.wang/blog/20200503/DrlkwQgyKQ6W.png?imageslim">
+<meta property="og:image" content="http://depot.wanqiang.wang/blog/20200503/aJgCAIwhwlHC.png?imageslim">
+<meta property="article:published_time" content="2020-05-03T00:10:33.000Z">
+<meta property="article:modified_time" content="2022-07-05T23:20:15.837Z">
+<meta property="article:author" content="Wanqiang">
+<meta property="article:tag" content="外设">
+<meta property="article:tag" content="嵌入式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://depot.wanqiang.wang/blog/20200503/Q13S5At43CUc.png?imageslim">
+
+<link rel="canonical" href="https://wanqiang.wang/post/e5b.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>SPI 总线 | WANQIANG WANG</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0659e54213d527762148d926eefbbdc7";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">WANQIANG WANG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/e5b.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SPI 总线
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-03 08:10:33" itemprop="dateCreated datePublished" datetime="2020-05-03T08:10:33+08:00">2020-05-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-06 07:20:15" itemprop="dateModified" datetime="2022-07-06T07:20:15+08:00">2022-07-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%96%E8%AE%BE/" itemprop="url" rel="index"><span itemprop="name">外设</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%96%E8%AE%BE/%E5%B5%8C%E5%85%A5%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">嵌入式</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>SPI是串行外设接口(Serial Peripheral Interface)的缩写。是 Motorola 公司推出的一种同步串行接口技术，是一种高速的，全双工，同步的通信总线。</p>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ol>
+<li>高速、同步、全双工、非差分、总线式</li>
+<li>主从机通信模式</li>
+</ol>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
+<li>支持全双工通信</li>
+<li>通信简单</li>
+<li>数据传输速率块</li>
+</ol>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ol>
+<li>没有指定的流控制，没有应答机制确认是否接收到数据，所以跟IIC总线协议比较在数据</li>
+<li>可靠性上有一定的缺陷。</li>
+</ol>
+<h1 id="协议详解"><a href="#协议详解" class="headerlink" title="协议详解"></a>协议详解</h1><p>它以主从方式工作，这种模式通常有一个主设备和一个或多个从设备，需要至少4根线，事实上3根也可以(单向传输时)。也是所有基于SPI的设备共有的，它们是SDI(数据输入)、SDO(数据输出)、SCLK(时钟)、CS(片选)。</p>
+<ol>
+<li>SDO&#x2F;MOSI – 主设备数据输出，从设备数据输入;</li>
+<li>SDI&#x2F;MISO – 主设备数据输入，从设备数据输出;</li>
+<li>SCLK – 时钟信号，由主设备产生;</li>
+<li>CS&#x2F;SS – 从设备使能信号，由主设备控制。当有多个从设备的时候，因为每个从设备上都有一个片选引脚接入到主设备机中，当我们的主设备和某个从设备通信时将需要将从设备对应的片选引脚电平拉低或者是拉高。</li>
+</ol>
+<p><img src="http://depot.wanqiang.wang/blog/20200503/Q13S5At43CUc.png?imageslim" alt="mark"></p>
+<p>SPI通信有4种不同的模式，不同的从设备可能在出厂是就是配置为某种模式，这是不能改变的；但我们的通信双方必须是工作在同一模式下，所以我们可以对我们的主设备的SPI模式进行配置，通过CPOL（时钟极性）和CPHA（时钟相位）来控制我们主设备的通信模式，具体如下：</p>
+<ol>
+<li>Mode0：CPOL&#x3D;0，CPHA&#x3D;0</li>
+<li>Mode1：CPOL&#x3D;0，CPHA&#x3D;1</li>
+<li>Mode2：CPOL&#x3D;1，CPHA&#x3D;0</li>
+<li>Mode3：CPOL&#x3D;1，CPHA&#x3D;1</li>
+</ol>
+<p>时钟极性CPOL是用来配置SCLK的电平出于哪种状态时是空闲态或者有效态，时钟相位CPHA是用来配置数据采样是在第几个边沿：</p>
+<ol>
+<li>CPOL&#x3D;0，表示当SCLK&#x3D;0时处于空闲态，所以有效状态就是SCLK处于高电平时</li>
+<li>CPOL&#x3D;1，表示当SCLK&#x3D;1时处于空闲态，所以有效状态就是SCLK处于低电平时</li>
+<li>CPHA&#x3D;0，表示数据采样是在第1个边沿，数据发送在第2个边沿</li>
+<li>CPHA&#x3D;1，表示数据采样是在第2个边沿，数据发送在第1个边沿</li>
+</ol>
+<p>例如：</p>
+<p>CPOL&#x3D;0，CPHA&#x3D;0：此时空闲态时，SCLK处于低电平，数据采样是在第1个边沿，也就是<br>SCLK由低电平到高电平的跳变，所以数据采样是在上升沿，数据发送是在下降沿。</p>
+<p>CPOL&#x3D;0，CPHA&#x3D;1：此时空闲态时，SCLK处于低电平，数据发送是在第1个边沿，也就是<br>SCLK由低电平到高电平的跳变，所以数据采样是在下降沿，数据发送是在上升沿。</p>
+<p>CPOL&#x3D;1，CPHA&#x3D;0：此时空闲态时，SCLK处于高电平，数据采集是在第1个边沿，也就是<br>SCLK由高电平到低电平的跳变，所以数据采集是在下降沿，数据发送是在上升沿。</p>
+<p>CPOL&#x3D;1，CPHA&#x3D;1：此时空闲态时，SCLK处于高电平，数据发送是在第1个边沿，也就是<br>SCLK由高电平到低电平的跳变，所以数据采集是在上升沿，数据发送是在下降沿。</p>
+<p><img src="http://depot.wanqiang.wang/blog/20200503/DrlkwQgyKQ6W.png?imageslim" alt="mark"></p>
+<p><img src="http://depot.wanqiang.wang/blog/20200503/aJgCAIwhwlHC.png?imageslim" alt="mark"></p>
+<p>需要注意的是：我们的主设备能够控制时钟，因为我们的SPI通信并不像UART或者IIC通信<br>那样有专门的通信周期，有专门的通信起始信号，有专门的通信结束信号；所以我们的<br>SPI协议能够通过控制时钟信号线，当没有数据交流的时候我们的时钟线要么是<br>保持高电平要么是保持低电平。</p>
+<h1 id="协议对比"><a href="#协议对比" class="headerlink" title="协议对比"></a>协议对比</h1><h2 id="spi-与-iic"><a href="#spi-与-iic" class="headerlink" title="spi 与 iic"></a>spi 与 iic</h2><ol>
+<li><p>iic总线不是全双工，2根线SCL SDA。spi总线实现全双工，4根线SCK CS MOSI MISO</p>
+</li>
+<li><p>iic总线是多主机总线，通过SDA上的地址信息来锁定从设备。spi总线只有一个主设备，主设备通过CS片选来确定从设备</p>
+</li>
+<li><p>iic总线传输速度在100kbps-4Mbps。spi总线传输速度更快，可以达到30MHZ以上。</p>
+</li>
+<li><p>iic总线空闲状态下SDA SCL都是高电平。spi总线空闲状态MOSI MISO也都是 SCK是有CPOL决定的</p>
+</li>
+<li><p>iic总线scl高电平时sda下降沿标志传输开始，上升沿标志传输结束。spi总线cs拉低标志传输开始，cs拉高标志传输结束</p>
+</li>
+<li><p>iic总线是SCL高电平采样。spi总线因为是全双工，因此是沿采样，具体要根据CPHA决定。一般情况下master device是SCK的上升沿发送，下降沿采集</p>
+</li>
+<li><p>iic总线和spi总线数据传输都是MSB在前，LSB在后（串口是LSB在前）</p>
+</li>
+<li><p>iic总线和spi总线时钟都是由主设备产生，并且只在数据传输时发出时钟</p>
+</li>
+<li><p>iic总线读写时序比较固定统一，设备驱动编写方便。spi总线不同从设备读写时序差别比较大，因此必须根据具体的设备datasheet来实现读写，相对复杂一些。</p>
+</li>
+</ol>
+<h2 id="SPI、IIC、UART和CAN-使用场景对比"><a href="#SPI、IIC、UART和CAN-使用场景对比" class="headerlink" title="SPI、IIC、UART和CAN 使用场景对比"></a>SPI、IIC、UART和CAN 使用场景对比</h2><p><strong>SPI 和I2C这两种通信方式都是短距离的，芯片和芯片之间或者其他元器件如传感器和芯片之间的通信。</strong> SPI和IIC是板上通信,IIC有时也会做板间通信,不过距离甚短,不过超过一米,例如一些触摸屏,手机液晶屏那些薄膜排线很多用IIC,I2C能用于替代标准的并行总线，能连接的各种集成电路和功能模块。I2C是多主控总线，所以任何一个设备都能像主控器一样工作，并控制总线。总线上每一个设备都有一个独一无二的地址，根据设备它们自己的能力，它们可以作为发射器或接收器工作。多路微控制器能在同一个I2C总线上共存这两种线属于低速传输。</p>
+<p>而<strong>UART是应用于两个设备之间的通信，如用单片机做好的设备和计算机的通信</strong>。这样的通信可以做长距离的。UART速度比上面两者者快,最高达100K左右,用与计算机与设备或者计算机和计算之间通信,但有效范围不会很长,约10米左右,UART优点是支持面广,程序设计结构很简单,随着USB的发展,UART也逐渐走向下坡。</p>
+<p>CAN使用场景完全不一样：</p>
+<ol>
+<li>CAN 通讯距离最大是10 公里（设速率为5Kbps）,或最大通信速率为1Mbps(设通信距离为40 米)。</li>
+<li>CAN 总线上的节点数可达110 个。通信介质可在双绞线，同轴电缆，光纤中选择。</li>
+<li>CAN 采用非破坏性的总线仲裁技术，当多个节点同时发送数据时，优先级低的节点会主动退出发送，高优先级的节点可继续发送，节省总线仲裁时间。</li>
+<li>CAN 是多主方式工作，网上的任一节点均可在任意时刻主动地向网络上其他节点发送信息。</li>
+<li>CAN 采用报文识别符识别网络上的节点，从而把节点分成不同的优先级，高优先级的节点享有传送报文的优先权。报文是短帧结构，短的传送时间使其受干扰概率低，CAN 有很好的效验机制，这些都保证了CAN 通信的可靠性。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%A4%96%E8%AE%BE/" rel="tag"># 外设</a>
+              <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag"># 嵌入式</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/post/639e.html" rel="prev" title="常见图表与用途">
+      <i class="fa fa-chevron-left"></i> 常见图表与用途
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/post/b963.html" rel="next" title="Qt下载链接">
+      Qt下载链接 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">1.1.</span> <span class="nav-text">优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">1.1.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">1.1.2.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">1.1.3.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">协议详解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%8F%E8%AE%AE%E5%AF%B9%E6%AF%94"><span class="nav-number">3.</span> <span class="nav-text">协议对比</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#spi-%E4%B8%8E-iic"><span class="nav-number">3.1.</span> <span class="nav-text">spi 与 iic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPI%E3%80%81IIC%E3%80%81UART%E5%92%8CCAN-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E5%AF%B9%E6%AF%94"><span class="nav-number">3.2.</span> <span class="nav-text">SPI、IIC、UART和CAN 使用场景对比</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Wanqiang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wangwanqiang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wangwanqiang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wwq100@gmail.com" title="E-Mail → mailto:wwq100@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">粤ICP备15047376号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wanqiang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

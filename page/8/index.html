@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="0GUyfSKVO6ZMFM5NT-oLy1BeO_LQPEcnGhTn3xTvklI">
+  <meta name="msvalidate.01" content="8B1FC7D48A819D3880D7BC3A360C0AD9">
+  <meta name="baidu-site-verification" content="code-1vGnzWysnV">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wanqiang.wang","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="WANQIANG WANG">
+<meta property="og:url" content="https://wanqiang.wang/page/8/index.html">
+<meta property="og:site_name" content="WANQIANG WANG">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Wanqiang">
+<meta property="article:tag" content="linux, c++, ios, android">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wanqiang.wang/page/8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>WANQIANG WANG</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0659e54213d527762148d926eefbbdc7";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">WANQIANG WANG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/e48.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/e48.html" class="post-title-link" itemprop="url">mac下登陆ssh报错解决</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-03-06 09:05:00" itemprop="dateCreated datePublished" datetime="2016-03-06T09:05:00+08:00">2016-03-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-06 07:20:15" itemprop="dateModified" datetime="2022-07-06T07:20:15+08:00">2022-07-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mac-%E4%BD%BF%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">Mac 使用</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>mac登陆服务器，不能成功，报下面的错误：</p>
+<p>Could not resolve hostname xxxxx.com:9527: nodename nor servname provided, or not known</p>
+<p>但是如果在局域网内有没有问题，检查了下自己的输入的命令：</p>
+<pre><code>ssh xxx@xxxxx.com:9527
+
+
+会出现问题，如果是这样，就可以：
+
+ssh xxx@192.168.1.5
+
+就可以
+
+### 怎么处理呢？
+
+能过查找发现，要解决这个问题，命令换个写法就可以了：
+
+ssh -p 22221 xxx@xxxxx.com
+</code></pre>
+<p>就可以了。</p>
+<h3 id="但又是什么原因呢？"><a href="#但又是什么原因呢？" class="headerlink" title="但又是什么原因呢？"></a>但又是什么原因呢？</h3><p>个人猜测，应该是，mac的ssh程序解析域名的时候，识别不出后面的端口，有bug，同样的做法，用别的ssh客户端就可以了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/278d.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/278d.html" class="post-title-link" itemprop="url">Git: 利用Git的subtree功能在不同工程共享代码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-03-05 10:26:27" itemprop="dateCreated datePublished" datetime="2016-03-05T10:26:27+08:00">2016-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-06 07:20:15" itemprop="dateModified" datetime="2022-07-06T07:20:15+08:00">2022-07-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-第一次添加子目录，建立与git项目的关联"><a href="#1-第一次添加子目录，建立与git项目的关联" class="headerlink" title="1. 第一次添加子目录，建立与git项目的关联"></a>1. 第一次添加子目录，建立与git项目的关联</h2><p>建立关联总共有2条命令。</p>
+<p>语法： git remote add -f &lt;子仓库名&gt; &lt;子仓库地址&gt;</p>
+<p>解释：其中-f意思是在添加远程仓库之后，立即执行fetch。</p>
+<p>语法： git subtree add –prefix&#x3D;&lt;子目录名&gt; &lt;子仓库名&gt; &lt;分支&gt; –squash</p>
+<p>解释：–squash意思是把subtree的改动合并成一次commit，这样就不用拉取子项目完整的历史记录。–prefix之后的&#x3D;等号也可以用空格。</p>
+<p>示例</p>
+<pre><code>$git remote add -f ai https://github.com/aoxu/ai.git  
+$git subtree add --prefix=ai ai master --squash
+`&lt;/pre&gt;
+
+## 2\. 从远程仓库更新子目录
+
+更新子目录有2条命令。
+
+语法： git fetch &amp;lt;远程仓库名&gt; &amp;lt;分支&gt;
+
+语法： git subtree pull --prefix=&amp;lt;子目录名&gt; &amp;lt;远程分支&gt; &amp;lt;分支&gt; --squash
+
+示例
+
+&lt;pre&gt;`$git fetch ai master  
+$git subtree pull --prefix=ai ai --squash
+`&lt;/pre&gt;
+
+## 3\. 从子目录push到远程仓库（确认你有写权限）
+
+推送子目录的变更有1条命令。
+
+语法： git subtree push --prefix=&amp;lt;子目录名&gt; &amp;lt;远程分支名&gt; 分支
+
+示例
+
+&lt;pre&gt;`$git subtree push --prefix=ai ai master
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/2809.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/2809.html" class="post-title-link" itemprop="url">gem 设置代理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-03-04 10:35:39" itemprop="dateCreated datePublished" datetime="2016-03-04T10:35:39+08:00">2016-03-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-06 07:20:15" itemprop="dateModified" datetime="2022-07-06T07:20:15+08:00">2022-07-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/gem/" itemprop="url" rel="index"><span itemprop="name">gem</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>按下面的方法可行</p>
+<p>sudo gem install gollum -p <a target="_blank" rel="noopener" href="http://10.160.8.97:808/">http://10.160.8.97:808</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/b7a3.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/b7a3.html" class="post-title-link" itemprop="url">docker安装Gitlab</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-03-03 10:27:03" itemprop="dateCreated datePublished" datetime="2016-03-03T10:27:03+08:00">2016-03-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-06 07:20:15" itemprop="dateModified" datetime="2022-07-06T07:20:15+08:00">2022-07-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>这里用到了一个第三方的镜像：</p>
+<p>Step 1. Launch a postgresql container</p>
+<pre><code>docker run --name gitlab-postgresql -d \
+    --env &#39;DB_NAME=gitlabhq_production&#39; \
+    --env &#39;DB_USER=gitlab&#39; --env &#39;DB_PASS=password&#39; \
+    --volume /srv/docker/gitlab/postgresql:/var/lib/postgresql \
+    sameersbn/postgresql:9.4-13
+`&lt;/pre&gt;
+
+Step 2\. Launch a redis container
+
+&lt;pre&gt;`docker run --name gitlab-redis -d \
+    --volume /srv/docker/gitlab/redis:/var/lib/redis \
+    sameersbn/redis:latest
+`&lt;/pre&gt;
+
+Step 3\. Launch the gitlab container
+
+&lt;pre&gt;`docker run --name gitlab -d \
+    --link gitlab-postgresql:postgresql --link gitlab-redis:redisio \
+    --publish 10022:22 --publish 10080:80 \
+    --env &#39;GITLAB_PORT=10080&#39; --env &#39;GITLAB_SSH_PORT=10022&#39; \
+    --env &#39;GITLAB_SECRETS_DB_KEY_BASE=long-and-random-alpha-numeric-string&#39; \
+    --volume /srv/docker/gitlab/gitlab:/home/git/data \
+    sameersbn/gitlab:8.5.1
+</code></pre>
+<p>Please refer to Available Configuration Parameters to understand GITLAB_PORT and other configuration options</p>
+<p>NOTE: Please allow a couple of minutes for the GitLab application to start.</p>
+<p>Point your browser to <a target="_blank" rel="noopener" href="http://localhost:10080/">http://localhost:10080</a> and login using the default username and password:</p>
+<blockquote>
+<p>username: root<br>  password: 5iveL!fe</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/ee8a.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/ee8a.html" class="post-title-link" itemprop="url">Linux 下挂Windows的共享目录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-03-02 17:41:12" itemprop="dateCreated datePublished" datetime="2016-03-02T17:41:12+08:00">2016-03-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-06 07:20:15" itemprop="dateModified" datetime="2022-07-06T07:20:15+08:00">2022-07-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>mount -t cifs -o username&#x3D;windowsusername &#x2F;&#x2F;windows machine&#x2F;sharefiles &#x2F;mnt&#x2F;localfolder</p>
+<p>如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mount -t cifs -o username=wwq,password=xxxxxx  //10.2.37.56/Users/wwq/Desktop/work  /mnt/share</span><br></pre></td></tr></table></figure>
+<p>其中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">windowsusername : Windows用户名</span><br><span class="line">windows machine ：Windows机器名</span><br><span class="line">sharefiles ：Windows共享文件夹名</span><br></pre></td></tr></table></figure>
+
+<p>然后就可以在 &#x2F;mnt&#x2F;localfolder 下访问Windows内容。</p>
+<p>注意要先创建目录，这里是 &#x2F;mnt&#x2F;share</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/f709.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/f709.html" class="post-title-link" itemprop="url">docker设置代理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-03-02 16:18:41" itemprop="dateCreated datePublished" datetime="2016-03-02T16:18:41+08:00">2016-03-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-06 07:20:15" itemprop="dateModified" datetime="2022-07-06T07:20:15+08:00">2022-07-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用下面的命令就可以设置，替换你的IP和端口。<br>sudo HTTP_PROXY&#x3D;10.160.8.99:808  docker -d&amp;</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/2a08.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/2a08.html" class="post-title-link" itemprop="url">IOS开发：生成时间字符串</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-03-01 20:55:48" itemprop="dateCreated datePublished" datetime="2016-03-01T20:55:48+08:00">2016-03-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-06 07:20:15" itemprop="dateModified" datetime="2022-07-06T07:20:15+08:00">2022-07-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IOS-%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">IOS 开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><span class="s1">&#x2F;&#x2F;</span><span class="s2">时间标记字符串生成</span></p>
+<p><span class="s2">-(</span><span class="s3">NSString</span><span class="s2">*)TimeStamp</span></p>
+<p><span class="s2">{</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s3">NSDate</span><span class="s2"> *today &#x3D; [</span><span class="s3">NSDate</span> <span class="s3">date</span><span class="s2">];</span></p>
+<p><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s2">NSDateFormatter</span><span class="s4"> *dateFormatter &#x3D; [[</span><span class="s2">NSDateFormatter</span> <span class="s2">alloc</span><span class="s4">]</span><span class="s2">init</span><span class="s4">];</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span>[dateFormatter </span><span class="s3">setDateFormat</span><span class="s2">:</span><span class="s5">@”yyyy-MM-dd hh:mm:ss”</span><span class="s2">];</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s3">NSString</span><span class="s2"> *strDate &#x3D; [dateFormatter </span><span class="s3">stringFromDate</span><span class="s2">:today];</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s3">NSLog</span><span class="s2">(</span><span class="s5">@”Time: %@”</span><span class="s2">,strDate);</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s6">return</span><span class="s2"> strDate;</span></p>
+<p><span class="s2">}</span></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/2a08.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/2a08.html" class="post-title-link" itemprop="url">IOS开发：生成时间字符串</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-03-01 20:55:48" itemprop="dateCreated datePublished" datetime="2016-03-01T20:55:48+08:00">2016-03-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-06 07:20:15" itemprop="dateModified" datetime="2022-07-06T07:20:15+08:00">2022-07-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IOS-%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">IOS 开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><span class="s1">&#x2F;&#x2F;</span><span class="s2">时间标记字符串生成</span></p>
+<p><span class="s2">-(</span><span class="s3">NSString</span><span class="s2">*)TimeStamp</span></p>
+<p><span class="s2">{</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s3">NSDate</span><span class="s2"> *today &#x3D; [</span><span class="s3">NSDate</span> <span class="s3">date</span><span class="s2">];</span></p>
+<p><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s2">NSDateFormatter</span><span class="s4"> *dateFormatter &#x3D; [[</span><span class="s2">NSDateFormatter</span> <span class="s2">alloc</span><span class="s4">]</span><span class="s2">init</span><span class="s4">];</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span>[dateFormatter </span><span class="s3">setDateFormat</span><span class="s2">:</span><span class="s5">@”yyyy-MM-dd hh:mm:ss”</span><span class="s2">];</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s3">NSString</span><span class="s2"> *strDate &#x3D; [dateFormatter </span><span class="s3">stringFromDate</span><span class="s2">:today];</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s3">NSLog</span><span class="s2">(</span><span class="s5">@”Time: %@”</span><span class="s2">,strDate);</span></p>
+<p><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s6">return</span><span class="s2"> strDate;</span></p>
+<p><span class="s2">}</span></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/b1ab.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/b1ab.html" class="post-title-link" itemprop="url">IOS开发：获取屏幕大小的宏</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-03-01 20:50:23" itemprop="dateCreated datePublished" datetime="2016-03-01T20:50:23+08:00">2016-03-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-06 07:20:15" itemprop="dateModified" datetime="2022-07-06T07:20:15+08:00">2022-07-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IOS-%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">IOS 开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><span class="s1">&#x2F;&#x2F;</span><span class="s2">获取设备屏幕尺寸</span></p>
+<p><span class="s2">#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)</span></p>
+<p><span class="s2">#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)</span><span class="s3">&#x2F;&#x2F;</span><span class="s4">应用尺寸</span></p>
+<p><span class="s2">#define APP_WIDTH [[UIScreen mainScreen]applicationFrame].size.width</span></p>
+<p><span class="s2">#define APP_HEIGHT [[UIScreen mainScreen]applicationFrame].size.height</span></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/3c14.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/3c14.html" class="post-title-link" itemprop="url">解决Docker的两个问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-02-28 09:01:19" itemprop="dateCreated datePublished" datetime="2016-02-28T09:01:19+08:00">2016-02-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-06 07:20:15" itemprop="dateModified" datetime="2022-07-06T07:20:15+08:00">2022-07-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>解决运行docker 命令一直要用sudo的问题</p>
+<h1 id="添加docker用户组"><a href="#添加docker用户组" class="headerlink" title="添加docker用户组"></a>添加docker用户组</h1><p>$ sudo groupadd docker</p>
+<h1 id="把自己加到docker用户组中"><a href="#把自己加到docker用户组中" class="headerlink" title="把自己加到docker用户组中"></a>把自己加到docker用户组中</h1><p>$ sudo gpasswd -a myusername docker</p>
+<h1 id="重启docker后台服务"><a href="#重启docker后台服务" class="headerlink" title="重启docker后台服务"></a>重启docker后台服务</h1><p>$ sudo service docker restart</p>
+<h1 id="注销，然后再登陆"><a href="#注销，然后再登陆" class="headerlink" title="注销，然后再登陆"></a>注销，然后再登陆</h1><p>$ exit</p>
+<p>删除所有运行的docker容器</p>
+<p>$ docker rm $(docker ps -a -q)</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Wanqiang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wangwanqiang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wangwanqiang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wwq100@gmail.com" title="E-Mail → mailto:wwq100@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">粤ICP备15047376号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wanqiang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
