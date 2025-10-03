@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="0GUyfSKVO6ZMFM5NT-oLy1BeO_LQPEcnGhTn3xTvklI">
+  <meta name="msvalidate.01" content="8B1FC7D48A819D3880D7BC3A360C0AD9">
+  <meta name="baidu-site-verification" content="code-1vGnzWysnV">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"wanqiang.wang","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="WANQIANG WANG">
+<meta property="og:url" content="https://wanqiang.wang/page/10/index.html">
+<meta property="og:site_name" content="WANQIANG WANG">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Wanqiang">
+<meta property="article:tag" content="linux, c++, ios, android">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://wanqiang.wang/page/10/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>WANQIANG WANG</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0659e54213d527762148d926eefbbdc7";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">WANQIANG WANG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/baf1.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/baf1.html" class="post-title-link" itemprop="url">树莓派上安装docker</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-05-27 07:06:26" itemprop="dateCreated datePublished" datetime="2015-05-27T07:06:26+08:00">2015-05-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-10-04 00:07:19" itemprop="dateModified" datetime="2025-10-04T00:07:19+08:00">2025-10-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/%E6%A0%91%E8%8E%93%E6%B4%BE/" itemprop="url" rel="index"><span itemprop="name">树莓派</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>这应该是现在在树莓派上安装docker的最简单的方法了，因为是使用别人做好的镜像文件，通过SD卡烧写的方式，直接就可以用了。</p>
+<p>参照下面的这个网址，在这个网站下载镜像，树莓派2B亲测是可用的。</p>
+<p><a target="_blank" rel="noopener" href="http://blog.hypriot.com/getting-started-with-docker-on-your-arm-device/">http://blog.hypriot.com/getting-started-with-docker-on-your-arm-device/</a></p>
+<p>如果下载慢，可以从我的百度网盘上下载：</p>
+<p>链接：<a target="_blank" rel="noopener" href="http://pan.baidu.com/s/1dD94bU5">http://pan.baidu.com/s/1dD94bU5</a> 密码：2coe</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/7181.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/7181.html" class="post-title-link" itemprop="url">IOS  解析点阵字库</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-05-24 14:54:04" itemprop="dateCreated datePublished" datetime="2015-05-24T14:54:04+08:00">2015-05-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-10-04 00:07:19" itemprop="dateModified" datetime="2025-10-04T00:07:19+08:00">2025-10-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IOS-%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">IOS 开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="IOS-解析点阵字库"><a href="#IOS-解析点阵字库" class="headerlink" title="IOS  解析点阵字库"></a>IOS  解析点阵字库</h1><p>IOS控制点阵屏显示，加载点阵字库，目前已经实现，有感兴趣的留言，我把它整理出来。</p>
+<p>我实现的是 16<em>16的中文和16</em>8的英文显法。</p>
+<h3 id="字库制作"><a href="#字库制作" class="headerlink" title="字库制作"></a>字库制作</h3><p>制字方案的生成和成嵌入式系统上生成字模文件的方案是一样的。</p>
+<h3 id="IOS从字库中取到字模"><a href="#IOS从字库中取到字模" class="headerlink" title="IOS从字库中取到字模"></a>IOS从字库中取到字模</h3><h3 id="字模显示"><a href="#字模显示" class="headerlink" title="字模显示"></a>字模显示</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/44f7.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/44f7.html" class="post-title-link" itemprop="url">NSLog 开关</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-05-24 14:42:36" itemprop="dateCreated datePublished" datetime="2015-05-24T14:42:36+08:00">2015-05-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-10-04 00:07:19" itemprop="dateModified" datetime="2025-10-04T00:07:19+08:00">2025-10-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IOS-%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">IOS 开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>开发IOS应用在发布的时候需要将全部的NSLog中去掉，怎么弄呢？可以使用一个宏来控制：</p>
+<p>在系统包含的公共头文件中加入下面的语句：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#ifndef __OPTIMIZE__</span><br><span class="line"># define NSLog(...) NSLog(__VA_ARGS__)</span><br><span class="line">#else</span><br><span class="line"># define NSLog(...) &#123;&#125;</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+
+<p>一般情况下，Release版本系统会定义 <strong>OPTIMIZE</strong> 宏，而Debug版本不会，根据这个差别使用不同的NSLog，从而达到上面的目的。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/9dae.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/9dae.html" class="post-title-link" itemprop="url">Mac 下交换caps lock 与 Ctrl</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-05-23 15:16:01" itemprop="dateCreated datePublished" datetime="2015-05-23T15:16:01+08:00">2015-05-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-10-04 00:07:19" itemprop="dateModified" datetime="2025-10-04T00:07:19+08:00">2025-10-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mac-%E4%BD%BF%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">Mac 使用</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>习惯了HHKB之后表示经常把 caps lock 与 ctrl 键按错，就想在Mac上能不能把caps lock改成ctrl呢，研究了下，发现其实很简单：在键盘设置里面的修饰键就可以改过来，直接的选项，交换就行了。</p>
+<p>不过嘛，看起来有点怪，因为caps lock上有个灯，大小状态还是这个灯显示的，但按下的意义又完全变了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/e241.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/e241.html" class="post-title-link" itemprop="url">头文件及keil C的一点经验(转)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-05-19 06:58:18" itemprop="dateCreated datePublished" datetime="2015-05-19T06:58:18+08:00">2015-05-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-10-04 00:07:19" itemprop="dateModified" datetime="2025-10-04T00:07:19+08:00">2025-10-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%99%BE%E5%BA%A6%E7%A9%BA%E9%97%B4%E7%9A%84%E6%97%A7%E6%96%87%E7%AB%A0/" itemprop="url" rel="index"><span itemprop="name">百度空间的旧文章</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <div class="pcs-article-box_ptkaiapt4bxy_baiduscarticle">
+
+<h1 id="头文件及keil-C的一点经验·"><a href="#头文件及keil-C的一点经验·" class="headerlink" title="头文件及keil C的一点经验·"></a><a target="_blank" rel="noopener" href="http://hi.baidu.com/fc/editor/fckeditor.html?InstanceName=spBlogText&amp;v=3.1&amp;Toolbar=Default&amp;v=3.1.html#">头文件及keil C的一点经验</a>·</h1><div class="pcs-article-c_ptkaiapt4bxy_baiduscarticle">
+<div class="pcs-article-content_ptkaiapt4bxy_baiduscarticle"></div>
+<div class="pcs-article-content_ptkaiapt4bxy_baiduscarticle">许多初学者使用网上下载的程序时都会遇到这样一个问题，就是头文件找不到。我想就这个问题说明一下。/
+  
+<p>·首先，我们用到的KEIL有几种版本的，头文件也不同。有reg51.h和at89x51.h两种比较常见。at89x51和reg51这两个文件有点不同，reg51没有对IO口的位地址进行定义。所以我们在使用reg51的时候，可能会有一些相关语句通不过，比方说P0_1&#x3D;1;这样的位操作。</p>
+<p>文件都放在Keil的KEILC\C51\INC目录下，大家可以看看自己的KEIL版本使用了哪个头文件，也有些KEIL封装了reg51和at89x51两个头文件，都可以用。&#x2F;</p>
+<p>·头文件定义在程序的第一行，方法是#include ，如果提示这个文件找不到可以改为#include 试试。</p>
+<p>·下面是一些使用心得，网上的.使用Keil C调试某系统时积累的一些经验</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1、在Windows2000下面，我们可以把字体设置为Courier，这样就可以显示正常。</span><br><span class="line">2、当使用有片外内存的MCU（如W77E58，它有1K片外内存）的时候，肯定要设置标志位，并且编译方式要选择大模式，否则会出错。</span><br><span class="line">3、当使用Keil C跟踪程序运行状态的时候，要把引起Warning的语句屏蔽，否则有可能跟踪语句的时候会出错。</span><br><span class="line">4、在调用数组的时候，Keil C是首先把数组Load进内存。如果要在C中使用长数组的时候，我们可以使用code关键字，这样就实现了汇编的DB的功能，Keil C是不会把标志code的数组Load入内存的，它会直接读取Rom。</span><br><span class="line">5、拉高管脚的执行速度远远比检查管脚电平的要快。当编程涉及到有关通信，时序是很重要的。</span><br><span class="line">6、在等待管脚电平变化的时候，我们需要设置好超时处理，否则程序就会因为一个没有预计的错误而死锁。</span><br><span class="line">7、能用C语言实现的地方，尽量不要用汇编，尤其在算法的实现，用汇编是晦涩难懂。</span><br><span class="line">8、程序的几个参数数组所占篇幅很大，其中液晶背景数组最长，有四千个Byte，因而把那些初始化数组都放在另外一个C文件，在主文件使用使用关键字extern定义，这样就不会对主文件的编写造成干扰。</span><br><span class="line">9、所有函数之间的相关性越低越有利于以后功能的扩展。</span><br><span class="line">10、6.20版在编译带code关键字的数组时，编译通过但是单片机运行结果是错误的，改用6.14版后正常。</span><br></pre></td></tr></table></figure>
+
+</div>
+</div>
+</div>
+<div id="detailArticleFooter_ptkaiapt4bxy_baiduscarticle" class="footer">
+<div class="time-cang">收藏于 2009-09-27</div>
+<div class="link-src">来自于百度空间</div>
+</div>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/1c1c.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/1c1c.html" class="post-title-link" itemprop="url">UML学习之听课</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-05-19 06:54:41" itemprop="dateCreated datePublished" datetime="2015-05-19T06:54:41+08:00">2015-05-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-10-04 00:07:19" itemprop="dateModified" datetime="2025-10-04T00:07:19+08:00">2025-10-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%99%BE%E5%BA%A6%E7%A9%BA%E9%97%B4%E7%9A%84%E6%97%A7%E6%96%87%E7%AB%A0/" itemprop="url" rel="index"><span itemprop="name">百度空间的旧文章</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <div class="pcs-article-box_ptkaiapt4bxy_baiduscarticle">
+
+<h1 id><a href="#" class="headerlink" title></a></h1><div class="pcs-article-c_ptkaiapt4bxy_baiduscarticle">
+<div id="detailArticleContent_ptkaiapt4bxy_baiduscarticle" class="pcs-article-content_ptkaiapt4bxy_baiduscarticle">      听了《尚学堂》关于UML学习的两天的课，自己感觉这课还不错吧，关键是讲的人结合了软件开发中的具体的经验，UML是一门工具，只有结合具体的应用场景，才能看见其价值。   这让课程主要讲了这几个方面：类图，顺序图，状态图，用例编写，其它的也基本上只是提到了一下。虽然结合的是Java的开发讲的，结合了一些Java的具体的框架，自己在这方面有些不懂。   不同的图相当于一种分析的解度，类图是静态的建模，顺序图对动态的建模。状态图用来描述一个特定的对象的所有可能的状态，以及由各种事件发生而引起的状态之间的转化。活动图用来描述事物或对象的活动变化流程。
+
+<p>对于类图：关键是理解和分析各种类之间的关联关系。学习中应注重与思想，而不仅仅停留在图的表面上，图只不过是思想的一种反映罢了，对于程序设计，还要结合具体的代码，例如，每一种关系，代码上是如何表现的，相反，图能够直观的反映代码的结构，比如学习设计模式，如果把设计模式都用类图表示出来。非常的直观，也很好记忆，也能更好的理解，用到这一设计模式，首先想到的是这一设计模式的类组，然后跟据自己的特定的情况，写代码就是了。</p>
+<p>对于顺序图：顺序图反映了一种动态的过程，比如在哪课程中举的”登陆“过程例子，用顺序图非常直观的分析了这一过程，分析了各个模块（类）之间要进行的哪些交互，通过对这一过程的分析，设计者了解了程序完成某一件事情都需要做些什么，通过对交互图的认真分析，对于设计者，也可以得出类的功能划分——这一点原来自己一直感到很困惑，看老师演示这一过程，感觉自己有一点认识吧。通过功能来设计类，通过类图来理解系统，从静态和动态两个不同的方面认识系统，不同的角度，但却是一个整体。对于交互图的另一种：协作图，课程中只是提到了一下，演示了一下顺序图和协作图通过Rose的转换，说是一般用在公司的白板描述中，为了节约白板空间，自己不知这个描术是不是准确。</p>
+<p>对于状态图：状态图应该是很重要的，这是一种程序员和客户都能看懂的图，在程序的设计阶段分析系统的各种可能的状态非常重要，否则的话，可能在开发的后期会导制系统结构的大的修改。课程中用一个开发校园一卡通作为例子，分析卡在不同时刻的状态，和不同的时刻的状态转化关系，非常直观。同时也用DVD机在工作过程中的状态用了演示。状态图对于系统的分析应该很有帮助吧。</p>
+<p>这门课程最后还重点讲了如何作需求分析，如何写用例文档。提了一下GRASP(基于职责设计对象)模式。</p></div><p></p>
+<div class="pcs-article-content_ptkaiapt4bxy_baiduscarticle"></div>
+</div>
+</div>
+<div id="detailArticleFooter_ptkaiapt4bxy_baiduscarticle" class="footer">
+<div class="time-cang">收藏于 2010-01-12</div>
+<div class="link-src">来自于百度空间</div>
+</div>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/915b.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/915b.html" class="post-title-link" itemprop="url">python进制转换</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-05-19 06:31:57" itemprop="dateCreated datePublished" datetime="2015-05-19T06:31:57+08:00">2015-05-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-10-04 00:07:19" itemprop="dateModified" datetime="2025-10-04T00:07:19+08:00">2025-10-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>空间</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"># 2/10/16 base trans. wrote by srcdog on 20th, April, 2009</span><br><span class="line"># ld elements in base 2, 10, 16.</span><br><span class="line"></span><br><span class="line">import os,sys</span><br><span class="line"></span><br><span class="line"># global definition</span><br><span class="line"># base = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F]</span><br><span class="line">base = [str(x) for x in range(10)] + [ chr(x) for x in range(ord(&#x27;A&#x27;),ord(&#x27;A&#x27;)+6)]</span><br><span class="line"></span><br><span class="line"># bin2dec</span><br><span class="line"># 二进制 to 十进制: int(str,n=10)</span><br><span class="line">def bin2dec(string_num):</span><br><span class="line">return str(int(string_num, 2))</span><br><span class="line"></span><br><span class="line"># hex2dec</span><br><span class="line"># 十六进制 to 十进制</span><br><span class="line">def hex2dec(string_num):</span><br><span class="line">return str(int(string_num.upper(), 16))</span><br><span class="line"></span><br><span class="line"># dec2bin</span><br><span class="line"># 十进制 to 二进制: bin()</span><br><span class="line">def dec2bin(string_num):</span><br><span class="line">num = int(string_num)</span><br><span class="line">mid = []</span><br><span class="line">while True:</span><br><span class="line">if num == 0: break</span><br><span class="line">num,rem = divmod(num, 2)</span><br><span class="line">mid.append(base[rem])</span><br><span class="line"></span><br><span class="line">return &#x27;&#x27;.join([str(x) for x in mid[::-1]])</span><br><span class="line"></span><br><span class="line"># dec2hex</span><br><span class="line"># 十进制 to 八进制: oct()</span><br><span class="line"># 十进制 to 十六进制: hex()</span><br><span class="line">def dec2hex(string_num):</span><br><span class="line">num = int(string_num)</span><br><span class="line">mid = []</span><br><span class="line">while True:</span><br><span class="line">if num == 0: break</span><br><span class="line">num,rem = divmod(num, 16)</span><br><span class="line">mid.append(base[rem])</span><br><span class="line"></span><br><span class="line">return &#x27;&#x27;.join([str(x) for x in mid[::-1]])</span><br><span class="line"></span><br><span class="line"># hex2tobin</span><br><span class="line"># 十六进制 to 二进制: bin(int(str,16))</span><br><span class="line">def hex2bin(string_num):</span><br><span class="line">return dec2bin(hex2dec(string_num.upper()))</span><br><span class="line"></span><br><span class="line"># bin2hex</span><br><span class="line"># 二进制 to 十六进制: hex(int(str,2))</span><br><span class="line">def bin2hex(string_num):</span><br><span class="line">return dec2hex(bin2dec(string_num))</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">print bin2hex(&#x27;111110&#x27;)</span><br><span class="line">print hex2bin(&#x27;f1&#x27;)</span><br><span class="line">print dec2hex(&#x27;255&#x27;)</span><br></pre></td></tr></table></figure>
+<p>收藏于 2011-03-09<br>来自于百度空间</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/4702.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/4702.html" class="post-title-link" itemprop="url">Excel 取消隐藏的列</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-05-19 06:17:53" itemprop="dateCreated datePublished" datetime="2015-05-19T06:17:53+08:00">2015-05-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-10-04 00:07:19" itemprop="dateModified" datetime="2025-10-04T00:07:19+08:00">2025-10-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%99%BE%E5%BA%A6%E7%A9%BA%E9%97%B4%E7%9A%84%E6%97%A7%E6%96%87%E7%AB%A0/" itemprop="url" rel="index"><span itemprop="name">百度空间的旧文章</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <div class="pcs-article-box_ptkaiapt4bxy_baiduscarticle">
+<div class="pcs-article-c_ptkaiapt4bxy_baiduscarticle">
+<div id="detailArticleContent_ptkaiapt4bxy_baiduscarticle" class="pcs-article-content_ptkaiapt4bxy_baiduscarticle">
+
+<p>在隐藏的列的表头上，光标放到隐藏的列的那个位置向两边拉，就把隐藏的列拉出来了。</p>
+<p>Excel 2010 测试通过。</p>
+</div>
+</div>
+</div>
+<div id="detailArticleFooter_ptkaiapt4bxy_baiduscarticle" class="footer"></div>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/227b.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/227b.html" class="post-title-link" itemprop="url">xeletax 中文不换行的解决方案</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-05-19 06:08:02" itemprop="dateCreated datePublished" datetime="2015-05-19T06:08:02+08:00">2015-05-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-10-04 00:07:19" itemprop="dateModified" datetime="2025-10-04T00:07:19+08:00">2025-10-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%99%BE%E5%BA%A6%E7%A9%BA%E9%97%B4%E7%9A%84%E6%97%A7%E6%96%87%E7%AB%A0/" itemprop="url" rel="index"><span itemprop="name">百度空间的旧文章</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>下面的方案是可行的：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\XeTeXlinebreaklocale</span> &quot;zh&quot;</span><br><span class="line"><span class="keyword">\XeTeXlinebreakskip</span> = 0pt plus 1pt`&lt;/pre&gt;</span><br><span class="line">整个文件：&lt;!--more--&gt;</span><br><span class="line"></span><br><span class="line">&lt;pre&gt;`<span class="keyword">\documentclass</span>[<span class="built_in">$</span>if(fontsize)<span class="built_in">$</span><span class="built_in">$</span>fontsize<span class="built_in">$</span>,<span class="built_in">$</span>endif<span class="built_in">$</span><span class="built_in">$</span>if(lang)<span class="built_in">$</span><span class="built_in">$</span>lang<span class="built_in">$</span>,<span class="built_in">$</span>endif<span class="built_in">$</span><span class="built_in">$</span>if(papersize)<span class="built_in">$</span><span class="built_in">$</span>papersize<span class="built_in">$</span>,<span class="built_in">$</span>endif<span class="built_in">$</span>]&#123;<span class="built_in">$</span>documentclass<span class="built_in">$</span>&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>[T1]&#123;fontenc&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;lmodern&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;amssymb,amsmath&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;ifxetex,ifluatex&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;fixltx2e&#125; <span class="comment">% provides \textsubscript</span></span><br><span class="line"><span class="comment">% use microtype if available</span></span><br><span class="line"><span class="keyword">\IfFileExists</span>&#123;microtype.sty&#125;&#123;<span class="keyword">\usepackage</span>&#123;microtype&#125;&#125;&#123;&#125;</span><br><span class="line"><span class="comment">% use upquote if available, for straight quotes in verbatim environments</span></span><br><span class="line"><span class="keyword">\IfFileExists</span>&#123;upquote.sty&#125;&#123;<span class="keyword">\usepackage</span>&#123;upquote&#125;&#125;&#123;&#125;</span><br><span class="line"><span class="keyword">\ifnum</span> 0<span class="keyword">\ifxetex</span> 1<span class="keyword">\fi</span><span class="keyword">\ifluatex</span> 1<span class="keyword">\fi</span>=0 <span class="comment">% if pdftex</span></span><br><span class="line">  <span class="keyword">\usepackage</span>[utf8]&#123;inputenc&#125;</span><br><span class="line"><span class="built_in">$</span>if(euro)<span class="built_in">$</span></span><br><span class="line">  <span class="keyword">\usepackage</span>&#123;eurosym&#125;</span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\else</span> <span class="comment">% if luatex or xelatex</span></span><br><span class="line">  <span class="keyword">\usepackage</span>&#123;fontspec&#125;</span><br><span class="line">  <span class="keyword">\ifxetex</span></span><br><span class="line">    <span class="keyword">\usepackage</span>&#123;xltxtra,xunicode&#125;</span><br><span class="line">  <span class="keyword">\fi</span></span><br><span class="line">  <span class="keyword">\defaultfontfeatures</span>&#123;Mapping=tex-text,Scale=MatchLowercase&#125;</span><br><span class="line">  <span class="keyword">\newcommand</span>&#123;<span class="keyword">\euro</span>&#125;&#123;€&#125;</span><br><span class="line"><span class="built_in">$</span>if(mainfont)<span class="built_in">$</span></span><br><span class="line">    <span class="keyword">\setmainfont</span>&#123;<span class="built_in">$</span>mainfont<span class="built_in">$</span>&#125;</span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(sansfont)<span class="built_in">$</span></span><br><span class="line">    <span class="keyword">\setsansfont</span>&#123;<span class="built_in">$</span>sansfont<span class="built_in">$</span>&#125;</span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(monofont)<span class="built_in">$</span></span><br><span class="line">    <span class="keyword">\setmonofont</span>&#123;<span class="built_in">$</span>monofont<span class="built_in">$</span>&#125;</span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(mathfont)<span class="built_in">$</span></span><br><span class="line">    <span class="keyword">\setmathfont</span>&#123;<span class="built_in">$</span>mathfont<span class="built_in">$</span>&#125;</span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\fi</span></span><br><span class="line"><span class="built_in">$</span>if(geometry)<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\usepackage</span>[<span class="built_in">$</span>for(geometry)<span class="built_in">$</span><span class="built_in">$</span>geometry<span class="built_in">$</span><span class="built_in">$</span>sep<span class="built_in">$</span>,<span class="built_in">$</span>endfor<span class="built_in">$</span>]&#123;geometry&#125;</span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(natbib)<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;natbib&#125;</span><br><span class="line"><span class="keyword">\bibliographystyle</span>&#123;plainnat&#125;</span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(biblatex)<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;biblatex&#125;</span><br><span class="line"><span class="built_in">$</span>if(biblio-files)<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\bibliography</span>&#123;<span class="built_in">$</span>biblio-files<span class="built_in">$</span>&#125;</span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(listings)<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;listings&#125;</span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(lhs)<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\lstnewenvironment</span>&#123;code&#125;&#123;<span class="keyword">\lstset</span>&#123;language=Haskell,basicstyle=<span class="keyword">\small</span><span class="keyword">\ttfamily</span>&#125;&#125;&#123;&#125;</span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(highlighting-macros)<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>highlighting-macros<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(verbatim-in-note)<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;fancyvrb&#125;</span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(tables)<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;longtable&#125;</span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(graphics)<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;graphicx&#125;</span><br><span class="line"><span class="comment">% We will generate all images so they have a width \maxwidth. This means</span></span><br><span class="line"><span class="comment">% that they will get their normal width if they fit onto the page, but</span></span><br><span class="line"><span class="comment">% are scaled down if they would overflow the margins.</span></span><br><span class="line"><span class="keyword">\makeatletter</span></span><br><span class="line"><span class="keyword">\def</span><span class="keyword">\maxwidth</span>&#123;<span class="keyword">\ifdim</span><span class="keyword">\Gin@nat@width</span><span class="built_in">&amp;</span>gt;<span class="keyword">\linewidth</span><span class="keyword">\linewidth</span></span><br><span class="line"><span class="keyword">\else</span><span class="keyword">\Gin@nat@width</span><span class="keyword">\fi</span>&#125;</span><br><span class="line"><span class="keyword">\makeatother</span></span><br><span class="line"><span class="keyword">\let</span><span class="keyword">\Oldincludegraphics</span><span class="keyword">\includegraphics</span></span><br><span class="line"><span class="keyword">\renewcommand</span>&#123;<span class="keyword">\includegraphics</span>&#125;[1]&#123;<span class="keyword">\Oldincludegraphics</span>[width=<span class="keyword">\maxwidth</span>]&#123;<span class="params">#1</span>&#125;&#125;</span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\ifxetex</span></span><br><span class="line">  <span class="keyword">\usepackage</span>[setpagesize=false, <span class="comment">% page size defined by xetex</span></span><br><span class="line">              unicode=false, <span class="comment">% unicode breaks when used with xetex</span></span><br><span class="line">              xetex]&#123;hyperref&#125;</span><br><span class="line"><span class="keyword">\else</span></span><br><span class="line">  <span class="keyword">\usepackage</span>[unicode=true]&#123;hyperref&#125;</span><br><span class="line"><span class="keyword">\fi</span></span><br><span class="line"><span class="keyword">\hypersetup</span>&#123;breaklinks=true,</span><br><span class="line">            bookmarks=true,</span><br><span class="line">            pdfauthor=&#123;<span class="built_in">$</span>author-meta<span class="built_in">$</span>&#125;,</span><br><span class="line">            pdftitle=&#123;<span class="built_in">$</span>title-meta<span class="built_in">$</span>&#125;,</span><br><span class="line">            colorlinks=true,</span><br><span class="line">            urlcolor=<span class="built_in">$</span>if(urlcolor)<span class="built_in">$</span><span class="built_in">$</span>urlcolor<span class="built_in">$</span><span class="built_in">$</span>else<span class="built_in">$</span>blue<span class="built_in">$</span>endif<span class="built_in">$</span>,</span><br><span class="line">            linkcolor=<span class="built_in">$</span>if(linkcolor)<span class="built_in">$</span><span class="built_in">$</span>linkcolor<span class="built_in">$</span><span class="built_in">$</span>else<span class="built_in">$</span>magenta<span class="built_in">$</span>endif<span class="built_in">$</span>,</span><br><span class="line">            pdfborder=&#123;0 0 0&#125;&#125;</span><br><span class="line"><span class="keyword">\urlstyle</span>&#123;same&#125;  <span class="comment">% don&#x27;t use monospace font for urls</span></span><br><span class="line"><span class="built_in">$</span>if(links-as-notes)<span class="built_in">$</span></span><br><span class="line"><span class="comment">% Make links footnotes instead of hotlinks:</span></span><br><span class="line"><span class="keyword">\renewcommand</span>&#123;<span class="keyword">\href</span>&#125;[2]&#123;<span class="params">#2</span><span class="keyword">\footnote</span>&#123;<span class="keyword">\url</span>&#123;<span class="link">#1</span>&#125;&#125;&#125;</span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(strikeout)<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\usepackage</span>[normalem]&#123;ulem&#125;</span><br><span class="line"><span class="comment">% avoid problems with \sout in headers with hyperref:</span></span><br><span class="line"><span class="keyword">\pdfstringdefDisableCommands</span>&#123;<span class="keyword">\renewcommand</span>&#123;<span class="keyword">\sout</span>&#125;&#123;&#125;&#125;</span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\setlength</span>&#123;<span class="keyword">\parindent</span>&#125;&#123;0pt&#125;</span><br><span class="line"><span class="keyword">\setlength</span>&#123;<span class="keyword">\parskip</span>&#125;&#123;6pt plus 2pt minus 1pt&#125;</span><br><span class="line"><span class="keyword">\setlength</span>&#123;<span class="keyword">\emergencystretch</span>&#125;&#123;3em&#125;  <span class="comment">% prevent overfull lines</span></span><br><span class="line"><span class="built_in">$</span>if(numbersections)<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>else<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\setcounter</span>&#123;secnumdepth&#125;&#123;0&#125;</span><br><span class="line"><span class="keyword">\XeTeXlinebreaklocale</span> &quot;zh&quot;</span><br><span class="line"><span class="keyword">\XeTeXlinebreakskip</span> = 0pt plus 1pt<span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(verbatim-in-note)<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\VerbatimFootnotes</span> <span class="comment">% allows verbatim text in footnotes</span></span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(lang)<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\ifxetex</span></span><br><span class="line">  <span class="keyword">\usepackage</span>&#123;polyglossia&#125;</span><br><span class="line">  <span class="keyword">\setmainlanguage</span>&#123;<span class="built_in">$</span>mainlang<span class="built_in">$</span>&#125;</span><br><span class="line"><span class="keyword">\else</span></span><br><span class="line">  <span class="keyword">\usepackage</span>[<span class="built_in">$</span>lang<span class="built_in">$</span>]&#123;babel&#125;</span><br><span class="line"><span class="keyword">\fi</span></span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>for(header-includes)<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>header-includes<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>endfor<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(title)<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\title</span>&#123;<span class="built_in">$</span>title<span class="built_in">$</span>&#125;</span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\author</span>&#123;<span class="built_in">$</span>for(author)<span class="built_in">$</span><span class="built_in">$</span>author<span class="built_in">$</span><span class="built_in">$</span>sep<span class="built_in">$</span> <span class="keyword">\and</span> <span class="built_in">$</span>endfor<span class="built_in">$</span>&#125;</span><br><span class="line"><span class="keyword">\date</span>&#123;<span class="built_in">$</span>date<span class="built_in">$</span>&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"><span class="built_in">$</span>if(title)<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\maketitle</span></span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>for(include-before)<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>include-before<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>endfor<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(toc)<span class="built_in">$</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">\hypersetup</span>&#123;linkcolor=black&#125;</span><br><span class="line"><span class="keyword">\setcounter</span>&#123;tocdepth&#125;&#123;<span class="built_in">$</span>toc-depth<span class="built_in">$</span>&#125;</span><br><span class="line"><span class="keyword">\tableofcontents</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>body<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(natbib)<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(biblio-files)<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(biblio-title)<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(book-class)<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\renewcommand</span><span class="keyword">\bibname</span>&#123;<span class="built_in">$</span>biblio-title<span class="built_in">$</span>&#125;</span><br><span class="line"><span class="built_in">$</span>else<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\renewcommand</span><span class="keyword">\refname</span>&#123;<span class="built_in">$</span>biblio-title<span class="built_in">$</span>&#125;</span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\bibliography</span>&#123;<span class="built_in">$</span>biblio-files<span class="built_in">$</span>&#125;</span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>if(biblatex)<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\printbibliography</span><span class="built_in">$</span>if(biblio-title)<span class="built_in">$</span>[title=<span class="built_in">$</span>biblio-title<span class="built_in">$</span>]<span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>endif<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>for(include-after)<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>include-after<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span>endfor<span class="built_in">$</span></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>~~~~~~~~~~~~~~~
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wanqiang.wang/post/5026.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wanqiang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WANQIANG WANG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/5026.html" class="post-title-link" itemprop="url">xelatex 纸张大小设置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-05-19 06:06:28" itemprop="dateCreated datePublished" datetime="2015-05-19T06:06:28+08:00">2015-05-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-10-04 00:07:19" itemprop="dateModified" datetime="2025-10-04T00:07:19+08:00">2025-10-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%99%BE%E5%BA%A6%E7%A9%BA%E9%97%B4%E7%9A%84%E6%97%A7%E6%96%87%E7%AB%A0/" itemprop="url" rel="index"><span itemprop="name">百度空间的旧文章</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">\documentclass[]&#123;article&#125;</span><br><span class="line"></span><br><span class="line">\usepackage[T1]&#123;fontenc&#125;</span><br><span class="line"></span><br><span class="line">\usepackage&#123;lmodern&#125;</span><br><span class="line"></span><br><span class="line">\usepackage&#123;amssymb,amsmath&#125;</span><br><span class="line"></span><br><span class="line">\usepackage&#123;ifxetex,ifluatex&#125;</span><br><span class="line"></span><br><span class="line">**\usepackage[body=&#123;18cm,24cm&#125;]&#123;geometry&#125;**</span><br><span class="line"></span><br><span class="line">**\geometry&#123;papersize=&#123;21cm,29.7cm&#125;&#125;**</span><br><span class="line"></span><br><span class="line">\usepackage&#123;fixltx2e&#125; % provides \textsubscript</span><br><span class="line"></span><br><span class="line">% use microtype if available</span><br><span class="line"></span><br><span class="line">\IfFileExists&#123;microtype.sty&#125;&#123;\usepackage&#123;microtype&#125;&#125;&#123;&#125;</span><br><span class="line"></span><br><span class="line">% use upquote if available, for straight quotes in verbatim environments</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>注意加粗的两行。</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Wanqiang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wangwanqiang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wangwanqiang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wwq100@gmail.com" title="E-Mail → mailto:wwq100@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">粤ICP备15047376号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wanqiang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
