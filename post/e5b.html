@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  <meta name="google-site-verification" content="0GUyfSKVO6ZMFM5NT-oLy1BeO_LQPEcnGhTn3xTvklI" />
+  
+  
+  <title>SPI 总线 | Wanqiang.wang</title>
+  <meta name="description" content="SPI总线技术详解1. 概述串行外设接口（Serial Peripheral Interface，SPI）是由Motorola公司于1979年提出的一种同步串行通信协议，主要用于短距离、高速的芯片间数据传输。SPI是一种高速、全双工、同步的通信总线，采用主从（Master-Slave）架构，广泛应用于嵌入式系统中微控制器与外围设备的通信，如传感器、存储设备、显示驱动器、网络控制器等。 2. S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SPI 总线">
+<meta property="og:url" content="https://wanqiang.wang/post/e5b.html">
+<meta property="og:site_name" content="WANQIANG.WANG">
+<meta property="og:description" content="SPI总线技术详解1. 概述串行外设接口（Serial Peripheral Interface，SPI）是由Motorola公司于1979年提出的一种同步串行通信协议，主要用于短距离、高速的芯片间数据传输。SPI是一种高速、全双工、同步的通信总线，采用主从（Master-Slave）架构，广泛应用于嵌入式系统中微控制器与外围设备的通信，如传感器、存储设备、显示驱动器、网络控制器等。 2. S">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wanqiang.wang/post/e5b/Q13S5At43CUc.svg">
+<meta property="og:image" content="https://wanqiang.wang/post/e5b/DrlkwQgyKQ6W.svg">
+<meta property="og:image" content="https://wanqiang.wang/post/e5b/aJgCAIwhwlHC.svg">
+<meta property="article:published_time" content="2020-05-03T00:10:33.000Z">
+<meta property="article:modified_time" content="2025-10-21T02:38:15.425Z">
+<meta property="article:author" content="Wanqiang">
+<meta property="article:tag" content="外设">
+<meta property="article:tag" content="嵌入式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wanqiang.wang/post/e5b/Q13S5At43CUc.svg">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://wanqiang.wang/post/e5b.html">
+  
+    <link rel="alternate" href="/atom.xml" title="WANQIANG.WANG" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 8.0.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/wangwanqiang" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Wanqiang</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">技术探索者</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> 中国.深圳</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/wangwanqiang" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Go/%E5%BC%80%E5%8F%91/">开发</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/IOS/">IOS</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IOS-%E5%BC%80%E5%8F%91/">IOS 开发</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IT/">IT</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IT/win-10/">win 10</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac-%E4%BD%BF%E7%94%A8/">Mac 使用</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/%E5%A5%BD%E6%96%87%E6%94%B6%E8%97%8F/">好文收藏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Qt/">Qt</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Qt/GUI/">GUI</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQLite/">SQLite</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/c/">c++</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/dd-wrt/">dd-wrt</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/dd-wrt/%E8%B7%AF%E7%94%B1%E5%99%A8/">路由器</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/docker/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/%E6%9C%AA%E5%88%86%E7%B1%BB/">未分类</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/gem/">gem</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iText/">iText</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/MicroGen8/">MicroGen8</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/compile/">compile</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/tar/">tar</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/qt/">qt</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/qt/c/">c++</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/tmux/">tmux</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/tmux/linux/">linux</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/win10/">win10</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/win10/%E8%BE%93%E5%85%A5%E6%B3%95/">输入法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E7%89%A9/">人物</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BB%A3%E7%A0%81/">代码</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%96%E8%AE%BE/">外设</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%96%E8%AE%BE/%E5%B5%8C%E5%85%A5%E5%BC%8F/">嵌入式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A5%BD%E6%96%87%E6%94%B6%E8%97%8F/">好文收藏</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%85%E8%A1%8C/">旅行</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%85%E8%A1%8C/%E5%9B%BD%E5%86%85%E6%B8%B8/">国内游</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%85%E8%A1%8C/%E5%9B%BD%E5%86%85%E6%B8%B8/%E8%87%AA%E9%A9%BE%E6%B8%B8/">自驾游</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/">日志系统</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">未分类</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E5%BA%A6%E7%A9%BA%E9%97%B4%E7%9A%84%E6%97%A7%E6%96%87%E7%AB%A0/">百度空间的旧文章</a><span class="category-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/" rel="tag">GUI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/" rel="tag">Go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOS/" rel="tag">IOS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Links/" rel="tag">Links</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MicroGen8/" rel="tag">MicroGen8</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QWebView/" rel="tag">QWebView</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/" rel="tag">Qt</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TEX/" rel="tag">TEX</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitnami/" rel="tag">bitnami</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/compile/" rel="tag">compile</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/" rel="tag">database</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dd-wrt/" rel="tag">dd-wrt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iText/" rel="tag">iText</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/" rel="tag">ios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keil/" rel="tag">keil</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log/" rel="tag">log</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/next/" rel="tag">next</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/printer/" rel="tag">printer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/qnap/" rel="tag">qnap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/qt/" rel="tag">qt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redmine/" rel="tag">redmine</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tar/" rel="tag">tar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/transmission/" rel="tag">transmission</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uml/" rel="tag">uml</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/" rel="tag">win10</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%8B%E8%BD%BD/" rel="tag">下载</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E9%80%9A%E6%94%BB%E7%95%A5/" rel="tag">交通攻略</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%BA%E7%89%A9%E4%BC%A0%E8%AE%B0/" rel="tag">人物传记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%90%86/" rel="tag">代理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%96%E8%AE%BE/" rel="tag">外设</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%BF%E5%B7%9E/" rel="tag">广州</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E7%89%88/" rel="tag">排版</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" rel="tag">数据分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" rel="tag">环境配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F/" rel="tag">程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E9%A9%BE%E6%B8%B8/" rel="tag">自驾游</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" rel="tag">计算机科学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/" rel="tag">路由器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BE%93%E5%85%A5%E6%B3%95/" rel="tag">输入法</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">十月 2025</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%97%85%E8%A1%8C/">旅行</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/%E6%97%85%E8%A1%8C/%E5%9B%BD%E5%86%85%E6%B8%B8/">国内游</a>
+              </p>
+              <p class="item-title">
+                <a href="/post/61a2.html" class="title">深圳自驾去长沙</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-10-21T02:12:00.000Z" itemprop="datePublished">2025-10-21</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E4%BA%BA%E7%89%A9/">人物</a>
+              </p>
+              <p class="item-title">
+                <a href="/donald-knuth-biography/" class="title">高德纳传记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-10-12T09:39:00.000Z" itemprop="datePublished">2025-10-12</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%97%85%E8%A1%8C/">旅行</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/%E6%97%85%E8%A1%8C/%E5%9B%BD%E5%86%85%E6%B8%B8/">国内游</a>
+              </p>
+              <p class="item-title">
+                <a href="/post/61b3.html" class="title">广州自驾旅游攻略</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-10-03T15:53:00.000Z" itemprop="datePublished">2025-10-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SQLite/">SQLite</a>
+              </p>
+              <p class="item-title">
+                <a href="/post/9c76.html" class="title">理查德・希普（Richard Hipp）：SQLite 之父与轻量化技术革命的引领者</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-10-02T15:11:00.000Z" itemprop="datePublished">2025-10-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%A4%96%E8%AE%BE/">外设</a>
+              </p>
+              <p class="item-title">
+                <a href="/post/f6b.html" class="title">hp打印机离合器维修</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-07-04T11:57:13.000Z" itemprop="datePublished">2022-07-04</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-SPI 总线" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SPI 总线
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/post/e5b.html" class="article-date">
+	  <time datetime="2020-05-03T00:10:33.000Z" itemprop="datePublished">2020-05-03</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E5%A4%96%E8%AE%BE/">外设</a>►<a class="article-category-link" href="/categories/%E5%A4%96%E8%AE%BE/%E5%B5%8C%E5%85%A5%E5%BC%8F/">嵌入式</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/%E5%A4%96%E8%AE%BE/" rel="tag">外设</a>, <a class="article-tag-link-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/post/e5b.html#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <!-- 注意：本文中的图片已转换为本地引用，请确保将图片文件下载到 source/_posts/SPI 总线/ 目录下 -->
+
+<h1 id="SPI总线技术详解"><a href="#SPI总线技术详解" class="headerlink" title="SPI总线技术详解"></a>SPI总线技术详解</h1><h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>串行外设接口（Serial Peripheral Interface，SPI）是由Motorola公司于1979年提出的一种同步串行通信协议，主要用于短距离、高速的芯片间数据传输。SPI是一种高速、全双工、同步的通信总线，采用主从（Master-Slave）架构，广泛应用于嵌入式系统中微控制器与外围设备的通信，如传感器、存储设备、显示驱动器、网络控制器等。</p>
+<h2 id="2-SPI总线的特点与特性"><a href="#2-SPI总线的特点与特性" class="headerlink" title="2. SPI总线的特点与特性"></a>2. SPI总线的特点与特性</h2><h3 id="2-1-基本特点"><a href="#2-1-基本特点" class="headerlink" title="2.1 基本特点"></a>2.1 基本特点</h3><ul>
+<li><strong>同步通信</strong>：使用单独的时钟信号线进行数据同步</li>
+<li><strong>全双工通信</strong>：支持同时发送和接收数据</li>
+<li><strong>非差分信号</strong>：采用单端信号传输</li>
+<li><strong>总线式架构</strong>：通过片选信号实现多设备连接</li>
+<li><strong>主从通信模式</strong>：由主设备控制通信时序</li>
+</ul>
+<h3 id="2-2-主要优点"><a href="#2-2-主要优点" class="headerlink" title="2.2 主要优点"></a>2.2 主要优点</h3><ul>
+<li><strong>高速数据传输</strong>：速率通常可达几MHz到几十MHz，部分高性能SPI接口甚至支持上百MHz的数据传输</li>
+<li><strong>通信协议简单</strong>：协议实现相对简单，硬件开销小</li>
+<li><strong>全双工通信能力</strong>：可在同一时钟周期内同时发送和接收数据</li>
+<li><strong>灵活的时钟极性和相位配置</strong>：通过CPOL和CPHA参数可配置四种不同的通信模式，适应不同外设需求</li>
+<li><strong>支持多从设备</strong>：通过多个片选信号可连接多个从设备</li>
+</ul>
+<h3 id="2-3-主要缺点"><a href="#2-3-主要缺点" class="headerlink" title="2.3 主要缺点"></a>2.3 主要缺点</h3><ul>
+<li><strong>没有内置的错误检测机制</strong>：不具备奇偶校验或CRC等错误校验功能</li>
+<li><strong>缺乏流量控制机制</strong>：没有应答信号确认数据是否被正确接收</li>
+<li><strong>信号线数量较多</strong>：相比I2C总线需要更多的信号线</li>
+<li><strong>抗噪声干扰能力较弱</strong>：采用单端信号传输，在嘈杂环境中可靠性较低</li>
+<li><strong>仅支持单主设备</strong>：总线上只能有一个主设备控制通信</li>
+</ul>
+<h2 id="3-SPI总线的硬件架构"><a href="#3-SPI总线的硬件架构" class="headerlink" title="3. SPI总线的硬件架构"></a>3. SPI总线的硬件架构</h2><p>SPI总线通常需要4根信号线，在单向传输的情况下也可以使用3根信号线：</p>
+<ul>
+<li><strong>MOSI（Master Out Slave In）</strong>：主设备数据输出，从设备数据输入</li>
+<li><strong>MISO（Master In Slave Out）</strong>：主设备数据输入，从设备数据输出</li>
+<li><strong>SCLK（Serial Clock）</strong>：串行时钟信号，由主设备产生并控制</li>
+<li><strong>CS&#x2F;SS（Chip Select&#x2F;Slave Select）</strong>：片选信号，由主设备控制，用于选择要通信的从设备</li>
+</ul>
+<p><img src="/post/e5b/Q13S5At43CUc.svg" alt="SPI总线硬件连接示意图"></p>
+<p>当系统中有多个SPI从设备时，主设备需要为每个从设备提供独立的片选信号。通信时，主设备通过拉低特定从设备的片选信号来选中该设备，未被选中的设备则忽略总线上的通信。</p>
+<h2 id="4-SPI通信协议详解"><a href="#4-SPI通信协议详解" class="headerlink" title="4. SPI通信协议详解"></a>4. SPI通信协议详解</h2><h3 id="4-1-通信时序与工作模式"><a href="#4-1-通信时序与工作模式" class="headerlink" title="4.1 通信时序与工作模式"></a>4.1 通信时序与工作模式</h3><p>SPI通信有四种不同的工作模式，这些模式由时钟极性（CPOL，Clock Polarity）和时钟相位（CPHA，Clock Phase）两个参数决定：</p>
+<table>
+<thead>
+<tr>
+<th>SPI模式</th>
+<th>CPOL值</th>
+<th>CPHA值</th>
+<th>时钟空闲状态</th>
+<th>数据采样边沿</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Mode 0</td>
+<td>0</td>
+<td>0</td>
+<td>低电平</td>
+<td>上升沿</td>
+</tr>
+<tr>
+<td>Mode 1</td>
+<td>0</td>
+<td>1</td>
+<td>低电平</td>
+<td>下降沿</td>
+</tr>
+<tr>
+<td>Mode 2</td>
+<td>1</td>
+<td>0</td>
+<td>高电平</td>
+<td>下降沿</td>
+</tr>
+<tr>
+<td>Mode 3</td>
+<td>1</td>
+<td>1</td>
+<td>高电平</td>
+<td>上升沿</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p><strong>时钟极性（CPOL）</strong>：决定SCLK在空闲状态时的电平状态</p>
+<ul>
+<li>CPOL&#x3D;0：SCLK在空闲状态为低电平</li>
+<li>CPOL&#x3D;1：SCLK在空闲状态为高电平</li>
+</ul>
+</li>
+<li><p><strong>时钟相位（CPHA）</strong>：决定数据采样是在时钟的第一个边沿还是第二个边沿</p>
+<ul>
+<li>CPHA&#x3D;0：在时钟的第一个边沿（从空闲状态开始的第一个跳变）进行数据采样</li>
+<li>CPHA&#x3D;1：在时钟的第二个边沿进行数据采样</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-2-数据传输过程"><a href="#4-2-数据传输过程" class="headerlink" title="4.2 数据传输过程"></a>4.2 数据传输过程</h3><p>SPI数据传输过程如下：</p>
+<ol>
+<li>主设备拉低目标从设备的片选信号（CS&#x2F;SS），表示开始通信</li>
+<li>主设备通过SCLK线发送时钟信号</li>
+<li>在每个时钟周期内：<ul>
+<li>主设备在MOSI线上输出一位数据</li>
+<li>从设备在MISO线上输出一位数据（全双工通信）</li>
+<li>根据CPHA的值，在特定的时钟边沿进行数据采样</li>
+</ul>
+</li>
+<li>数据传输完毕后，主设备释放片选信号（拉高CS&#x2F;SS），表示通信结束</li>
+</ol>
+<p>SPI通信以字节（8位）或更大的数据帧为单位进行传输，数据通常以MSB（最高有效位）优先的方式发送，但也有一些设备支持LSB（最低有效位）优先的方式。</p>
+<p><img src="/post/e5b/DrlkwQgyKQ6W.svg" alt="SPI通信时序图"><br><img src="/post/e5b/aJgCAIwhwlHC.svg" alt="SPI不同模式时序对比"></p>
+<h3 id="4-3-多字节传输与流控制"><a href="#4-3-多字节传输与流控制" class="headerlink" title="4.3 多字节传输与流控制"></a>4.3 多字节传输与流控制</h3><p>SPI协议本身没有定义特定的流控制机制，也没有内置的地址或命令结构。在实际应用中，通常采用以下方式实现多字节数据传输：</p>
+<ul>
+<li><strong>命令+数据模式</strong>：首先发送命令字节，然后发送或接收数据字节</li>
+<li><strong>地址+数据模式</strong>：首先发送地址字节，然后发送或接收数据字节</li>
+<li><strong>自定义协议</strong>：根据特定应用需求定义数据帧格式和传输规则</li>
+</ul>
+<p>需要注意的是，SPI通信没有像I2C那样的开始和停止信号，通信的开始和结束通过片选信号的拉低和拉高来表示。</p>
+<h2 id="5-SPI与其他通信协议的对比"><a href="#5-SPI与其他通信协议的对比" class="headerlink" title="5. SPI与其他通信协议的对比"></a>5. SPI与其他通信协议的对比</h2><h3 id="5-1-SPI与I2C的对比"><a href="#5-1-SPI与I2C的对比" class="headerlink" title="5.1 SPI与I2C的对比"></a>5.1 SPI与I2C的对比</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>SPI</th>
+<th>I2C</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据线数量</td>
+<td>4根（MOSI、MISO、SCLK、CS）</td>
+<td>2根（SDA、SCL）</td>
+</tr>
+<tr>
+<td>通信方式</td>
+<td>全双工</td>
+<td>半双工</td>
+</tr>
+<tr>
+<td>传输速率</td>
+<td>通常较高（可达几十MHz或更高）</td>
+<td>相对较低（通常为100Kbps-4Mbps）</td>
+</tr>
+<tr>
+<td>设备寻址</td>
+<td>通过片选信号</td>
+<td>通过地址帧</td>
+</tr>
+<tr>
+<td>主设备数量</td>
+<td>只能有一个主设备</td>
+<td>支持多个主设备</td>
+</tr>
+<tr>
+<td>错误检测</td>
+<td>无内置机制</td>
+<td>支持ACK&#x2F;NACK应答</td>
+</tr>
+<tr>
+<td>抗干扰能力</td>
+<td>较弱（单端信号）</td>
+<td>较强（开漏输出+上拉电阻）</td>
+</tr>
+<tr>
+<td>协议复杂度</td>
+<td>相对简单</td>
+<td>相对复杂</td>
+</tr>
+<tr>
+<td>实现成本</td>
+<td>较高（需要更多引脚）</td>
+<td>较低</td>
+</tr>
+</tbody></table>
+<h3 id="5-2-SPI、I2C、UART和CAN的应用场景对比"><a href="#5-2-SPI、I2C、UART和CAN的应用场景对比" class="headerlink" title="5.2 SPI、I2C、UART和CAN的应用场景对比"></a>5.2 SPI、I2C、UART和CAN的应用场景对比</h3><table>
+<thead>
+<tr>
+<th>协议</th>
+<th>应用场景</th>
+<th>传输距离</th>
+<th>速率</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SPI</td>
+<td>板内芯片间通信（如MCU与传感器、显示屏、Flash等）</td>
+<td>短距离（几厘米至几十厘米）</td>
+<td>高（几MHz至几十MHz）</td>
+<td>高速、全双工、同步、单主多从</td>
+</tr>
+<tr>
+<td>I2C</td>
+<td>板内芯片间通信（如MCU与低速率传感器、实时时钟等）</td>
+<td>短距离（通常不超过1米）</td>
+<td>中低（100Kbps-4Mbps）</td>
+<td>多主多从、地址寻址、半双工</td>
+</tr>
+<tr>
+<td>UART</td>
+<td>设备间通信（如MCU与PC、模块间通信）</td>
+<td>中等距离（通常不超过10米）</td>
+<td>中低（通常不超过1Mbps）</td>
+<td>异步、点对点、无需时钟线</td>
+</tr>
+<tr>
+<td>CAN</td>
+<td>工业控制、汽车电子等领域的网络通信</td>
+<td>长距离（最远可达10公里，取决于速率）</td>
+<td>中高（最高可达1Mbps）</td>
+<td>多主、错误检测、优先级仲裁、高可靠性</td>
+</tr>
+</tbody></table>
+<h4 id="SPI应用场景特点"><a href="#SPI应用场景特点" class="headerlink" title="SPI应用场景特点"></a>SPI应用场景特点</h4><p>SPI适用于需要高速数据传输且对可靠性要求不是极高的短距离板内通信场景，如：</p>
+<ul>
+<li>微控制器与外部Flash&#x2F;EEPROM存储芯片通信</li>
+<li>图像传感器与处理器之间的数据传输</li>
+<li>LCD&#x2F;OLED显示屏驱动</li>
+<li>音频编解码器</li>
+<li>模数&#x2F;数模转换器</li>
+</ul>
+<h4 id="I2C应用场景特点"><a href="#I2C应用场景特点" class="headerlink" title="I2C应用场景特点"></a>I2C应用场景特点</h4><p>I2C适用于低速、多设备、对连接线数量敏感的应用场景，如：</p>
+<ul>
+<li>传感器网络（温度、湿度、压力等传感器）</li>
+<li>实时时钟模块</li>
+<li>EEPROM存储</li>
+<li>电源管理芯片</li>
+</ul>
+<h4 id="UART应用场景特点"><a href="#UART应用场景特点" class="headerlink" title="UART应用场景特点"></a>UART应用场景特点</h4><p>UART适用于设备间点对点通信，如：</p>
+<ul>
+<li>计算机与外部设备通信（调试接口、串口设备）</li>
+<li>模块间通信（如GPS模块、蓝牙模块等）</li>
+<li>简单的串行通信链路</li>
+</ul>
+<h4 id="CAN应用场景特点"><a href="#CAN应用场景特点" class="headerlink" title="CAN应用场景特点"></a>CAN应用场景特点</h4><p>CAN适用于需要高可靠性、长距离、多节点的网络通信场景，如：</p>
+<ul>
+<li>汽车电子网络</li>
+<li>工业控制系统</li>
+<li>电梯控制</li>
+<li>机器人控制系统</li>
+<li>船舶电子系统</li>
+</ul>
+<h2 id="6-SPI接口的实现与设计考虑"><a href="#6-SPI接口的实现与设计考虑" class="headerlink" title="6. SPI接口的实现与设计考虑"></a>6. SPI接口的实现与设计考虑</h2><h3 id="6-1-硬件实现"><a href="#6-1-硬件实现" class="headerlink" title="6.1 硬件实现"></a>6.1 硬件实现</h3><p>SPI接口可以通过硬件或软件实现：</p>
+<ul>
+<li><strong>硬件SPI</strong>：大多数微控制器都内置了SPI控制器，可自动处理时序和数据传输</li>
+<li><strong>软件SPI</strong>：通过GPIO引脚和软件模拟SPI时序，适用于没有硬件SPI控制器的情况</li>
+</ul>
+<h3 id="6-2-设计注意事项"><a href="#6-2-设计注意事项" class="headerlink" title="6.2 设计注意事项"></a>6.2 设计注意事项</h3><ol>
+<li><strong>信号完整性</strong>：高速SPI通信需要考虑信号完整性问题，包括传输线阻抗匹配、信号反射、串扰等</li>
+<li><strong>电源去耦</strong>：为SPI设备提供良好的电源去耦，减少噪声干扰</li>
+<li><strong>接地处理</strong>：确保良好的接地，避免地环路</li>
+<li><strong>时钟频率选择</strong>：根据从设备的最高支持频率和传输距离选择合适的时钟频率</li>
+<li><strong>模式匹配</strong>：确保主设备和从设备的SPI工作模式（CPOL和CPHA）一致</li>
+<li><strong>片选信号处理</strong>：正确处理片选信号的时序，避免信号竞争</li>
+<li><strong>多从设备冲突</strong>：合理设计片选信号的控制逻辑，避免多从设备同时被选中</li>
+</ol>
+<h2 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h2><p>SPI总线是一种高速、全双工、同步的串行通信协议，以其简单的实现和高速的数据传输特性，在嵌入式系统中得到了广泛的应用。尽管SPI协议在错误检测和多主设备支持方面存在一些局限性，但其在需要高速数据传输的短距离通信场景中仍然是首选方案之一。</p>
+<p>在实际应用中，选择SPI还是其他通信协议（如I2C、UART、CAN等）应根据具体的应用需求、传输距离、速率要求、设备数量以及系统复杂度等因素综合考虑。</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://wanqiang.wang/post/e5b.html" title="SPI 总线" target="_blank" rel="external">https://wanqiang.wang/post/e5b.html</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/wangwanqiang" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/wangwanqiang" target="_blank"><span class="text-dark">Wanqiang</span><small class="ml-1x">技术探索者</small></a></h3>
+        <div>无话可说。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/post/b963.html" title="Qt下载链接"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/post/639e.html" title="常见图表与用途"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/wangwanqiang" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+
+    <script defer>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?0659e54213d527762148d926eefbbdc7";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+</body>
+</html>
